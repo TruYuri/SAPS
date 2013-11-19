@@ -117,7 +117,6 @@
             this.tabDefault.TabIndex = 0;
             this.tabDefault.Text = "Default";
             this.tabDefault.UseVisualStyleBackColor = true;
-            this.tabDefault.Click += new System.EventHandler(this.tabPage5_Click);
             // 
             // tabCustom
             // 
