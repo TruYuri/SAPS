@@ -50,7 +50,7 @@
     <Compile Include="SAPS.Designer.cs">
       <DependentUpon>SAPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="SAPS.resx">
       <DependentUpon>SAPS.cs</DependentUpon>
