@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAPS
 {
-    public partial class Form1 : Form
+    public partial class winSAPS : Form
     {
-        public Form1()
+        public winSAPS()
         {
             InitializeComponent();
         }

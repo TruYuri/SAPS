@@ -1,1 +1,2 @@
 c:\users\austin\documents\visual studio 2012\Projects\SAPS\SAPS\bin\Debug\SAPS.exe.config
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.exe.config
