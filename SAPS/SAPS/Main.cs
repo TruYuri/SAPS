@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace SAPS
 {
-    static class Main
+    static class main
     {
         /// <summary>
         /// The main entry point for the application.

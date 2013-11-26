@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSystem.cs" />
+    <Compile Include="BaseSystem.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="EventTracker.cs" />
+    <Compile Include="StatisticsSystem.cs" />
+    <Compile Include="EventSystem.cs" />
     <Compile Include="SAPS.cs">
       <SubType>Form</SubType>
     </Compile>

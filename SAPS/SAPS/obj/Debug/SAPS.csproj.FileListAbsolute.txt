@@ -1,2 +1,10 @@
 c:\users\austin\documents\visual studio 2012\Projects\SAPS\SAPS\bin\Debug\SAPS.exe.config
 C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.exe.config
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.csprojResolveAssemblyReference.cache
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.winSAPS.resources
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.Properties.Resources.resources
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.csproj.GenerateResource.Cache
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.exe
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.pdb
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.exe
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.pdb

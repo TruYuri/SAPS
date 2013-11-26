@@ -12,9 +12,19 @@ namespace SAPS
 {
     public partial class winSAPS : Form
     {
+        private bool isLogged;
+        private BaseSystem _baseSystem;
+
         public winSAPS()
         {
+            _baseSystem = new BaseSystem();
+
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
