@@ -11,7 +11,9 @@ namespace SAPS
 {
     struct Entry
     {
-        string name;
+        string firstName;
+        string middleName;
+        string lastName;
         int age;
         float GPA;
         DateTime dateOfBirth;
