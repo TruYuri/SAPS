@@ -10,7 +10,7 @@ namespace SAPS
     {
         private static StatisticsSystem _instance;
 
-        public StatisticsSystem Instance
+        public static StatisticsSystem Instance
         {
             get
             {

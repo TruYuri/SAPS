@@ -10,7 +10,7 @@ namespace SAPS
     {
         private static EventSystem _instance;
 
-        public EventSystem Instance
+        public static EventSystem Instance
         {
             get
             {

@@ -30,9 +30,17 @@ namespace SAPS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // do error checking here first
+            // check database for user
+            // send email
+            // send password
+
+            // retrieve name
+            // retrieve user type
+            UserType type = UserType.All;
+            string name = textName.Text;
 
             // if successful
+            User user = new User(textName.Text, name, type);
             this.tabSystems.Controls.Add(tabHome);
             this.tabSystems.SelectedTab = tabHome;
             this.tabSystems.Controls.Remove(tabLogin);
@@ -53,6 +61,9 @@ namespace SAPS
             this.tabSystems.Controls.Remove(tabApplications);
             this.tabSystems.Controls.Remove(tabEvents);
             this.tabSystems.Controls.Remove(tabStatistics);
+
+            // Delete user
+            User.Instance.Destroy();
         }
     }
 }

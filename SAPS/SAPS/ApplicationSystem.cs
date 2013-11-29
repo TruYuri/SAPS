@@ -10,7 +10,7 @@ namespace SAPS
     {
         private static ApplicationSystem _instance;
 
-        public ApplicationSystem Instance
+        public static ApplicationSystem Instance
         {
             get
             {

@@ -9,25 +9,30 @@ enum StudentType { Undergraduate, Graduate };
 
 namespace SAPS
 {
-    struct Entry
+    struct DatabaseEntry
     {
         string firstName;
         string middleName;
         string lastName;
+        Gender gender;
         int age;
         float GPA;
         DateTime dateOfBirth;
         StudentType studentType;
-        Gender gender;
         List<string> majors;
         List<string> minors;
+        Dictionary<string, bool> graduateVotes;
+        int approvalStage;
     }
 
     class Database
     {
         private static Database _instance;
 
-        public Database Instance
+        List<DatabaseEntry> _database;
+        List<DatabaseEntry> _availableEntries;
+
+        public static Database Instance
         {
             get
             {
@@ -38,6 +43,10 @@ namespace SAPS
         public Database()
         {
             _instance = this;
+
+            // Load database to _database
+
+            // Filter to User.Instance.Permissions
         }
     }
 }

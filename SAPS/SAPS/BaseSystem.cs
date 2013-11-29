@@ -15,7 +15,7 @@ namespace SAPS
         private EventTracker _eventTracker;
         private Database _database;
 
-        public BaseSystem Instance
+        public static BaseSystem Instance
         {
             get
             {
