@@ -9,20 +9,20 @@ enum StudentType { Undergraduate, Graduate };
 
 namespace SAPS
 {
-    struct DatabaseEntry
+    class DatabaseEntry
     {
-        string firstName;
-        string middleName;
-        string lastName;
-        Gender gender;
-        int age;
-        float GPA;
-        DateTime dateOfBirth;
-        StudentType studentType;
-        List<string> majors;
-        List<string> minors;
-        Dictionary<string, bool> graduateVotes;
-        int approvalStage;
+        public string firstName;
+        public string middleName;
+        public string lastName;
+        public Gender gender;
+        public int age;
+        public float GPA;
+        public DateTime dateOfBirth;
+        public StudentType studentType;
+        public List<string> majors;
+        public List<string> minors;
+        public Dictionary<string, bool> graduateVotes;
+        public int approvalStage;
     }
 
     class Database
@@ -51,7 +51,9 @@ namespace SAPS
 
         public Serialize()
         {
-            
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(Typeof(DatabaseEntry)); 
+            MemoryStream ms1 = new MemoryStream();
+            serializer.WriteObject(ms1, _database);
         }
 
         public Populate()
