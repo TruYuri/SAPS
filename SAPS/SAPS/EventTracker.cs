@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace SAPS
 {
+    [DataContract]
     class EventEntry
     {
-        public string EventName;
-        public DateTime SubmissionTime;
-        public string Description;
-        public string EventCreator;
-        public DateTime EventActivationTime;
-        public DateTime EventDeactivationTime;
+        [DataMember] public string EventName;
+        [DataMember] public DateTime SubmissionTime;
+        [DataMember] public string Description;
+        [DataMember] public string EventCreator;
+        [DataMember] public DateTime EventActivationTime;
+        [DataMember] public DateTime EventDeactivationTime;
     }
 
     class EventTracker

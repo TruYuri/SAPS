@@ -15,18 +15,18 @@ namespace SAPS
     [DataContract]
     class DatabaseEntry
     {
-        public string firstName;
-        public string middleName;
-        public string lastName;
-        public Gender gender;
-        public int age;
-        public float GPA;
-        public DateTime dateOfBirth;
-        public StudentType studentType;
-        public List<string> majors;
-        public List<string> minors;
-        public Dictionary<string, bool> graduateVotes;
-        public int approvalStage;
+        [DataMember] public string firstName;
+        [DataMember] public string middleName;
+        [DataMember] public string lastName;
+        [DataMember] public Gender gender;
+        [DataMember] public int age;
+        [DataMember] public float GPA;
+        [DataMember] public DateTime dateOfBirth;
+        [DataMember] public StudentType studentType;
+        [DataMember] public List<string> majors;
+        [DataMember] public List<string> minors;
+        [DataMember] public Dictionary<string, bool> graduateVotes;
+        [DataMember] public int approvalStage;
     }
 
     class Database
