@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 enum Gender { Male, Female };
 enum StudentType { Undergraduate, Graduate };
 
 namespace SAPS
 {
+    [DataContract]
     class DatabaseEntry
     {
         public string firstName;
@@ -49,14 +53,14 @@ namespace SAPS
             // Filter to User.Instance.Permissions
         }
 
-        public Serialize()
+        public void Serialize()
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(Typeof(DatabaseEntry)); 
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
             MemoryStream ms1 = new MemoryStream();
             serializer.WriteObject(ms1, _database);
         }
 
-        public Populate()
+        public void Populate()
         {
            
         }
