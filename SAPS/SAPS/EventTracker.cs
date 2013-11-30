@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace SAPS
 {
@@ -22,7 +24,7 @@ namespace SAPS
     {
         private static EventTracker _instance;
 
-        List<EventEntry> _entry;
+        List<EventEntry> _events;
 
         public EventTracker Instance
         {
@@ -35,6 +37,16 @@ namespace SAPS
         public EventTracker()
         {
             _instance = this;
+        }
+
+        public void Serialize(DataContractJsonSerializer serializer, MemoryStream stream)
+        {
+            serializer.WriteObject(stream, _events);
+        }
+
+        public void Populate(DataContractJsonSerializer serializer, MemoryStream stream)
+        {
+            _events = serializer.ReadObject(stream) as List<EventEntry>;
         }
     }
 }

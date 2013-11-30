@@ -12,7 +12,6 @@ namespace SAPS
 {
     public partial class winSAPS : Form
     {
-        private bool isLogged;
         private BaseSystem _baseSystem;
 
         public winSAPS()
@@ -49,7 +48,10 @@ namespace SAPS
             this.tabSystems.Controls.Add(tabStatistics);
 
             // load database
-            // load applications and events
+            _baseSystem.Populate();
+
+            // load applications and events to lists
+
             // calculate basic stats
         }
 
@@ -61,6 +63,9 @@ namespace SAPS
             this.tabSystems.Controls.Remove(tabApplications);
             this.tabSystems.Controls.Remove(tabEvents);
             this.tabSystems.Controls.Remove(tabStatistics);
+
+            // save database
+            _baseSystem.Serialize();
 
             // Delete user
             User.Instance.Destroy();

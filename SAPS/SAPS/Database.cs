@@ -28,14 +28,14 @@ namespace SAPS
         [DataMember] public List<string> minors;
         [DataMember] public Dictionary<string, bool> graduateVotes;
         [DataMember] public int approvalStage;
+        [DataMember] public string comments;
     }
 
     class Database
     {
         private static Database _instance;
-
-        List<DatabaseEntry> _database;
-        List<DatabaseEntry> _availableEntries;
+        private List<DatabaseEntry> _database;
+        private List<DatabaseEntry> _availableEntries;
 
         public static Database Instance
         {
@@ -48,26 +48,22 @@ namespace SAPS
         public Database()
         {
             _instance = this;
-
+            _database = new List<DatabaseEntry>();
+            _availableEntries = new List<DatabaseEntry>();
             // Load database to _database
 
-            // Filter to User.Instance.Permissions
+            // Filter by User.Instance.Permissions
         }
 
-        public void Serialize()
+        public void Serialize(DataContractJsonSerializer serializer, MemoryStream stream)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
-            MemoryStream outstream = new MemoryStream();
-            serializer.WriteObject(outstream, _database);
-            outstream.Close();
+            // write array start
+            serializer.WriteObject(stream, _database);
         }
 
-        public void Populate()
+        public void Populate(DataContractJsonSerializer serializer, MemoryStream stream)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
-            MemoryStream instream = new MemoryStream();
-            DatabaseEntry _database = serializer.ReadObject(instream) as DatabaseEntry;
-            instream.Close();
+            _database = serializer.ReadObject(stream) as List<DatabaseEntry>;
         }
     }
 }
