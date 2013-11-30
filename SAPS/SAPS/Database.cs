@@ -9,7 +9,7 @@ using System.IO;
 
 enum Gender { Male, Female };
 enum StudentType { Undergraduate, Graduate };
-
+enum Stage { Rejected, Lower, Higher, Approved };
 
 namespace SAPS
 {
@@ -27,7 +27,7 @@ namespace SAPS
         [DataMember] public List<string> majors;
         [DataMember] public List<string> minors;
         [DataMember] public Dictionary<string, bool> graduateVotes;
-        [DataMember] public int approvalStage;
+        [DataMember] public Stage stage;
         [DataMember] public string comments;
     }
 
@@ -50,20 +50,18 @@ namespace SAPS
             _instance = this;
             _database = new List<DatabaseEntry>();
             _availableEntries = new List<DatabaseEntry>();
-            // Load database to _database
-
-            // Filter by User.Instance.Permissions
         }
 
         public void Serialize(DataContractJsonSerializer serializer, MemoryStream stream)
         {
-            // write array start
             serializer.WriteObject(stream, _database);
         }
 
         public void Populate(DataContractJsonSerializer serializer, MemoryStream stream)
         {
             _database = serializer.ReadObject(stream) as List<DatabaseEntry>;
+
+            // Filter by User.Instance.Permissions and Stage
         }
     }
 }
