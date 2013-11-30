@@ -3,28 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using System.Web.Script.Serialization;
 
 namespace SAPS
 {
-    [DataContract]
     class EventEntry
     {
-        [DataMember] public string EventName;
-        [DataMember] public DateTime SubmissionTime;
-        [DataMember] public string Description;
-        [DataMember] public string EventCreator;
-        [DataMember] public DateTime EventActivationTime;
-        [DataMember] public DateTime EventDeactivationTime;
+        public string EventName;
+        public DateTime SubmissionTime;
+        public string Description;
+        public string EventCreator;
+        public DateTime EventActivationTime;
+        public DateTime EventDeactivationTime;
     }
 
     class EventTracker
     {
         private static EventTracker _instance;
-
-        List<EventEntry> _events;
+        private List<EventEntry> _events;
 
         public EventTracker Instance
         {
@@ -37,16 +33,27 @@ namespace SAPS
         public EventTracker()
         {
             _instance = this;
+
+            _events = new List<EventEntry>();
         }
 
-        public void Serialize(DataContractJsonSerializer serializer, MemoryStream stream)
+        public string Serialize(JavaScriptSerializer serializer)
         {
-            serializer.WriteObject(stream, _events);
+            return serializer.Serialize(_events);
         }
 
-        public void Populate(DataContractJsonSerializer serializer, MemoryStream stream)
+        public void Populate(JavaScriptSerializer serializer, string json)
         {
-            _events = serializer.ReadObject(stream) as List<EventEntry>;
+            serializer.Deserialize<List<EventEntry>>(json);
+
+            EventEntry event1 = new EventEntry();
+            event1.EventName = "Birthday";
+            event1.SubmissionTime = new DateTime(1992, 12, 12);
+            event1.Description = "21st Birthday";
+            event1.EventCreator = "Sherri";
+            event1.EventActivationTime = new DateTime(1992, 12, 12, 0, 0, 0);
+            event1.EventDeactivationTime = new DateTime(1992, 12, 13, 0, 0, 0);
+            _events.Add(event1);
         }
     }
 }

@@ -35,11 +35,9 @@ namespace SAPS
 
             // retrieve name
             // retrieve user type
-            UserType type = UserType.All;
-            string name = textName.Text;
 
             // if successful
-            User user = new User(textName.Text, name, type);
+            User user = new User(textEmail.Text, textEmail.Text, UserType.All);
             this.tabSystems.Controls.Add(tabHome);
             this.tabSystems.SelectedTab = tabHome;
             this.tabSystems.Controls.Remove(tabLogin);
@@ -50,9 +48,13 @@ namespace SAPS
             // load database
             _baseSystem.Populate();
 
-            // load applications and events to lists
+            this.textName.Text = User.Instance.Name;
+            this.applicationList.DataSource = ApplicationSystem.Instance.Entries;
 
-            // calculate basic stats
+            foreach (DataGridViewColumn column in this.applicationList.Columns)
+            {
+                column.Width = this.applicationList.Width / 3;
+            }
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -69,6 +71,23 @@ namespace SAPS
 
             // Delete user
             User.Instance.Destroy();
+        }
+
+        private void applicationList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void applicationList_SelectionChanged(object sender, EventArgs e)
+        {
+            if(applicationList.SelectedRows.Count > 0 && applicationList.Rows.Contains(applicationList.SelectedRows[0]))
+            {
+                this.buttonEdit.Enabled = true;           
+            }
+            else
+            {
+                this.buttonEdit.Enabled = false;
+            }
         }
     }
 }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using System.Web.Script.Serialization;
 using System.IO;
 
 namespace SAPS
@@ -37,32 +36,37 @@ namespace SAPS
             _database = new Database();
         }
 
-        public void Populate()
-        {
-            DataContractJsonSerializer serializer;
-            MemoryStream stream = new MemoryStream();
-
-            serializer = new DataContractJsonSerializer(typeof(DatabaseEntry));
-            _database.Populate(serializer, stream);
-
-            serializer = new DataContractJsonSerializer(typeof(EventEntry));
-            _eventTracker.Populate(serializer, stream);
-
-            stream.Close();
-        }
-
         public void Serialize()
         {
-            DataContractJsonSerializer serializer;
-            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            // string json;
 
-            serializer = new DataContractJsonSerializer(typeof(DatabaseEntry));
-            _database.Serialize(serializer, stream);
+            // json = _database.Serialize(serializer) + _eventTracker.Serialize(serializer);
+            writer.Write(_database.Serialize(serializer));
+            writer.Write("\n");
+            writer.Write(_eventTracker.Serialize(serializer));
+            writer.Write("\n");
+            writer.Close();
+            // File.WriteAllText(Environment.CurrentDirectory + @"\DATABASE.DB", json);
+        }
 
-            serializer = new DataContractJsonSerializer(typeof(EventEntry));
-            _eventTracker.Serialize(serializer, stream);
+        public void Populate()
+        {
+            StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\DATABASE.DB");
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string json;
 
-            stream.Close();
+            json = reader.ReadLine();
+            if(json == null) // temp
+                json = "";
+            _database.Populate(serializer, json);
+            json = reader.ReadLine();
+            if(json == null) // temp
+                json = "";
+            _eventTracker.Populate(serializer, json);
+
+            reader.Close();
         }
     }
 }

@@ -36,31 +36,30 @@
             this.textEmail = new System.Windows.Forms.TextBox();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.tabHome = new System.Windows.Forms.TabPage();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.textName = new System.Windows.Forms.Label();
+            this.textSAPS = new System.Windows.Forms.Label();
+            this.textWelcome = new System.Windows.Forms.Label();
+            this.buttonLogout = new System.Windows.Forms.Button();
+            this.feedNews = new System.Windows.Forms.WebBrowser();
+            this.calenderHome = new System.Windows.Forms.MonthCalendar();
             this.tabApplications = new System.Windows.Forms.TabPage();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.tabEvents = new System.Windows.Forms.TabPage();
             this.tabStatistics = new System.Windows.Forms.TabPage();
             this.tabStats = new System.Windows.Forms.TabControl();
             this.tabDefault = new System.Windows.Forms.TabPage();
             this.tabCustom = new System.Windows.Forms.TabPage();
-            this.applicationList = new System.Windows.Forms.ListView();
-            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabHome = new System.Windows.Forms.TabPage();
-            this.calenderHome = new System.Windows.Forms.MonthCalendar();
-            this.feedNews = new System.Windows.Forms.WebBrowser();
-            this.buttonLogout = new System.Windows.Forms.Button();
-            this.textWelcome = new System.Windows.Forms.Label();
-            this.textSAPS = new System.Windows.Forms.Label();
-            this.textName = new System.Windows.Forms.Label();
-            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.applicationList = new System.Windows.Forms.DataGridView();
             this.tabSystems.SuspendLayout();
             this.tabLogin.SuspendLayout();
+            this.tabHome.SuspendLayout();
             this.tabApplications.SuspendLayout();
             this.tabStatistics.SuspendLayout();
             this.tabStats.SuspendLayout();
-            this.tabHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.applicationList)).BeginInit();
             this.SuspendLayout();
             // 
             // tabSystems
@@ -146,10 +145,89 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // tabHome
+            // 
+            this.tabHome.Controls.Add(this.buttonUpdate);
+            this.tabHome.Controls.Add(this.textName);
+            this.tabHome.Controls.Add(this.textSAPS);
+            this.tabHome.Controls.Add(this.textWelcome);
+            this.tabHome.Controls.Add(this.buttonLogout);
+            this.tabHome.Controls.Add(this.feedNews);
+            this.tabHome.Controls.Add(this.calenderHome);
+            this.tabHome.Location = new System.Drawing.Point(4, 22);
+            this.tabHome.Name = "tabHome";
+            this.tabHome.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHome.Size = new System.Drawing.Size(884, 428);
+            this.tabHome.TabIndex = 4;
+            this.tabHome.Text = "Home";
+            this.tabHome.UseVisualStyleBackColor = true;
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Location = new System.Drawing.Point(683, 371);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(156, 23);
+            this.buttonUpdate.TabIndex = 8;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            // 
+            // textName
+            // 
+            this.textName.AutoSize = true;
+            this.textName.Location = new System.Drawing.Point(726, 67);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(56, 13);
+            this.textName.TabIndex = 7;
+            this.textName.Text = "user name";
+            // 
+            // textSAPS
+            // 
+            this.textSAPS.AutoSize = true;
+            this.textSAPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSAPS.Location = new System.Drawing.Point(645, 18);
+            this.textSAPS.Name = "textSAPS";
+            this.textSAPS.Size = new System.Drawing.Size(228, 26);
+            this.textSAPS.TabIndex = 6;
+            this.textSAPS.Text = "SAPS\r\nStudent Application Processing System";
+            this.textSAPS.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // textWelcome
+            // 
+            this.textWelcome.AutoSize = true;
+            this.textWelcome.Location = new System.Drawing.Point(727, 54);
+            this.textWelcome.Name = "textWelcome";
+            this.textWelcome.Size = new System.Drawing.Size(55, 13);
+            this.textWelcome.TabIndex = 3;
+            this.textWelcome.Text = "Welcome,";
+            // 
+            // buttonLogout
+            // 
+            this.buttonLogout.Location = new System.Drawing.Point(683, 400);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(156, 23);
+            this.buttonLogout.TabIndex = 2;
+            this.buttonLogout.Text = "Log Out";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
+            // 
+            // feedNews
+            // 
+            this.feedNews.Location = new System.Drawing.Point(-4, 0);
+            this.feedNews.MinimumSize = new System.Drawing.Size(20, 20);
+            this.feedNews.Name = "feedNews";
+            this.feedNews.Size = new System.Drawing.Size(640, 432);
+            this.feedNews.TabIndex = 1;
+            // 
+            // calenderHome
+            // 
+            this.calenderHome.Location = new System.Drawing.Point(648, 89);
+            this.calenderHome.Name = "calenderHome";
+            this.calenderHome.TabIndex = 0;
+            // 
             // tabApplications
             // 
             this.tabApplications.Controls.Add(this.applicationList);
-            this.tabApplications.Controls.Add(this.btnEdit);
+            this.tabApplications.Controls.Add(this.buttonEdit);
             this.tabApplications.Controls.Add(this.buttonSearch);
             this.tabApplications.Location = new System.Drawing.Point(4, 22);
             this.tabApplications.Name = "tabApplications";
@@ -159,14 +237,15 @@
             this.tabApplications.Text = "Applications";
             this.tabApplications.UseVisualStyleBackColor = true;
             // 
-            // btnEdit
+            // buttonEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(750, 7);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(128, 23);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Enabled = false;
+            this.buttonEdit.Location = new System.Drawing.Point(750, 7);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(128, 23);
+            this.buttonEdit.TabIndex = 2;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
             // 
             // buttonSearch
             // 
@@ -233,102 +312,22 @@
             // 
             // applicationList
             // 
-            this.applicationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnName,
-            this.columnDate});
-            this.applicationList.Location = new System.Drawing.Point(0, 0);
+            this.applicationList.AllowUserToAddRows = false;
+            this.applicationList.AllowUserToDeleteRows = false;
+            this.applicationList.AllowUserToResizeColumns = false;
+            this.applicationList.AllowUserToResizeRows = false;
+            this.applicationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.applicationList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.applicationList.Location = new System.Drawing.Point(-4, 0);
             this.applicationList.MultiSelect = false;
             this.applicationList.Name = "applicationList";
-            this.applicationList.Size = new System.Drawing.Size(744, 428);
+            this.applicationList.ReadOnly = true;
+            this.applicationList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.applicationList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.applicationList.Size = new System.Drawing.Size(748, 432);
             this.applicationList.TabIndex = 3;
-            this.applicationList.UseCompatibleStateImageBehavior = false;
-            // 
-            // columnName
-            // 
-            this.columnName.Text = "Name";
-            // 
-            // columnDate
-            // 
-            this.columnDate.Text = "Submission Date";
-            // 
-            // tabHome
-            // 
-            this.tabHome.Controls.Add(this.buttonUpdate);
-            this.tabHome.Controls.Add(this.textName);
-            this.tabHome.Controls.Add(this.textSAPS);
-            this.tabHome.Controls.Add(this.textWelcome);
-            this.tabHome.Controls.Add(this.buttonLogout);
-            this.tabHome.Controls.Add(this.feedNews);
-            this.tabHome.Controls.Add(this.calenderHome);
-            this.tabHome.Location = new System.Drawing.Point(4, 22);
-            this.tabHome.Name = "tabHome";
-            this.tabHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHome.Size = new System.Drawing.Size(884, 428);
-            this.tabHome.TabIndex = 4;
-            this.tabHome.Text = "Home";
-            this.tabHome.UseVisualStyleBackColor = true;
-            // 
-            // calenderHome
-            // 
-            this.calenderHome.Location = new System.Drawing.Point(648, 89);
-            this.calenderHome.Name = "calenderHome";
-            this.calenderHome.TabIndex = 0;
-            // 
-            // feedNews
-            // 
-            this.feedNews.Location = new System.Drawing.Point(-4, 0);
-            this.feedNews.MinimumSize = new System.Drawing.Size(20, 20);
-            this.feedNews.Name = "feedNews";
-            this.feedNews.Size = new System.Drawing.Size(640, 432);
-            this.feedNews.TabIndex = 1;
-            // 
-            // buttonLogout
-            // 
-            this.buttonLogout.Location = new System.Drawing.Point(683, 400);
-            this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(156, 23);
-            this.buttonLogout.TabIndex = 2;
-            this.buttonLogout.Text = "Log Out";
-            this.buttonLogout.UseVisualStyleBackColor = true;
-            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
-            // 
-            // textWelcome
-            // 
-            this.textWelcome.AutoSize = true;
-            this.textWelcome.Location = new System.Drawing.Point(727, 54);
-            this.textWelcome.Name = "textWelcome";
-            this.textWelcome.Size = new System.Drawing.Size(55, 13);
-            this.textWelcome.TabIndex = 3;
-            this.textWelcome.Text = "Welcome,";
-            // 
-            // textSAPS
-            // 
-            this.textSAPS.AutoSize = true;
-            this.textSAPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textSAPS.Location = new System.Drawing.Point(645, 18);
-            this.textSAPS.Name = "textSAPS";
-            this.textSAPS.Size = new System.Drawing.Size(228, 26);
-            this.textSAPS.TabIndex = 6;
-            this.textSAPS.Text = "SAPS\r\nStudent Application Processing System";
-            this.textSAPS.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // textName
-            // 
-            this.textName.AutoSize = true;
-            this.textName.Location = new System.Drawing.Point(726, 67);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(56, 13);
-            this.textName.TabIndex = 7;
-            this.textName.Text = "user name";
-            // 
-            // buttonUpdate
-            // 
-            this.buttonUpdate.Location = new System.Drawing.Point(683, 371);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(156, 23);
-            this.buttonUpdate.TabIndex = 8;
-            this.buttonUpdate.Text = "Update";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.applicationList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.applicationList_CellContentDoubleClick);
+            this.applicationList.SelectionChanged += new System.EventHandler(this.applicationList_SelectionChanged);
             // 
             // winSAPS
             // 
@@ -341,11 +340,12 @@
             this.tabSystems.ResumeLayout(false);
             this.tabLogin.ResumeLayout(false);
             this.tabLogin.PerformLayout();
+            this.tabHome.ResumeLayout(false);
+            this.tabHome.PerformLayout();
             this.tabApplications.ResumeLayout(false);
             this.tabStatistics.ResumeLayout(false);
             this.tabStats.ResumeLayout(false);
-            this.tabHome.ResumeLayout(false);
-            this.tabHome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.applicationList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,7 +359,7 @@
         private System.Windows.Forms.TabControl tabStats;
         private System.Windows.Forms.TabPage tabDefault;
         private System.Windows.Forms.TabPage tabCustom;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.TabPage tabLogin;
         private System.Windows.Forms.Label labelPassword;
@@ -368,9 +368,6 @@
         private System.Windows.Forms.TextBox textPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView applicationList;
-        private System.Windows.Forms.ColumnHeader columnName;
-        private System.Windows.Forms.ColumnHeader columnDate;
         private System.Windows.Forms.TabPage tabHome;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Label textName;
@@ -379,6 +376,7 @@
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.WebBrowser feedNews;
         private System.Windows.Forms.MonthCalendar calenderHome;
+        private System.Windows.Forms.DataGridView applicationList;
     }
 }
 
