@@ -33,8 +33,6 @@ namespace SAPS
     class Database
     {
         private static Database _instance;
-        MemoryStream ms1;
-        DataContractJsonSerializer serializer;
 
         List<DatabaseEntry> _database;
         List<DatabaseEntry> _availableEntries;
@@ -58,15 +56,18 @@ namespace SAPS
 
         public void Serialize()
         {
-            serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
-            ms1 = new MemoryStream();
-            serializer.WriteObject(ms1, _database);
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
+            MemoryStream outstream = new MemoryStream();
+            serializer.WriteObject(outstream, _database);
+            outstream.Close();
         }
 
         public void Populate()
         {
-            DatabaseEntry _database = serializer.ReadObject(ms1) as DatabaseEntry;
-            ms1.Close();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
+            MemoryStream instream = new MemoryStream();
+            DatabaseEntry _database = serializer.ReadObject(instream) as DatabaseEntry;
+            instream.Close();
         }
     }
 }
