@@ -48,5 +48,15 @@ namespace SAPS
 
             // Filter to User.Instance.Permissions
         }
+
+        public Serialize()
+        {
+            
+        }
+
+        public Populate()
+        {
+           
+        }
     }
 }

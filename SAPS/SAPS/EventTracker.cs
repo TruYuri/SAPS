@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace SAPS
 {
+    struct EventEntry
+    {
+        string EventName;
+        DateTime SubmissionTime;
+        string Description;
+        string EventCreator;
+        DateTime EventActivationTime;
+        DateTime EventDeactivationTime;
+    }
+
     class EventTracker
     {
         private static EventTracker _instance;

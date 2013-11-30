@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SAPS
 {
+ 
     class EventSystem
     {
         private static EventSystem _instance;
