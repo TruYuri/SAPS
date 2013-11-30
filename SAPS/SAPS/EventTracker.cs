@@ -22,6 +22,8 @@ namespace SAPS
     {
         private static EventTracker _instance;
 
+        List<EventEntry> _entry;
+
         public EventTracker Instance
         {
             get

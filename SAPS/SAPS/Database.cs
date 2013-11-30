@@ -10,6 +10,7 @@ using System.IO;
 enum Gender { Male, Female };
 enum StudentType { Undergraduate, Graduate };
 
+
 namespace SAPS
 {
     [DataContract]
@@ -32,6 +33,8 @@ namespace SAPS
     class Database
     {
         private static Database _instance;
+        MemoryStream ms1;
+        DataContractJsonSerializer serializer;
 
         List<DatabaseEntry> _database;
         List<DatabaseEntry> _availableEntries;
@@ -55,14 +58,15 @@ namespace SAPS
 
         public void Serialize()
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
-            MemoryStream ms1 = new MemoryStream();
+            serializer = new DataContractJsonSerializer(typeof(DatabaseEntry)); 
+            ms1 = new MemoryStream();
             serializer.WriteObject(ms1, _database);
         }
 
         public void Populate()
         {
-           
+            DatabaseEntry _database = serializer.ReadObject(ms1) as DatabaseEntry;
+            ms1.Close();
         }
     }
 }
