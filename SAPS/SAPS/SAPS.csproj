@@ -48,9 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationEditor.Designer.cs">
+      <DependentUpon>ApplicationEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationSystem.cs" />
     <Compile Include="BaseSystem.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="EventEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventEditor.Designer.cs">
+      <DependentUpon>EventEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventTracker.cs" />
     <Compile Include="StatisticsSystem.cs" />
     <Compile Include="EventSystem.cs" />
@@ -63,6 +75,12 @@
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="ApplicationEditor.resx">
+      <DependentUpon>ApplicationEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventEditor.resx">
+      <DependentUpon>EventEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SAPS.resx">
       <DependentUpon>SAPS.cs</DependentUpon>
     </EmbeddedResource>

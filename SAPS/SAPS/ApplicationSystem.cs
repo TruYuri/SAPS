@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace SAPS
 {
@@ -10,8 +12,7 @@ namespace SAPS
     {
         private static ApplicationSystem _instance;
         private List<DatabaseEntry> _availableEntries;
-        private List<string> _entryNames;
-        
+        private Dictionary<Thread, DatabaseEntry> _applicationEditors;
 
         public List<DatabaseEntry> Entries
         {
@@ -22,24 +23,6 @@ namespace SAPS
             set
             {
                 _availableEntries = value;
-
-                if(_availableEntries != null)
-                {
-                    _entryNames.Clear();
-
-                    foreach(DatabaseEntry entry in _availableEntries)
-                    {
-                        _entryNames.Add(entry.lastName + ", " + entry.firstName + " " + entry.middleName);
-                    }
-                }
-            }
-        }
-
-        public List<string> EntryNames
-        {
-            get
-            {
-                return _entryNames;
             }
         }
 
@@ -55,13 +38,40 @@ namespace SAPS
         {
             _instance = this;
 
+            _applicationEditors = new Dictionary<Thread, DatabaseEntry>();
             _availableEntries = new List<DatabaseEntry>();
-            _entryNames = new List<string>();
         }
 
-        public void Update()
+        public void StartApplicationThread(DatabaseEntry entry)
         {
+            bool exists = false;
+            foreach (KeyValuePair<Thread, DatabaseEntry> pair in _applicationEditors)
+            {
+                if (pair.Value.Equals(entry))
+                {
+                    if (pair.Key.IsAlive)
+                    {
+                        exists = true;
+                    }
+                    else
+                    {
+                        _applicationEditors.Remove(pair.Key);
+                    }
+                    break;
+                }
+            }
 
+            if (!exists)
+            {
+                Thread thread = new Thread(() => ApplicationThread(entry));
+                _applicationEditors.Add(thread, entry);
+                thread.Start();
+            }
+        }
+
+        public void ApplicationThread(DatabaseEntry entry)
+        {
+            Application.Run(new ApplicationEditor(entry));
         }
     }
 }

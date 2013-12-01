@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-enum Gender { Male, Female };
-enum StudentType { Undergraduate, Graduate };
-enum Stage { Rejected, Lower, Higher, Approved };
+public enum Gender { Male, Female };
+public enum StudentType { Undergraduate, Graduate };
+public enum Stage { Rejected, Lower, Higher, Approved };
 
 namespace SAPS
 {
-    class DatabaseEntry
+    public class DatabaseEntry
     {
         public string firstName;
         public string middleName;
@@ -86,7 +86,12 @@ namespace SAPS
 
         public void Populate(JavaScriptSerializer serializer, string json)
         {
-            serializer.Deserialize<List<DatabaseEntry>>(json);
+            _database = serializer.Deserialize<List<DatabaseEntry>>(json);
+
+            if(_database == null)
+            {
+                _database = new List<DatabaseEntry>();
+            }
             
             DatabaseEntry entry1 = new DatabaseEntry();
             entry1.firstName = "Austin";
@@ -111,7 +116,7 @@ namespace SAPS
             entry2.age = 20;
             entry2.GPA = 4.0f;
             entry2.dateOfBirth = new DateTime(1973, 6, 14);
-            entry1.submissionDate = new DateTime(2012, 1, 1);
+            entry2.submissionDate = new DateTime(2012, 1, 1);
             entry2.studentType = StudentType.Graduate;
             entry2.majors.Add("Flowers");
             entry2.minors.Add("Buttercups");

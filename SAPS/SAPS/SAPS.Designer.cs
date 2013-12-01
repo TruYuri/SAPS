@@ -45,21 +45,26 @@
             this.feedNews = new System.Windows.Forms.WebBrowser();
             this.calenderHome = new System.Windows.Forms.MonthCalendar();
             this.tabApplications = new System.Windows.Forms.TabPage();
-            this.buttonEdit = new System.Windows.Forms.Button();
+            this.applicationList = new System.Windows.Forms.DataGridView();
+            this.buttonModifyApplication = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.tabEvents = new System.Windows.Forms.TabPage();
+            this.buttonModifyEvent = new System.Windows.Forms.Button();
+            this.eventList = new System.Windows.Forms.DataGridView();
             this.tabStatistics = new System.Windows.Forms.TabPage();
             this.tabStats = new System.Windows.Forms.TabControl();
             this.tabDefault = new System.Windows.Forms.TabPage();
             this.tabCustom = new System.Windows.Forms.TabPage();
-            this.applicationList = new System.Windows.Forms.DataGridView();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabSystems.SuspendLayout();
             this.tabLogin.SuspendLayout();
             this.tabHome.SuspendLayout();
             this.tabApplications.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.applicationList)).BeginInit();
+            this.tabEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventList)).BeginInit();
             this.tabStatistics.SuspendLayout();
             this.tabStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.applicationList)).BeginInit();
             this.SuspendLayout();
             // 
             // tabSystems
@@ -227,7 +232,7 @@
             // tabApplications
             // 
             this.tabApplications.Controls.Add(this.applicationList);
-            this.tabApplications.Controls.Add(this.buttonEdit);
+            this.tabApplications.Controls.Add(this.buttonModifyApplication);
             this.tabApplications.Controls.Add(this.buttonSearch);
             this.tabApplications.Location = new System.Drawing.Point(4, 22);
             this.tabApplications.Name = "tabApplications";
@@ -237,15 +242,35 @@
             this.tabApplications.Text = "Applications";
             this.tabApplications.UseVisualStyleBackColor = true;
             // 
-            // buttonEdit
+            // applicationList
             // 
-            this.buttonEdit.Enabled = false;
-            this.buttonEdit.Location = new System.Drawing.Point(750, 7);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(128, 23);
-            this.buttonEdit.TabIndex = 2;
-            this.buttonEdit.Text = "Edit";
-            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.applicationList.AllowUserToAddRows = false;
+            this.applicationList.AllowUserToDeleteRows = false;
+            this.applicationList.AllowUserToResizeColumns = false;
+            this.applicationList.AllowUserToResizeRows = false;
+            this.applicationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.applicationList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.applicationList.Location = new System.Drawing.Point(-4, 0);
+            this.applicationList.MultiSelect = false;
+            this.applicationList.Name = "applicationList";
+            this.applicationList.ReadOnly = true;
+            this.applicationList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.applicationList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.applicationList.Size = new System.Drawing.Size(748, 432);
+            this.applicationList.TabIndex = 3;
+            this.applicationList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.applicationList_CellContentDoubleClick);
+            this.applicationList.SelectionChanged += new System.EventHandler(this.applicationList_SelectionChanged);
+            // 
+            // buttonModifyApplication
+            // 
+            this.buttonModifyApplication.Enabled = false;
+            this.buttonModifyApplication.Location = new System.Drawing.Point(750, 6);
+            this.buttonModifyApplication.Name = "buttonModifyApplication";
+            this.buttonModifyApplication.Size = new System.Drawing.Size(128, 23);
+            this.buttonModifyApplication.TabIndex = 2;
+            this.buttonModifyApplication.Text = "Modify";
+            this.buttonModifyApplication.UseVisualStyleBackColor = true;
+            this.buttonModifyApplication.Click += new System.EventHandler(this.buttonModifyApplication_Click);
             // 
             // buttonSearch
             // 
@@ -258,6 +283,8 @@
             // 
             // tabEvents
             // 
+            this.tabEvents.Controls.Add(this.buttonModifyEvent);
+            this.tabEvents.Controls.Add(this.eventList);
             this.tabEvents.Location = new System.Drawing.Point(4, 22);
             this.tabEvents.Name = "tabEvents";
             this.tabEvents.Padding = new System.Windows.Forms.Padding(3);
@@ -265,6 +292,36 @@
             this.tabEvents.TabIndex = 2;
             this.tabEvents.Text = "Events";
             this.tabEvents.UseVisualStyleBackColor = true;
+            // 
+            // buttonModifyEvent
+            // 
+            this.buttonModifyEvent.Enabled = false;
+            this.buttonModifyEvent.Location = new System.Drawing.Point(750, 6);
+            this.buttonModifyEvent.Name = "buttonModifyEvent";
+            this.buttonModifyEvent.Size = new System.Drawing.Size(128, 23);
+            this.buttonModifyEvent.TabIndex = 5;
+            this.buttonModifyEvent.Text = "Modify";
+            this.buttonModifyEvent.UseVisualStyleBackColor = true;
+            this.buttonModifyEvent.Click += new System.EventHandler(this.buttonModifyEvent_Click);
+            // 
+            // eventList
+            // 
+            this.eventList.AllowUserToAddRows = false;
+            this.eventList.AllowUserToDeleteRows = false;
+            this.eventList.AllowUserToResizeColumns = false;
+            this.eventList.AllowUserToResizeRows = false;
+            this.eventList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.eventList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.eventList.Location = new System.Drawing.Point(-4, 0);
+            this.eventList.MultiSelect = false;
+            this.eventList.Name = "eventList";
+            this.eventList.ReadOnly = true;
+            this.eventList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.eventList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.eventList.Size = new System.Drawing.Size(748, 432);
+            this.eventList.TabIndex = 4;
+            this.eventList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventList_CellContentDoubleClick);
+            this.eventList.SelectionChanged += new System.EventHandler(this.eventList_SelectionChanged);
             // 
             // tabStatistics
             // 
@@ -310,25 +367,6 @@
             this.tabCustom.Text = "Custom";
             this.tabCustom.UseVisualStyleBackColor = true;
             // 
-            // applicationList
-            // 
-            this.applicationList.AllowUserToAddRows = false;
-            this.applicationList.AllowUserToDeleteRows = false;
-            this.applicationList.AllowUserToResizeColumns = false;
-            this.applicationList.AllowUserToResizeRows = false;
-            this.applicationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.applicationList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.applicationList.Location = new System.Drawing.Point(-4, 0);
-            this.applicationList.MultiSelect = false;
-            this.applicationList.Name = "applicationList";
-            this.applicationList.ReadOnly = true;
-            this.applicationList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.applicationList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.applicationList.Size = new System.Drawing.Size(748, 432);
-            this.applicationList.TabIndex = 3;
-            this.applicationList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.applicationList_CellContentDoubleClick);
-            this.applicationList.SelectionChanged += new System.EventHandler(this.applicationList_SelectionChanged);
-            // 
             // winSAPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,9 +381,11 @@
             this.tabHome.ResumeLayout(false);
             this.tabHome.PerformLayout();
             this.tabApplications.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.applicationList)).EndInit();
+            this.tabEvents.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eventList)).EndInit();
             this.tabStatistics.ResumeLayout(false);
             this.tabStats.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.applicationList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,7 +399,7 @@
         private System.Windows.Forms.TabControl tabStats;
         private System.Windows.Forms.TabPage tabDefault;
         private System.Windows.Forms.TabPage tabCustom;
-        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonModifyApplication;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.TabPage tabLogin;
         private System.Windows.Forms.Label labelPassword;
@@ -377,6 +417,9 @@
         private System.Windows.Forms.WebBrowser feedNews;
         private System.Windows.Forms.MonthCalendar calenderHome;
         private System.Windows.Forms.DataGridView applicationList;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.DataGridView eventList;
+        private System.Windows.Forms.Button buttonModifyEvent;
     }
 }
 

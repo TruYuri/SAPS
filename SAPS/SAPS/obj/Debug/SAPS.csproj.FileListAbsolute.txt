@@ -21,3 +21,5 @@ C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.exe
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.pdb
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\System.Json.dll
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\System.Json.xml
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.ApplicationEditor.resources
+C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.EventEditor.resources

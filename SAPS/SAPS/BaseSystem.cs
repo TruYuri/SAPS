@@ -36,7 +36,31 @@ namespace SAPS
             _database = new Database();
         }
 
-        public void Serialize()
+        public bool Login(string email, string password)
+        {
+            // check database for user
+            // send email
+            // send password
+
+            // retrieve name
+            // retrieve user type
+
+            // if successful
+            User user = new User(email, email, UserType.All);
+
+            // load database
+            Populate();
+
+            return true;
+        }
+
+        public void Logout()
+        {
+            Serialize();
+            User.Instance.Destroy();
+        }
+
+        private void Serialize()
         {
             StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -51,7 +75,7 @@ namespace SAPS
             // File.WriteAllText(Environment.CurrentDirectory + @"\DATABASE.DB", json);
         }
 
-        public void Populate()
+        private void Populate()
         {
             StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\DATABASE.DB");
             JavaScriptSerializer serializer = new JavaScriptSerializer();
