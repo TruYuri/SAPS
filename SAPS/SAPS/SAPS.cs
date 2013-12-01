@@ -9,12 +9,24 @@ using System.Windows.Forms;
 
 namespace SAPS
 {
-    public partial class winSAPS : Form
+    public partial class SAPS : Form
     {
+        private static SAPS _instance;
         private BaseSystem _baseSystem;
 
-        public winSAPS()
+        public delegate void EventDelegate(EventStatus status, EventEntry entry);
+
+        public static SAPS Instance
         {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public SAPS()
+        {
+            _instance = this;
             _baseSystem = new BaseSystem();
 
             InitializeComponent();
@@ -46,16 +58,12 @@ namespace SAPS
                     column.Width = this.applicationList.Width / 3;
                 }
 
-                this.eventList.DataSource = EventSystem.Instance.Events;
-                
-                foreach(DataGridViewColumn column in this.eventList.Columns)
-                {
-                    column.Width = this.applicationList.Width / 3;
-                }
+
+                UpdateEventList(EventStatus.Cancel, null);
             }
             else
             {
-                // display error
+                // display login error
             }
         }
 
@@ -93,25 +101,39 @@ namespace SAPS
             }
         }
 
+        private void buttonCreateEvent_Click(object sender, EventArgs e)
+        {
+            EventSystem.Instance.CreateEvent();
+        }
+
         private void eventList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EventSystem.Instance.StartEventThread(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
+            EventSystem.Instance.ModifyEvent(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
         }
 
         private void buttonModifyEvent_Click(object sender, EventArgs e)
         {
-            EventSystem.Instance.StartEventThread(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
+            EventSystem.Instance.ModifyEvent(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
         }
 
-        private void eventList_SelectionChanged(object sender, EventArgs e)
+        public void UpdateEventList(EventStatus status, EventEntry entry)
         {
-            if(eventList.SelectedRows.Count > 0 && eventList.Rows.Contains(eventList.SelectedRows[0]))
+            switch(status)
             {
-                this.buttonModifyEvent.Enabled = true;
+                case EventStatus.Remove:
+                    EventSystem.Instance.Events.Remove(entry);
+                    break;
+                case EventStatus.Create:
+                    EventSystem.Instance.Events.Add(entry);
+                    break;
             }
-            else
+
+            this.eventList.DataSource = typeof(BindingList<EventEntry>);
+            this.eventList.DataSource = EventSystem.Instance.Events;
+
+            foreach(DataGridViewColumn column in this.eventList.Columns)
             {
-                this.buttonModifyEvent.Enabled = false;
+                column.Width = this.applicationList.Width / 3;
             }
         }
     }

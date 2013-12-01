@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace SAPS
 {
-    class ApplicationSystem
+    public class ApplicationSystem
     {
         private static ApplicationSystem _instance;
-        private List<DatabaseEntry> _availableEntries;
+        private BindingList<DatabaseEntry> _availableEntries;
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
 
-        public List<DatabaseEntry> Entries
+        public BindingList<DatabaseEntry> Entries
         {
             get
             {
@@ -39,7 +40,7 @@ namespace SAPS
             _instance = this;
 
             _applicationEditors = new Dictionary<Thread, DatabaseEntry>();
-            _availableEntries = new List<DatabaseEntry>();
+            _availableEntries = new BindingList<DatabaseEntry>();
         }
 
         public void StartApplicationThread(DatabaseEntry entry)

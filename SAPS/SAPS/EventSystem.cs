@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
+
+public enum EventMode { Create, Modify };
 
 namespace SAPS
 {
- 
-    class EventSystem
-    {
+    public class EventSystem
+    { 
         private static EventSystem _instance;
-        private List<EventEntry> _events;
+        private BindingList<EventEntry> _events;
         private Dictionary<Thread, EventEntry> _eventEditors;
 
         public static EventSystem Instance
@@ -23,7 +25,7 @@ namespace SAPS
             }
         }
 
-        public List<EventEntry> Events
+        public BindingList<EventEntry> Events
         {
             get
             {
@@ -38,12 +40,21 @@ namespace SAPS
         public EventSystem()
         {
             _instance = this;
-
             _eventEditors = new Dictionary<Thread, EventEntry>();
-            _events = new List<EventEntry>();
+            _events = new BindingList<EventEntry>();
         }
 
-        public void StartEventThread(EventEntry entry)
+        public void CreateEvent()
+        {
+            StartEventThread(new EventEntry(), EventMode.Create);
+        }
+
+        public void ModifyEvent(EventEntry entry)
+        {
+            StartEventThread(entry, EventMode.Modify);
+        }
+
+        private void StartEventThread(EventEntry entry, EventMode eventMode)
         {
             bool exists = false;
             foreach (KeyValuePair<Thread, EventEntry> pair in _eventEditors)
@@ -62,17 +73,24 @@ namespace SAPS
                 }
             }
 
-            if (!exists)
+            if(!exists)
             {
-                Thread thread = new Thread(() => EventThread(entry));
+                Thread thread = new Thread(() => EventThread(entry, eventMode));
                 _eventEditors.Add(thread, entry);
                 thread.Start();
             }
         }
 
-        public void EventThread(EventEntry entry)
+        public void EventThread(EventEntry entry, EventMode eventMode)
         {
-            Application.Run(new EventEditor(entry));
+            EventEditor editor = new EventEditor(entry, eventMode);
+            Application.Run(editor);
+            UpdateEvents(editor.Status, editor.Entry);
+        }
+
+        private void UpdateEvents(EventStatus status, EventEntry entry)
+        {
+            SAPS.Instance.Invoke(new SAPS.EventDelegate(SAPS.Instance.UpdateEventList), new object[] {status, entry});
         }
     }
 }

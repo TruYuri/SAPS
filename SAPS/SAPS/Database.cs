@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using System.ComponentModel;
 
 public enum Gender { Male, Female };
 public enum StudentType { Undergraduate, Graduate };
@@ -22,8 +23,8 @@ namespace SAPS
         public DateTime dateOfBirth;
         public DateTime submissionDate;
         public StudentType studentType;
-        public List<string> majors = new List<string>();
-        public List<string> minors = new List<string>();
+        public BindingList<string> majors = new BindingList<string>();
+        public BindingList<string> minors = new BindingList<string>();
         public Dictionary<string, bool> graduateVotes = new Dictionary<string, bool>();
         public Stage stage;
         public string comments;
@@ -63,7 +64,7 @@ namespace SAPS
     class Database
     {
         private static Database _instance;
-        private List<DatabaseEntry> _database;
+        private BindingList<DatabaseEntry> _database;
 
         public static Database Instance
         {
@@ -76,7 +77,7 @@ namespace SAPS
         public Database()
         {
             _instance = this;
-            _database = new List<DatabaseEntry>();
+            _database = new BindingList<DatabaseEntry>();
         }
 
         public string Serialize(JavaScriptSerializer serializer)
@@ -86,11 +87,11 @@ namespace SAPS
 
         public void Populate(JavaScriptSerializer serializer, string json)
         {
-            _database = serializer.Deserialize<List<DatabaseEntry>>(json);
+            _database = serializer.Deserialize<BindingList<DatabaseEntry>>(json);
 
             if(_database == null)
             {
-                _database = new List<DatabaseEntry>();
+                _database = new BindingList<DatabaseEntry>();
             }
             
             DatabaseEntry entry1 = new DatabaseEntry();

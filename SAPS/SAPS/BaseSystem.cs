@@ -8,7 +8,7 @@ using System.IO;
 
 namespace SAPS
 {
-    class BaseSystem
+    public class BaseSystem
     {
         private static BaseSystem _instance;
         private StatisticsSystem _statisticsSystem;
@@ -38,7 +38,7 @@ namespace SAPS
 
         public bool Login(string email, string password)
         {
-            // check database for user
+            // check online database for user:
             // send email
             // send password
 
@@ -64,15 +64,12 @@ namespace SAPS
         {
             StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            // string json;
 
-            // json = _database.Serialize(serializer) + _eventTracker.Serialize(serializer);
             writer.Write(_database.Serialize(serializer));
             writer.Write("\n");
             writer.Write(_eventTracker.Serialize(serializer));
             writer.Write("\n");
             writer.Close();
-            // File.WriteAllText(Environment.CurrentDirectory + @"\DATABASE.DB", json);
         }
 
         private void Populate()

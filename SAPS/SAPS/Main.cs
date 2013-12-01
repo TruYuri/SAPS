@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace SAPS
 {
-    static class main
+    public static class main
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace SAPS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new winSAPS());
+            Application.Run(new SAPS());
         }
     }
 }

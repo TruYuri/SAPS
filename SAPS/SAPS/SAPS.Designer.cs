@@ -1,6 +1,6 @@
 ﻿namespace SAPS
 {
-    partial class winSAPS
+    partial class SAPS
     {
         /// <summary>
         /// Required designer variable.
@@ -47,15 +47,16 @@
             this.tabApplications = new System.Windows.Forms.TabPage();
             this.applicationList = new System.Windows.Forms.DataGridView();
             this.buttonModifyApplication = new System.Windows.Forms.Button();
-            this.buttonSearch = new System.Windows.Forms.Button();
+            this.buttonSearchApplications = new System.Windows.Forms.Button();
             this.tabEvents = new System.Windows.Forms.TabPage();
+            this.buttonSearchEvents = new System.Windows.Forms.Button();
+            this.buttonCreateEvent = new System.Windows.Forms.Button();
             this.buttonModifyEvent = new System.Windows.Forms.Button();
             this.eventList = new System.Windows.Forms.DataGridView();
             this.tabStatistics = new System.Windows.Forms.TabPage();
             this.tabStats = new System.Windows.Forms.TabControl();
             this.tabDefault = new System.Windows.Forms.TabPage();
             this.tabCustom = new System.Windows.Forms.TabPage();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabSystems.SuspendLayout();
             this.tabLogin.SuspendLayout();
             this.tabHome.SuspendLayout();
@@ -233,7 +234,7 @@
             // 
             this.tabApplications.Controls.Add(this.applicationList);
             this.tabApplications.Controls.Add(this.buttonModifyApplication);
-            this.tabApplications.Controls.Add(this.buttonSearch);
+            this.tabApplications.Controls.Add(this.buttonSearchApplications);
             this.tabApplications.Location = new System.Drawing.Point(4, 22);
             this.tabApplications.Name = "tabApplications";
             this.tabApplications.Padding = new System.Windows.Forms.Padding(3);
@@ -272,17 +273,19 @@
             this.buttonModifyApplication.UseVisualStyleBackColor = true;
             this.buttonModifyApplication.Click += new System.EventHandler(this.buttonModifyApplication_Click);
             // 
-            // buttonSearch
+            // buttonSearchApplications
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(750, 402);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(128, 23);
-            this.buttonSearch.TabIndex = 1;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearchApplications.Location = new System.Drawing.Point(750, 399);
+            this.buttonSearchApplications.Name = "buttonSearchApplications";
+            this.buttonSearchApplications.Size = new System.Drawing.Size(128, 23);
+            this.buttonSearchApplications.TabIndex = 1;
+            this.buttonSearchApplications.Text = "Search";
+            this.buttonSearchApplications.UseVisualStyleBackColor = true;
             // 
             // tabEvents
             // 
+            this.tabEvents.Controls.Add(this.buttonSearchEvents);
+            this.tabEvents.Controls.Add(this.buttonCreateEvent);
             this.tabEvents.Controls.Add(this.buttonModifyEvent);
             this.tabEvents.Controls.Add(this.eventList);
             this.tabEvents.Location = new System.Drawing.Point(4, 22);
@@ -293,10 +296,28 @@
             this.tabEvents.Text = "Events";
             this.tabEvents.UseVisualStyleBackColor = true;
             // 
+            // buttonSearchEvents
+            // 
+            this.buttonSearchEvents.Location = new System.Drawing.Point(750, 399);
+            this.buttonSearchEvents.Name = "buttonSearchEvents";
+            this.buttonSearchEvents.Size = new System.Drawing.Size(128, 23);
+            this.buttonSearchEvents.TabIndex = 7;
+            this.buttonSearchEvents.Text = "Search";
+            this.buttonSearchEvents.UseVisualStyleBackColor = true;
+            // 
+            // buttonCreateEvent
+            // 
+            this.buttonCreateEvent.Location = new System.Drawing.Point(750, 6);
+            this.buttonCreateEvent.Name = "buttonCreateEvent";
+            this.buttonCreateEvent.Size = new System.Drawing.Size(128, 23);
+            this.buttonCreateEvent.TabIndex = 6;
+            this.buttonCreateEvent.Text = "Create";
+            this.buttonCreateEvent.UseVisualStyleBackColor = true;
+            this.buttonCreateEvent.Click += new System.EventHandler(this.buttonCreateEvent_Click);
+            // 
             // buttonModifyEvent
             // 
-            this.buttonModifyEvent.Enabled = false;
-            this.buttonModifyEvent.Location = new System.Drawing.Point(750, 6);
+            this.buttonModifyEvent.Location = new System.Drawing.Point(750, 35);
             this.buttonModifyEvent.Name = "buttonModifyEvent";
             this.buttonModifyEvent.Size = new System.Drawing.Size(128, 23);
             this.buttonModifyEvent.TabIndex = 5;
@@ -321,7 +342,6 @@
             this.eventList.Size = new System.Drawing.Size(748, 432);
             this.eventList.TabIndex = 4;
             this.eventList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventList_CellContentDoubleClick);
-            this.eventList.SelectionChanged += new System.EventHandler(this.eventList_SelectionChanged);
             // 
             // tabStatistics
             // 
@@ -367,13 +387,13 @@
             this.tabCustom.Text = "Custom";
             this.tabCustom.UseVisualStyleBackColor = true;
             // 
-            // winSAPS
+            // SAPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 478);
             this.Controls.Add(this.tabSystems);
-            this.Name = "winSAPS";
+            this.Name = "SAPS";
             this.Text = "Student Application Processing System";
             this.tabSystems.ResumeLayout(false);
             this.tabLogin.ResumeLayout(false);
@@ -400,7 +420,7 @@
         private System.Windows.Forms.TabPage tabDefault;
         private System.Windows.Forms.TabPage tabCustom;
         private System.Windows.Forms.Button buttonModifyApplication;
-        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Button buttonSearchApplications;
         private System.Windows.Forms.TabPage tabLogin;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label labelEmail;
@@ -417,9 +437,10 @@
         private System.Windows.Forms.WebBrowser feedNews;
         private System.Windows.Forms.MonthCalendar calenderHome;
         private System.Windows.Forms.DataGridView applicationList;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataGridView eventList;
         private System.Windows.Forms.Button buttonModifyEvent;
+        private System.Windows.Forms.Button buttonSearchEvents;
+        private System.Windows.Forms.Button buttonCreateEvent;
     }
 }
 

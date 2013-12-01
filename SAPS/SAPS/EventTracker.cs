@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using System.ComponentModel;
 
 namespace SAPS
 {
     public class EventEntry
     {
         public string eventName;
-        public DateTime submissionTime;
         public string description;
         public string eventCreator;
         public DateTime eventActivationTime;
         public DateTime eventDeactivationTime;
+        public DateTime submissionTime;
 
         [ScriptIgnore] public string EventName
         {
@@ -44,7 +45,7 @@ namespace SAPS
     class EventTracker
     {
         private static EventTracker _instance;
-        private List<EventEntry> _events;
+        private BindingList<EventEntry> _events;
 
         public static EventTracker Instance
         {
@@ -58,7 +59,7 @@ namespace SAPS
         {
             _instance = this;
 
-            _events = new List<EventEntry>();
+            _events = new BindingList<EventEntry>();
         }
 
         public string Serialize(JavaScriptSerializer serializer)
@@ -68,11 +69,11 @@ namespace SAPS
 
         public void Populate(JavaScriptSerializer serializer, string json)
         {
-            _events = serializer.Deserialize<List<EventEntry>>(json);
+            _events = serializer.Deserialize<BindingList<EventEntry>>(json);
 
             if(_events == null)
             {
-                _events = new List<EventEntry>();
+                _events = new BindingList<EventEntry>();
             }
 
             EventEntry event1 = new EventEntry();
@@ -85,6 +86,8 @@ namespace SAPS
             _events.Add(event1);
 
             EventSystem.Instance.Events = _events;
+
+            // check if events are ongoing, and notify
         }
     }
 }
