@@ -58,7 +58,7 @@ namespace SAPS
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
-            if(_entry.eventDeactivationTime < _entry.eventActivationTime)
+            if(timeStart.Value > timeEnd.Value)
             {
                 MessageBox.Show("Error! End Time before start time.");
                 return;

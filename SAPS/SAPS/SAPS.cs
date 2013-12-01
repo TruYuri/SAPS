@@ -14,8 +14,6 @@ namespace SAPS
         private static SAPS _instance;
         private BaseSystem _baseSystem;
 
-        public delegate void EventDelegate(EventStatus status, EventEntry entry);
-
         public static SAPS Instance
         {
             get
@@ -58,8 +56,8 @@ namespace SAPS
                     column.Width = this.applicationList.Width / 3;
                 }
 
-
-                UpdateEventList(EventStatus.Cancel, null);
+                this.UpdateApplicationList();
+                this.UpdateEventList();
             }
             else
             {
@@ -116,24 +114,25 @@ namespace SAPS
             EventSystem.Instance.ModifyEvent(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
         }
 
-        public void UpdateEventList(EventStatus status, EventEntry entry)
+        public void UpdateApplicationList()
         {
-            switch(status)
-            {
-                case EventStatus.Remove:
-                    EventSystem.Instance.Events.Remove(entry);
-                    break;
-                case EventStatus.Create:
-                    EventSystem.Instance.Events.Add(entry);
-                    break;
-            }
+            this.applicationList.DataSource = typeof(BindingList<DatabaseEntry>);
+            this.applicationList.DataSource = ApplicationSystem.Instance.Entries;
 
+            foreach(DataGridViewColumn column in this.applicationList.Columns)
+            {
+                column.Width = this.applicationList.Width / 3;
+            }
+        }
+
+        public void UpdateEventList()
+        {
             this.eventList.DataSource = typeof(BindingList<EventEntry>);
             this.eventList.DataSource = EventSystem.Instance.Events;
 
             foreach(DataGridViewColumn column in this.eventList.Columns)
             {
-                column.Width = this.applicationList.Width / 3;
+                column.Width = this.eventList.Width / 3;
             }
         }
     }

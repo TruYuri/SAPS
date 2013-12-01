@@ -57,6 +57,7 @@
     <Compile Include="ApplicationSystem.cs" />
     <Compile Include="BaseSystem.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="EventEditor.cs">
       <SubType>Form</SubType>
     </Compile>
