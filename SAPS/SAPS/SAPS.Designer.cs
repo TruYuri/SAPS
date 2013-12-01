@@ -30,7 +30,7 @@
         {
             this.tabSystems = new System.Windows.Forms.TabControl();
             this.tabLogin = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.textEmail = new System.Windows.Forms.TextBox();
@@ -84,7 +84,7 @@
             // 
             // tabLogin
             // 
-            this.tabLogin.Controls.Add(this.label1);
+            this.tabLogin.Controls.Add(this.labelTitle);
             this.tabLogin.Controls.Add(this.labelPassword);
             this.tabLogin.Controls.Add(this.labelEmail);
             this.tabLogin.Controls.Add(this.textEmail);
@@ -98,16 +98,16 @@
             this.tabLogin.Text = "Log In";
             this.tabLogin.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // labelTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(289, 106);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(324, 40);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "SAPS\r\nStudent Application Processing System";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(289, 106);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(324, 40);
+            this.labelTitle.TabIndex = 5;
+            this.labelTitle.Text = "SAPS\r\nStudent Application Processing System";
+            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelPassword
             // 
@@ -342,6 +342,7 @@
             this.eventList.Size = new System.Drawing.Size(748, 432);
             this.eventList.TabIndex = 4;
             this.eventList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventList_CellContentDoubleClick);
+            this.eventList.SelectionChanged += new System.EventHandler(this.eventList_SelectionChanged);
             // 
             // tabStatistics
             // 
@@ -427,7 +428,7 @@
         private System.Windows.Forms.TextBox textEmail;
         private System.Windows.Forms.TextBox textPassword;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.TabPage tabHome;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Label textName;

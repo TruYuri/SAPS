@@ -77,6 +77,17 @@ namespace SAPS
             _baseSystem.Logout();
         }
 
+        public void UpdateApplicationList()
+        {
+            this.applicationList.DataSource = typeof(BindingList<DatabaseEntry>);
+            this.applicationList.DataSource = ApplicationSystem.Instance.Entries;
+
+            foreach (DataGridViewColumn column in this.applicationList.Columns)
+            {
+                column.Width = this.applicationList.Width / 3;
+            }
+        }
+
         private void applicationList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ApplicationSystem.Instance.StartApplicationThread(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
@@ -89,13 +100,24 @@ namespace SAPS
 
         private void applicationList_SelectionChanged(object sender, EventArgs e)
         {
-            if(applicationList.SelectedRows.Count > 0 && applicationList.Rows.Contains(applicationList.SelectedRows[0]))
+            if(applicationList.SelectedRows.Count > 0 && applicationList.SelectedRows[0] != null)
             {
-                this.buttonModifyApplication.Enabled = true;           
+                buttonModifyApplication.Enabled = true;
             }
             else
             {
-                this.buttonModifyApplication.Enabled = false;
+                buttonModifyApplication.Enabled = false;
+            }
+        }
+
+        public void UpdateEventList()
+        {
+            this.eventList.DataSource = typeof(BindingList<EventEntry>);
+            this.eventList.DataSource = EventSystem.Instance.Events;
+
+            foreach (DataGridViewColumn column in this.eventList.Columns)
+            {
+                column.Width = this.eventList.Width / 3;
             }
         }
 
@@ -114,25 +136,15 @@ namespace SAPS
             EventSystem.Instance.ModifyEvent(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
         }
 
-        public void UpdateApplicationList()
+        private void eventList_SelectionChanged(object sender, EventArgs e)
         {
-            this.applicationList.DataSource = typeof(BindingList<DatabaseEntry>);
-            this.applicationList.DataSource = ApplicationSystem.Instance.Entries;
-
-            foreach(DataGridViewColumn column in this.applicationList.Columns)
+            if(eventList.SelectedRows.Count > 0 && eventList.SelectedRows[0] != null)
             {
-                column.Width = this.applicationList.Width / 3;
+                buttonModifyEvent.Enabled = true;
             }
-        }
-
-        public void UpdateEventList()
-        {
-            this.eventList.DataSource = typeof(BindingList<EventEntry>);
-            this.eventList.DataSource = EventSystem.Instance.Events;
-
-            foreach(DataGridViewColumn column in this.eventList.Columns)
+            else
             {
-                column.Width = this.eventList.Width / 3;
+                buttonModifyEvent.Enabled = false;
             }
         }
     }

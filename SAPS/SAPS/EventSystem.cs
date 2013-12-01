@@ -59,18 +59,11 @@ namespace SAPS
         private void StartEventThread(EventEntry entry, EventMode eventMode)
         {
             bool exists = false;
-            foreach (KeyValuePair<Thread, EventEntry> pair in _eventEditors)
+            foreach(KeyValuePair<Thread, EventEntry> pair in _eventEditors)
             {
-                if (pair.Value.Equals(entry))
+                if(pair.Value.Equals(entry))
                 {
-                    if (pair.Key.IsAlive)
-                    {
-                        exists = true;
-                    }
-                    else
-                    {
-                        _eventEditors.Remove(pair.Key);
-                    }
+                    exists = true;
                     break;
                 }
             }
@@ -87,7 +80,8 @@ namespace SAPS
         {
             EventEditor editor = new EventEditor(entry, eventMode);
             Application.Run(editor);
-            SAPS.Instance.Invoke(new EventDelegate(this.UpdateEvents), new object[] { editor.Status, editor.Entry });
+            _eventEditors.Remove(Thread.CurrentThread);
+            SAPS.Instance.Invoke(new EventDelegate(UpdateEvents), new object[] { editor.Status, editor.Entry });
         }
 
         private void UpdateEvents(EventStatus status, EventEntry entry)
