@@ -77,20 +77,28 @@ namespace SAPS
 
         private void Populate()
         {
-            StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\DATABASE.DB");
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string json;
+            try
+            {
+                StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\DATABASE.DB");
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                string json;
 
-            json = reader.ReadLine();
-            if(json == null) // temp
-                json = "";
-            _database.Populate(serializer, json);
-            json = reader.ReadLine();
-            if(json == null) // temp
-                json = "";
-            _eventTracker.Populate(serializer, json);
+                json = reader.ReadLine();
+                if (json == null) // temp
+                    json = "";
+                _database.Populate(serializer, json);
+                json = reader.ReadLine();
+                if (json == null) // temp
+                    json = "";
+                _eventTracker.Populate(serializer, json);
 
-            reader.Close();
+                reader.Close();
+            }
+            catch(FileNotFoundException fnfe)
+            {
+                StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
+                writer.Close();
+            }
         }
     }
 }

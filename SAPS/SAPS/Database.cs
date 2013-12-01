@@ -28,7 +28,7 @@ namespace SAPS
         public Stage stage;
         public string comments;
 
-        public string Name
+        [ScriptIgnore] public string Name
         {
             get
             {
@@ -36,7 +36,7 @@ namespace SAPS
             }
         }
 
-        public string Majors
+        [ScriptIgnore] public string Majors
         {
             get
             {
@@ -51,7 +51,7 @@ namespace SAPS
             }
         }
 
-        public string SubmissionDate
+        [ScriptIgnore] public string SubmissionDate
         {
             get
             {
@@ -104,6 +104,8 @@ namespace SAPS
             entry1.submissionDate = new DateTime(2011, 1, 1);
             entry1.studentType = StudentType.Undergraduate;
             entry1.majors.Add("Computer Science");
+            entry1.minors.Add("None");
+            entry1.graduateVotes.Add("test", true);
             entry1.stage = Stage.Higher;
             entry1.comments = "Test set of comments.";
             _database.Add(entry1);

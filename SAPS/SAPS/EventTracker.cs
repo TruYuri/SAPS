@@ -16,7 +16,7 @@ namespace SAPS
         public DateTime eventActivationTime;
         public DateTime eventDeactivationTime;
 
-        public string EventName
+        [ScriptIgnore] public string EventName
         {
             get
             {
@@ -24,7 +24,7 @@ namespace SAPS
             }
         }
 
-        public string EventStart
+        [ScriptIgnore] public string EventStart
         {
             get
             {
@@ -32,7 +32,7 @@ namespace SAPS
             }
         }
 
-        public string EventEnd
+        [ScriptIgnore] public string EventEnd
         {
             get
             {
