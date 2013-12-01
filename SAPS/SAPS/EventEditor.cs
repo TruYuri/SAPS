@@ -41,19 +41,25 @@ namespace SAPS
 
             InitializeComponent();
 
-            timeStart.Format = DateTimePickerFormat.Custom;
-            timeStart.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
-            timeEnd.Format = DateTimePickerFormat.Custom;
-            timeEnd.CustomFormat = "MM : dd : yyyy : hh : mm : ss"; 
-
-            if(eventMode == EventMode.Modify)
+            if (eventMode == EventMode.Create)
             {
-                buttonRemove.Visible = true;
+                this.Text += " - Create Event";
+            }
+            else
+            {
+                this.Text += " - Modify Event";
+
+                buttonRemove.Enabled = true;
                 textEventName.Text = _entry.eventName;
                 timeStart.Value = _entry.eventActivationTime;
                 timeEnd.Value = _entry.eventDeactivationTime;
                 textDescription.Text = _entry.description;
             }
+
+            timeStart.Format = DateTimePickerFormat.Custom;
+            timeStart.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
+            timeEnd.Format = DateTimePickerFormat.Custom;
+            timeEnd.CustomFormat = "MM : dd : yyyy : hh : mm : ss"; 
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
