@@ -247,9 +247,9 @@
             this.labelGraduateVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGraduateVotes.Location = new System.Drawing.Point(23, 339);
             this.labelGraduateVotes.Name = "labelGraduateVotes";
-            this.labelGraduateVotes.Size = new System.Drawing.Size(85, 15);
+            this.labelGraduateVotes.Size = new System.Drawing.Size(91, 15);
             this.labelGraduateVotes.TabIndex = 24;
-            this.labelGraduateVotes.Text = "Graduate Vote";
+            this.labelGraduateVotes.Text = "Graduate Votes";
             // 
             // textMiddleName
             // 
