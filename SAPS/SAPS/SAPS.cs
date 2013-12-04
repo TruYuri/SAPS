@@ -90,12 +90,12 @@ namespace SAPS
 
         private void applicationList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            ApplicationSystem.Instance.StartApplicationThread(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
+            ApplicationSystem.Instance.ModifyApplication(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
         }
 
         private void buttonModifyApplication_Click(object sender, EventArgs e)
         {
-            ApplicationSystem.Instance.StartApplicationThread(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
+            ApplicationSystem.Instance.ModifyApplication(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
         }
 
         private void applicationList_SelectionChanged(object sender, EventArgs e)

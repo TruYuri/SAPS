@@ -16,6 +16,7 @@ namespace SAPS
         private EventSystem _eventSystem;
         private EventTracker _eventTracker;
         private Database _database;
+        private User _user;
 
         public static BaseSystem Instance
         {
@@ -46,7 +47,7 @@ namespace SAPS
             // retrieve user type
 
             // if successful
-            User user = new User(email, email, UserType.All);
+            _user = new User(email, email, UserType.All);
 
             // load database
             Populate();
@@ -57,7 +58,7 @@ namespace SAPS
         public void Logout()
         {
             Serialize();
-            User.Instance.Destroy();
+            _user.Destroy();
         }
 
         private void Serialize()

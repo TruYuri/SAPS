@@ -15,6 +15,16 @@ namespace SAPS
         private BindingList<DatabaseEntry> _availableEntries;
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
 
+         public delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
+
+        public static ApplicationSystem Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
         public BindingList<DatabaseEntry> Entries
         {
             get
@@ -27,14 +37,6 @@ namespace SAPS
             }
         }
 
-        public static ApplicationSystem Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
         public ApplicationSystem()
         {
             _instance = this;
@@ -43,26 +45,14 @@ namespace SAPS
             _availableEntries = new BindingList<DatabaseEntry>();
         }
 
-        public void StartApplicationThread(DatabaseEntry entry)
+        public void ModifyApplication(DatabaseEntry entry)
         {
-            bool exists = false;
-            foreach (KeyValuePair<Thread, DatabaseEntry> pair in _applicationEditors)
-            {
-                if (pair.Value.Equals(entry))
-                {
-                    if (pair.Key.IsAlive)
-                    {
-                        exists = true;
-                    }
-                    else
-                    {
-                        _applicationEditors.Remove(pair.Key);
-                    }
-                    break;
-                }
-            }
+            StartApplicationThread(entry);
+        }
 
-            if (!exists)
+        private void StartApplicationThread(DatabaseEntry entry)
+        {
+            if(!_applicationEditors.ContainsValue(entry))
             {
                 Thread thread = new Thread(() => ApplicationThread(entry));
                 _applicationEditors.Add(thread, entry);
@@ -72,7 +62,19 @@ namespace SAPS
 
         public void ApplicationThread(DatabaseEntry entry)
         {
+            ApplicationEditor editor = new ApplicationEditor(entry);
             Application.Run(new ApplicationEditor(entry));
+            _applicationEditors.Remove(Thread.CurrentThread);
+            SAPS.Instance.Invoke(new ApplicationDelegate(UpdateApplications), new object[] { editor.Entry, editor.Status });
+        }
+
+        private void UpdateApplications(DatabaseEntry entry, ApplicationStatus status)
+        {
+            switch(status)
+            {
+            }
+
+            SAPS.Instance.UpdateApplicationList();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SAPS
     public partial class EventEditor : Form
     {
         private EventEntry _entry;
-        private EventMode _eventMode; // used to perform different behavior
+        private EventStatus _eventMode; // used to perform different behavior
         private EventStatus _status;
 
         public EventStatus Status
@@ -34,14 +34,14 @@ namespace SAPS
             }
         }
 
-        public EventEditor(EventEntry entry, EventMode eventMode)
+        public EventEditor(EventEntry entry, EventStatus eventMode)
         {
             _entry = entry;
             _eventMode = eventMode;
 
             InitializeComponent();
 
-            if (eventMode == EventMode.Create)
+            if(eventMode == EventStatus.Create)
             {
                 this.Text += " - Create Event";
             }
@@ -69,7 +69,7 @@ namespace SAPS
                 MessageBox.Show("Error! End Time before start time.");
                 return;
             }
-            else if(_eventMode == EventMode.Create)
+            else if(_eventMode == EventStatus.Create)
             {
                 _status = EventStatus.Create;
             }
