@@ -8,37 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+public enum ApplicationStatus { }
 namespace SAPS
 {
     public partial class ApplicationEditor : Form
     {
         private DatabaseEntry _entry;
+        private ApplicationStatus _status;
+
+        public DatabaseEntry Entry
+        {
+            get
+            {
+                return _entry;
+            }
+        }
+
+        public ApplicationStatus Status
+        {
+            get
+            {
+                return _status;
+            }
+        }
 
         public ApplicationEditor(DatabaseEntry entry)
         {
             _entry = entry;
 
             InitializeComponent();
-        }
-
-        private void labelName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

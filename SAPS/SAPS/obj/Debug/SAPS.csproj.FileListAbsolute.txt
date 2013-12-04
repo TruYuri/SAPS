@@ -10,8 +10,6 @@ C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.pdb
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\SAPS.exe.config
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.exe
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.pdb
-C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\System.Json.dll
-C:\Users\Austin\Documents\GitHub\SAPS\SAPS\SAPS\bin\Debug\System.Json.xml
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.csprojResolveAssemblyReference.cache
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.winSAPS.resources
 C:\Users\Kyle\Documents\GitHub\SAPS\SAPS\SAPS\obj\Debug\SAPS.Properties.Resources.resources

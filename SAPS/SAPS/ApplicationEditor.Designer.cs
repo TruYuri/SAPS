@@ -70,7 +70,6 @@
             this.labelAppName.Size = new System.Drawing.Size(104, 15);
             this.labelAppName.TabIndex = 3;
             this.labelAppName.Text = "Application Name";
-            this.labelAppName.Click += new System.EventHandler(this.labelName_Click);
             // 
             // textApplicationName
             // 
@@ -127,7 +126,6 @@
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(101, 21);
             this.comboBoxGender.TabIndex = 11;
-            this.comboBoxGender.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // labelGender
             // 
@@ -138,7 +136,6 @@
             this.labelGender.Size = new System.Drawing.Size(48, 15);
             this.labelGender.TabIndex = 12;
             this.labelGender.Text = "Gender";
-            this.labelGender.Click += new System.EventHandler(this.label4_Click);
             // 
             // labelDOB
             // 
@@ -149,7 +146,6 @@
             this.labelDOB.Size = new System.Drawing.Size(74, 15);
             this.labelDOB.TabIndex = 13;
             this.labelDOB.Text = "Date of Birth";
-            this.labelDOB.Click += new System.EventHandler(this.label5_Click);
             // 
             // textDateOfBirth
             // 
