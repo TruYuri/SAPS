@@ -47,7 +47,7 @@ namespace SAPS
             this.textLastName.Text = _entry.lastName;
             this.comboBoxGender.SelectedIndex = this.comboBoxGender.FindString(_entry.gender.ToString());
             this.timeDOB.Value = _entry.dateOfBirth;
-            this.textBoxGPA.Text = _entry.GPA.ToString();
+            this.textGPA.Text = _entry.GPA.ToString();
             this.listMajors.DataSource = _entry.majors;
             this.listMinors.DataSource = _entry.minors;
             this.listVotes.DataSource = new BindingSource(_entry.votes, null);
