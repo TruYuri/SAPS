@@ -10,19 +10,18 @@ namespace SAPS
 {
     public class DatabaseEntry
     {
+        public Stage stage; // for filtering only
         public string firstName;
         public string middleName;
         public string lastName;
         public Gender gender;
-        public int age;
         public float GPA;
         public DateTime dateOfBirth;
         public DateTime submissionDate;
         public StudentType studentType;
         public BindingList<string> majors = new BindingList<string>();
         public BindingList<string> minors = new BindingList<string>();
-        public Dictionary<string, Vote> graduateVotes = new Dictionary<string, Vote>();
-        public Stage stage;
+        public Dictionary<string, Vote> votes = new Dictionary<string, Vote>();
         public string comments;
 
         [ScriptIgnore] public string Name
@@ -95,14 +94,13 @@ namespace SAPS
             entry1.middleName = "K.";
             entry1.lastName = "Koehler";
             entry1.gender = Gender.Male;
-            entry1.age = 21;
             entry1.GPA = 3.41f;
             entry1.dateOfBirth = new DateTime(1992, 12, 12);
             entry1.submissionDate = new DateTime(2011, 1, 1);
             entry1.studentType = StudentType.Undergraduate;
             entry1.majors.Add("Computer Science");
             entry1.minors.Add("None");
-            entry1.graduateVotes.Add("test", Vote.Approve);
+            entry1.votes.Add("test", Vote.Approve);
             entry1.stage = Stage.Higher;
             entry1.comments = "Test set of comments.";
             _database.Add(entry1);
@@ -112,7 +110,6 @@ namespace SAPS
             entry2.middleName = "Elizabeth";
             entry2.lastName = "Ressmen";
             entry2.gender = Gender.Female;
-            entry2.age = 20;
             entry2.GPA = 4.0f;
             entry2.dateOfBirth = new DateTime(1973, 6, 14);
             entry2.submissionDate = new DateTime(2012, 1, 1);
@@ -120,8 +117,8 @@ namespace SAPS
             entry2.majors.Add("Flowers");
             entry2.minors.Add("Buttercups");
             entry2.minors.Add("Ponies");
-            entry2.graduateVotes.Add("Jackass", Vote.Approve);
-            entry2.graduateVotes.Add("Mom", Vote.Reject);
+            entry2.votes.Add("Jackass", Vote.Approve);
+            entry2.votes.Add("Mom", Vote.Reject);
             entry2.stage = Stage.Lower;
             entry2.comments = "Test set of comments 2.";
             _database.Add(entry2);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace SAPS
 {
@@ -37,7 +38,6 @@ namespace SAPS
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.labelGender = new System.Windows.Forms.Label();
             this.labelDOB = new System.Windows.Forms.Label();
-            this.textDateOfBirth = new System.Windows.Forms.TextBox();
             this.labelGPA = new System.Windows.Forms.Label();
             this.textBoxGPA = new System.Windows.Forms.TextBox();
             this.labelSubDate = new System.Windows.Forms.Label();
@@ -48,9 +48,8 @@ namespace SAPS
             this.textMiddleName = new System.Windows.Forms.TextBox();
             this.textLastName = new System.Windows.Forms.TextBox();
             this.textDescriptionComments = new System.Windows.Forms.TextBox();
-            this.listBoxVotes = new System.Windows.Forms.ListBox();
+            this.listVotes = new System.Windows.Forms.ListBox();
             this.buttonRemove = new System.Windows.Forms.Button();
-            this.textSubmissionDate = new System.Windows.Forms.TextBox();
             this.listMajors = new System.Windows.Forms.ListBox();
             this.listMinors = new System.Windows.Forms.ListBox();
             this.buttonAddMajor = new System.Windows.Forms.Button();
@@ -60,6 +59,8 @@ namespace SAPS
             this.comboVote = new System.Windows.Forms.ComboBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSubmit = new System.Windows.Forms.Button();
+            this.timeDOB = new System.Windows.Forms.DateTimePicker();
+            this.timeSubmission = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // labelMName
@@ -101,7 +102,6 @@ namespace SAPS
             // 
             // comboBoxGender
             // 
-            this.comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
             this.comboBoxGender.DisplayMember = "Male;Female";
             this.comboBoxGender.FormattingEnabled = true;
             this.comboBoxGender.Location = new System.Drawing.Point(12, 128);
@@ -128,13 +128,6 @@ namespace SAPS
             this.labelDOB.Size = new System.Drawing.Size(74, 15);
             this.labelDOB.TabIndex = 13;
             this.labelDOB.Text = "Date of Birth";
-            // 
-            // textDateOfBirth
-            // 
-            this.textDateOfBirth.Location = new System.Drawing.Point(122, 129);
-            this.textDateOfBirth.Name = "textDateOfBirth";
-            this.textDateOfBirth.Size = new System.Drawing.Size(101, 20);
-            this.textDateOfBirth.TabIndex = 14;
             // 
             // labelGPA
             // 
@@ -226,13 +219,13 @@ namespace SAPS
             this.textDescriptionComments.Size = new System.Drawing.Size(320, 134);
             this.textDescriptionComments.TabIndex = 33;
             // 
-            // listBoxVotes
+            // listVotes
             // 
-            this.listBoxVotes.FormattingEnabled = true;
-            this.listBoxVotes.Location = new System.Drawing.Point(231, 184);
-            this.listBoxVotes.Name = "listBoxVotes";
-            this.listBoxVotes.Size = new System.Drawing.Size(101, 95);
-            this.listBoxVotes.TabIndex = 36;
+            this.listVotes.FormattingEnabled = true;
+            this.listVotes.Location = new System.Drawing.Point(231, 184);
+            this.listVotes.Name = "listVotes";
+            this.listVotes.Size = new System.Drawing.Size(101, 95);
+            this.listVotes.TabIndex = 36;
             // 
             // buttonRemove
             // 
@@ -242,14 +235,6 @@ namespace SAPS
             this.buttonRemove.TabIndex = 39;
             this.buttonRemove.Text = "Remove";
             this.buttonRemove.UseVisualStyleBackColor = true;
-            // 
-            // textSubmissionDate
-            // 
-            this.textSubmissionDate.Enabled = false;
-            this.textSubmissionDate.Location = new System.Drawing.Point(122, 19);
-            this.textSubmissionDate.Name = "textSubmissionDate";
-            this.textSubmissionDate.Size = new System.Drawing.Size(208, 20);
-            this.textSubmissionDate.TabIndex = 27;
             // 
             // listMajors
             // 
@@ -310,7 +295,6 @@ namespace SAPS
             this.comboVote.Name = "comboVote";
             this.comboVote.Size = new System.Drawing.Size(101, 21);
             this.comboVote.TabIndex = 47;
-            this.comboVote.DataSource = Enum.GetValues(typeof(Vote));
             // 
             // buttonCancel
             // 
@@ -330,11 +314,29 @@ namespace SAPS
             this.buttonSubmit.Text = "Accept";
             this.buttonSubmit.UseVisualStyleBackColor = true;
             // 
+            // timeDOB
+            // 
+            this.timeDOB.Location = new System.Drawing.Point(122, 129);
+            this.timeDOB.Name = "timeDOB";
+            this.timeDOB.Size = new System.Drawing.Size(101, 20);
+            this.timeDOB.TabIndex = 50;
+            this.timeDOB.Format = DateTimePickerFormat.Custom;
+            this.timeDOB.CustomFormat = "MM : dd : yyyy";
+            // 
+            // timeSubmission
+            // 
+            this.timeSubmission.Location = new System.Drawing.Point(122, 20);
+            this.timeSubmission.Name = "timeSubmission";
+            this.timeSubmission.Size = new System.Drawing.Size(208, 20);
+            this.timeSubmission.TabIndex = 51;
+            // 
             // ApplicationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 512);
+            this.Controls.Add(this.timeSubmission);
+            this.Controls.Add(this.timeDOB);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.comboVote);
@@ -345,9 +347,8 @@ namespace SAPS
             this.Controls.Add(this.listMinors);
             this.Controls.Add(this.listMajors);
             this.Controls.Add(this.buttonRemove);
-            this.Controls.Add(this.listBoxVotes);
+            this.Controls.Add(this.listVotes);
             this.Controls.Add(this.textDescriptionComments);
-            this.Controls.Add(this.textSubmissionDate);
             this.Controls.Add(this.textLastName);
             this.Controls.Add(this.textMiddleName);
             this.Controls.Add(this.labelGraduateVotes);
@@ -357,7 +358,6 @@ namespace SAPS
             this.Controls.Add(this.labelSubDate);
             this.Controls.Add(this.textBoxGPA);
             this.Controls.Add(this.labelGPA);
-            this.Controls.Add(this.textDateOfBirth);
             this.Controls.Add(this.labelDOB);
             this.Controls.Add(this.labelGender);
             this.Controls.Add(this.comboBoxGender);
@@ -381,7 +381,6 @@ namespace SAPS
         private System.Windows.Forms.ComboBox comboBoxGender;
         private System.Windows.Forms.Label labelGender;
         private System.Windows.Forms.Label labelDOB;
-        private System.Windows.Forms.TextBox textDateOfBirth;
         private System.Windows.Forms.Label labelGPA;
         private System.Windows.Forms.TextBox textBoxGPA;
         private System.Windows.Forms.Label labelSubDate;
@@ -392,9 +391,8 @@ namespace SAPS
         private System.Windows.Forms.TextBox textMiddleName;
         private System.Windows.Forms.TextBox textLastName;
         private System.Windows.Forms.TextBox textDescriptionComments;
-        private System.Windows.Forms.ListBox listBoxVotes;
+        private System.Windows.Forms.ListBox listVotes;
         private System.Windows.Forms.Button buttonRemove;
-        private System.Windows.Forms.TextBox textSubmissionDate;
         private System.Windows.Forms.ListBox listMajors;
         private System.Windows.Forms.ListBox listMinors;
         private System.Windows.Forms.Button buttonAddMajor;
@@ -404,5 +402,7 @@ namespace SAPS
         private System.Windows.Forms.ComboBox comboVote;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSubmit;
+        private DateTimePicker timeDOB;
+        private DateTimePicker timeSubmission;
     }
 }

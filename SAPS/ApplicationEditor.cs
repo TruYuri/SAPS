@@ -36,6 +36,22 @@ namespace SAPS
             _entry = entry;
 
             InitializeComponent();
+
+            this.comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
+            this.comboVote.DataSource = Enum.GetValues(typeof(Vote));
+            this.comboVote.SelectedIndex = this.comboVote.FindString(Vote.Undecided.ToString());
+
+            this.timeSubmission.Value = _entry.submissionDate;
+            this.textFirstName.Text = _entry.firstName;
+            this.textMiddleName.Text = _entry.middleName;
+            this.textLastName.Text = _entry.lastName;
+            this.comboBoxGender.SelectedIndex = this.comboBoxGender.FindString(_entry.gender.ToString());
+            this.timeDOB.Value = _entry.dateOfBirth;
+            this.textBoxGPA.Text = _entry.GPA.ToString();
+            this.listMajors.DataSource = _entry.majors;
+            this.listMinors.DataSource = _entry.minors;
+            this.listVotes.DataSource = new BindingSource(_entry.votes, null);
+            this.textDescriptionComments.Text = _entry.comments;
         }
 
         // Gender gender;

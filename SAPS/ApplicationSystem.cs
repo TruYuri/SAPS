@@ -15,7 +15,7 @@ namespace SAPS
         private BindingList<DatabaseEntry> _availableEntries;
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
 
-         public delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
+        public delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
 
         public static ApplicationSystem Instance
         {
