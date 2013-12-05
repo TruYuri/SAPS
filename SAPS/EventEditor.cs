@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public enum EventStatus { Remove, Modify, Create, Cancel };
-
 namespace SAPS
 {
     public partial class EventEditor : Form
@@ -55,11 +53,6 @@ namespace SAPS
                 timeEnd.Value = _entry.eventDeactivationTime;
                 textDescription.Text = _entry.description;
             }
-
-            timeStart.Format = DateTimePickerFormat.Custom;
-            timeStart.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
-            timeEnd.Format = DateTimePickerFormat.Custom;
-            timeEnd.CustomFormat = "MM : dd : yyyy : hh : mm : ss"; 
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)

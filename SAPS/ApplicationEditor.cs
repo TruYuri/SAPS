@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public enum ApplicationStatus { }
 namespace SAPS
 {
     public partial class ApplicationEditor : Form
@@ -38,5 +37,8 @@ namespace SAPS
 
             InitializeComponent();
         }
+
+        // Gender gender;
+        // Enum.TryParse<Gender>(comboBoxGender.SelectedValue.ToString(), out gender);  // for later
     }
 }

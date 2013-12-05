@@ -1,4 +1,6 @@
-﻿namespace SAPS
+﻿using System.Windows.Forms;
+
+namespace SAPS
 {
     partial class EventEditor
     {
@@ -47,6 +49,8 @@
             this.timeStart.Name = "timeStart";
             this.timeStart.Size = new System.Drawing.Size(322, 20);
             this.timeStart.TabIndex = 0;
+            this.timeStart.Format = DateTimePickerFormat.Custom;
+            this.timeStart.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
             // 
             // textEventName
             // 
@@ -101,6 +105,8 @@
             this.timeEnd.Name = "timeEnd";
             this.timeEnd.Size = new System.Drawing.Size(322, 20);
             this.timeEnd.TabIndex = 6;
+            this.timeEnd.Format = DateTimePickerFormat.Custom;
+            this.timeEnd.CustomFormat = "MM : dd : yyyy : hh : mm : ss"; 
             // 
             // textDescription
             // 
@@ -132,13 +138,13 @@
             // 
             // buttonRemove
             // 
+            this.buttonRemove.Enabled = false;
             this.buttonRemove.Location = new System.Drawing.Point(305, 264);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(109, 23);
             this.buttonRemove.TabIndex = 10;
             this.buttonRemove.Text = "Remove";
             this.buttonRemove.UseVisualStyleBackColor = true;
-            this.buttonRemove.Enabled = false;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // EventEditor

@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-enum UserType { All, UPA, UPC, GPC, GPCC };
-
 namespace SAPS
 {
     class User

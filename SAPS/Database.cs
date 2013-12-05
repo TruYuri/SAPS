@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.ComponentModel;
 
-public enum Gender { Male, Female };
-public enum StudentType { Undergraduate, Graduate };
-public enum Stage { Rejected, Lower, Higher, Approved };
-
 namespace SAPS
 {
     public class DatabaseEntry
@@ -25,7 +21,7 @@ namespace SAPS
         public StudentType studentType;
         public BindingList<string> majors = new BindingList<string>();
         public BindingList<string> minors = new BindingList<string>();
-        public Dictionary<string, bool> graduateVotes = new Dictionary<string, bool>();
+        public Dictionary<string, Vote> graduateVotes = new Dictionary<string, Vote>();
         public Stage stage;
         public string comments;
 
@@ -106,7 +102,7 @@ namespace SAPS
             entry1.studentType = StudentType.Undergraduate;
             entry1.majors.Add("Computer Science");
             entry1.minors.Add("None");
-            entry1.graduateVotes.Add("test", true);
+            entry1.graduateVotes.Add("test", Vote.Approve);
             entry1.stage = Stage.Higher;
             entry1.comments = "Test set of comments.";
             _database.Add(entry1);
@@ -124,8 +120,8 @@ namespace SAPS
             entry2.majors.Add("Flowers");
             entry2.minors.Add("Buttercups");
             entry2.minors.Add("Ponies");
-            entry2.graduateVotes.Add("Jackass", true);
-            entry2.graduateVotes.Add("Mom", false);
+            entry2.graduateVotes.Add("Jackass", Vote.Approve);
+            entry2.graduateVotes.Add("Mom", Vote.Reject);
             entry2.stage = Stage.Lower;
             entry2.comments = "Test set of comments 2.";
             _database.Add(entry2);

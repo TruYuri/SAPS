@@ -72,6 +72,7 @@ namespace SAPS
         {
             switch(status)
             {
+
             }
 
             SAPS.Instance.UpdateApplicationList();
