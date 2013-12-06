@@ -115,6 +115,7 @@ namespace SAPS
             entry1.city = "city";
             entry1.state = "derpity";
             entry1.zip = "68701";
+            entry1.phone = "balls";
             entry1.actSAT = 36;
             entry1.classRank = 99;
             _database.Add(entry1);

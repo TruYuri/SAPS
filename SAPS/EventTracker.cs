@@ -12,7 +12,6 @@ namespace SAPS
     {
         public string eventName;
         public string description;
-        public string eventCreator;
         public DateTime eventActivationTime;
         public DateTime eventDeactivationTime;
         public DateTime submissionTime;
@@ -80,7 +79,6 @@ namespace SAPS
             event1.eventName = "Birthday";
             event1.submissionTime = new DateTime(1992, 12, 12);
             event1.description = "21st Birthday";
-            event1.eventCreator = "Sherri";
             event1.eventActivationTime = new DateTime(1992, 12, 12, 0, 0, 0);
             event1.eventDeactivationTime = new DateTime(1992, 12, 13, 0, 0, 0);
             _events.Add(event1);

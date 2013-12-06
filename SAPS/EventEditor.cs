@@ -52,7 +52,7 @@ namespace SAPS
         {
             if(timeStart.Value > timeEnd.Value)
             {
-                MessageBox.Show("Error! End Time before start time.", "Time Error", MessageBoxButtons.OK);
+                MessageBox.Show("Error! End Time before start time.", "Error", MessageBoxButtons.OK);
                 return;
             }
             else if(_eventMode == EventStatus.Create)

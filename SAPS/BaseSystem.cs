@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.IO;
-using System.Threading;
 
 namespace SAPS
 {
     public class BaseSystem
     {
+        // record web connection information
+
+        // retain links to other systems
         private static BaseSystem _instance;
         private StatisticsSystem _statisticsSystem;
         private ApplicationSystem _applicationSystem;
@@ -51,6 +53,8 @@ namespace SAPS
             _user = new User(email, email, UserType.All);
 
             // load database
+            // grab new database from server
+            UpdateLocalDatabase();
             Populate();
 
             return true;
@@ -97,7 +101,23 @@ namespace SAPS
             {
                 StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
                 writer.Close();
+                Populate();
             }
+        }
+
+        public void UpdateLocalDatabase()
+        {
+            // do web stuff
+        }
+
+        public void UpdateRemoteDatabases(DatabaseEntry entry)
+        {
+            // do web stuff
+        }
+
+        public void UpdateRemoteDatabases(EventEntry entry)
+        {
+            // do web stuff
         }
     }
 }

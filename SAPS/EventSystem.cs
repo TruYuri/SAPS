@@ -81,11 +81,14 @@ namespace SAPS
                     break;
                 case EventStatus.Remove:
                     EventSystem.Instance.Events.Remove(entry);
+                    BaseSystem.Instance.UpdateRemoteDatabases(entry);
                     break;
                 case EventStatus.Modify:
+                    BaseSystem.Instance.UpdateRemoteDatabases(entry);
                     break;
                 case EventStatus.Create:
                     EventSystem.Instance.Events.Add(entry);
+                    BaseSystem.Instance.UpdateRemoteDatabases(entry);
                     break;
             }
 

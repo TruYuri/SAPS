@@ -14,6 +14,7 @@ namespace SAPS
         private static ApplicationSystem _instance;
         private BindingList<DatabaseEntry> _availableEntries;
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
+        private const int MAX_VOTES = 7;
 
         public delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
 
@@ -82,11 +83,19 @@ namespace SAPS
                 case ApplicationStatus.Modify:
                     break;
                 case ApplicationStatus.Approve:
-                    // lots of shit here
+                    // remove from available
+
                     break;
                 case ApplicationStatus.Reject:
-                    // remove from available and full database
-                    // sent to server for archive
+                    // remove from available
+                    _availableEntries.Remove(entry);
+                    
+                    int reject = entry.votes.Values.Count(e => e == Vote.Reject);
+                    if(entry.studentType == StudentType.Undergraduate || reject > MAX_VOTES / 2)
+                    {
+                        entry.stage = Stage.Rejected;
+                        BaseSystem.Instance.UpdateRemoteDatabases(entry);
+                    }
                     break;
             }
 
