@@ -45,12 +45,12 @@ namespace SAPS
             // 
             // timeStart
             // 
+            this.timeStart.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
+            this.timeStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.timeStart.Location = new System.Drawing.Point(92, 38);
             this.timeStart.Name = "timeStart";
             this.timeStart.Size = new System.Drawing.Size(322, 20);
             this.timeStart.TabIndex = 0;
-            this.timeStart.Format = DateTimePickerFormat.Custom;
-            this.timeStart.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
             // 
             // textEventName
             // 
@@ -101,12 +101,12 @@ namespace SAPS
             // 
             // timeEnd
             // 
+            this.timeEnd.CustomFormat = "MM : dd : yyyy : hh : mm : ss";
+            this.timeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.timeEnd.Location = new System.Drawing.Point(92, 64);
             this.timeEnd.Name = "timeEnd";
             this.timeEnd.Size = new System.Drawing.Size(322, 20);
             this.timeEnd.TabIndex = 6;
-            this.timeEnd.Format = DateTimePickerFormat.Custom;
-            this.timeEnd.CustomFormat = "MM : dd : yyyy : hh : mm : ss"; 
             // 
             // textDescription
             // 
@@ -163,8 +163,10 @@ namespace SAPS
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textEventName);
             this.Controls.Add(this.timeStart);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "EventEditor";
-            this.Text = "EventEditor";
+            this.Text = "Event Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -66,18 +66,23 @@ namespace SAPS
 
         public void EventThread(EventEntry entry, EventStatus eventMode)
         {
-            EventEditor editor = new EventEditor(entry, eventMode);
+            FormStorage<EventStatus> storage = new FormStorage<EventStatus>(eventMode);
+            EventEditor editor = new EventEditor(entry, storage);
             Application.Run(editor);
             _eventEditors.Remove(Thread.CurrentThread);
-            SAPS.Instance.Invoke(new EventDelegate(UpdateEvents), new object[] { editor.Entry, editor.Status });
+            SAPS.Instance.Invoke(new EventDelegate(UpdateEvents), new object[] { editor.Entry, storage.Status });
         }
 
         private void UpdateEvents(EventEntry entry, EventStatus status)
         {
             switch (status)
             {
+                case EventStatus.Cancel:
+                    break;
                 case EventStatus.Remove:
                     EventSystem.Instance.Events.Remove(entry);
+                    break;
+                case EventStatus.Modify:
                     break;
                 case EventStatus.Create:
                     EventSystem.Instance.Events.Add(entry);
@@ -85,6 +90,14 @@ namespace SAPS
             }
 
             SAPS.Instance.UpdateEventList();
+        }
+
+        public void CloseEditors()
+        {
+            foreach (KeyValuePair<Thread, EventEntry> pair in _eventEditors)
+            {
+                pair.Key.Abort();
+            }
         }
     }
 }

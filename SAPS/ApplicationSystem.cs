@@ -62,20 +62,43 @@ namespace SAPS
 
         public void ApplicationThread(DatabaseEntry entry)
         {
-            ApplicationEditor editor = new ApplicationEditor(entry);
-            Application.Run(new ApplicationEditor(entry));
+            FormStorage<ApplicationStatus> storage = new FormStorage<ApplicationStatus>(ApplicationStatus.Cancel);
+            ApplicationEditor editor = new ApplicationEditor(entry, storage);
+            Application.Run(new ApplicationEditor(entry, storage));
             _applicationEditors.Remove(Thread.CurrentThread);
-            SAPS.Instance.Invoke(new ApplicationDelegate(UpdateApplications), new object[] { editor.Entry, editor.Status });
+            SAPS.Instance.Invoke(new ApplicationDelegate(UpdateApplications), new object[] { editor.Entry, storage.Status });
         }
 
         private void UpdateApplications(DatabaseEntry entry, ApplicationStatus status)
         {
             switch(status)
             {
-
+                case ApplicationStatus.Cancel:
+                    break;
+                case ApplicationStatus.Remove:
+                    _availableEntries.Remove(entry);
+                    Database.Instance.Remove(entry);
+                    break;
+                case ApplicationStatus.Modify:
+                    break;
+                case ApplicationStatus.Approve:
+                    // lots of shit here
+                    break;
+                case ApplicationStatus.Reject:
+                    // remove from available and full database
+                    // sent to server for archive
+                    break;
             }
 
             SAPS.Instance.UpdateApplicationList();
+        }
+
+        public void CloseEditors()
+        {
+            foreach (KeyValuePair<Thread, DatabaseEntry> pair in _applicationEditors)
+            {
+                pair.Key.Abort();
+            }
         }
     }
 }

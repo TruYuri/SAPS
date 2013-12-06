@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.IO;
+using System.Threading;
 
 namespace SAPS
 {
@@ -92,7 +93,7 @@ namespace SAPS
 
                 reader.Close();
             }
-            catch(FileNotFoundException fnfe)
+            catch
             {
                 StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
                 writer.Close();

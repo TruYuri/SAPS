@@ -14,15 +14,7 @@ namespace SAPS
     {
         private EventEntry _entry;
         private EventStatus _eventMode; // used to perform different behavior
-        private EventStatus _status;
-
-        public EventStatus Status
-        {
-            get
-            {
-                return _status;
-            }
-        }
+        private FormStorage<EventStatus> _storage;
 
         public EventEntry Entry
         {
@@ -32,14 +24,15 @@ namespace SAPS
             }
         }
 
-        public EventEditor(EventEntry entry, EventStatus eventMode)
+        public EventEditor(EventEntry entry, FormStorage<EventStatus> storage)
         {
             _entry = entry;
-            _eventMode = eventMode;
+            _eventMode = storage.Status;
+            _storage = storage;
 
             InitializeComponent();
 
-            if(eventMode == EventStatus.Create)
+            if(_eventMode == EventStatus.Create)
             {
                 this.Text += " - Create Event";
             }
@@ -59,16 +52,16 @@ namespace SAPS
         {
             if(timeStart.Value > timeEnd.Value)
             {
-                MessageBox.Show("Error! End Time before start time.");
+                MessageBox.Show("Error! End Time before start time.", "Time Error", MessageBoxButtons.OK);
                 return;
             }
             else if(_eventMode == EventStatus.Create)
             {
-                _status = EventStatus.Create;
+                _storage.Status = EventStatus.Create;
             }
             else
             {
-                _status = EventStatus.Modify;
+                _storage.Status = EventStatus.Modify;
             }
 
             _entry.eventName = textEventName.Text;
@@ -80,14 +73,19 @@ namespace SAPS
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            _status = EventStatus.Cancel;
+            _storage.Status = EventStatus.Cancel;
             this.Close();
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            _status = EventStatus.Remove;
-            this.Close();
+            var result = MessageBox.Show("Remove event? This affects all users.", "Remove Event", MessageBoxButtons.OKCancel);
+
+            if(result == DialogResult.OK)
+            {
+                _storage.Status = EventStatus.Remove;
+                this.Close();
+            }
         }
     }
 }

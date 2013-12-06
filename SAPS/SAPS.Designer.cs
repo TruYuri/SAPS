@@ -394,8 +394,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 478);
             this.Controls.Add(this.tabSystems);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "SAPS";
             this.Text = "Student Application Processing System";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SAPS_FormClosing);
             this.tabSystems.ResumeLayout(false);
             this.tabLogin.ResumeLayout(false);
             this.tabLogin.PerformLayout();

@@ -11,14 +11,22 @@ namespace SAPS
     public class DatabaseEntry
     {
         public Stage stage; // for filtering only
+        public StudentType studentType;
+        public DateTime submissionDate;
         public string firstName;
         public string middleName;
         public string lastName;
         public Gender gender;
-        public float GPA;
         public DateTime dateOfBirth;
-        public DateTime submissionDate;
-        public StudentType studentType;
+        public string socialSecurity;
+        public string streetAddress;
+        public string city;
+        public string state;
+        public string zip;
+        public string phone;
+        public float GPA;
+        public int actSAT;
+        public int classRank;
         public BindingList<string> majors = new BindingList<string>();
         public BindingList<string> minors = new BindingList<string>();
         public Dictionary<string, Vote> votes = new Dictionary<string, Vote>();
@@ -99,10 +107,16 @@ namespace SAPS
             entry1.submissionDate = new DateTime(2011, 1, 1);
             entry1.studentType = StudentType.Undergraduate;
             entry1.majors.Add("Computer Science");
-            entry1.minors.Add("None");
             entry1.votes.Add("test", Vote.Approve);
             entry1.stage = Stage.Higher;
             entry1.comments = "Test set of comments.";
+            entry1.streetAddress = "butts";
+            entry1.socialSecurity = "1234567";
+            entry1.city = "city";
+            entry1.state = "derpity";
+            entry1.zip = "68701";
+            entry1.actSAT = 36;
+            entry1.classRank = 99;
             _database.Add(entry1);
 
             DatabaseEntry entry2 = new DatabaseEntry();
@@ -123,9 +137,17 @@ namespace SAPS
             entry2.comments = "Test set of comments 2.";
             _database.Add(entry2);
 
+            BindingList<DatabaseEntry> list = new BindingList<DatabaseEntry>();
             // Filter by User.Instance.Permissions and Stage
             //foreach {}
-            ApplicationSystem.Instance.Entries = _database; // temp
+
+            list = _database; // temp
+            ApplicationSystem.Instance.Entries = list;
+        }
+
+        public void Remove(DatabaseEntry entry)
+        {
+            _database.Remove(entry);
         }
     }
 }

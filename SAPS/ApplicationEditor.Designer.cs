@@ -39,7 +39,6 @@ namespace SAPS
             this.labelGender = new System.Windows.Forms.Label();
             this.labelDOB = new System.Windows.Forms.Label();
             this.labelGPA = new System.Windows.Forms.Label();
-            this.textGPA = new System.Windows.Forms.TextBox();
             this.labelSubDate = new System.Windows.Forms.Label();
             this.labelMinor = new System.Windows.Forms.Label();
             this.labelMajor = new System.Windows.Forms.Label();
@@ -63,7 +62,7 @@ namespace SAPS
             this.timeSubmission = new System.Windows.Forms.DateTimePicker();
             this.textSocial = new System.Windows.Forms.TextBox();
             this.labelSocial = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textAddress = new System.Windows.Forms.TextBox();
             this.labelAddress = new System.Windows.Forms.Label();
             this.labelCity = new System.Windows.Forms.Label();
             this.textCity = new System.Windows.Forms.TextBox();
@@ -72,18 +71,19 @@ namespace SAPS
             this.labelState = new System.Windows.Forms.Label();
             this.labelZip = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textPhone = new System.Windows.Forms.TextBox();
             this.labelScore = new System.Windows.Forms.Label();
-            this.textScore = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.textRank = new System.Windows.Forms.MaskedTextBox();
+            this.textGPA = new System.Windows.Forms.MaskedTextBox();
+            this.textScore = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // labelMName
             // 
             this.labelMName.AutoSize = true;
             this.labelMName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMName.Location = new System.Drawing.Point(119, 56);
+            this.labelMName.Location = new System.Drawing.Point(119, 48);
             this.labelMName.Name = "labelMName";
             this.labelMName.Size = new System.Drawing.Size(82, 15);
             this.labelMName.TabIndex = 5;
@@ -93,7 +93,7 @@ namespace SAPS
             // 
             this.labelFName.AutoSize = true;
             this.labelFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFName.Location = new System.Drawing.Point(12, 56);
+            this.labelFName.Location = new System.Drawing.Point(12, 48);
             this.labelFName.Name = "labelFName";
             this.labelFName.Size = new System.Drawing.Size(67, 15);
             this.labelFName.TabIndex = 6;
@@ -103,7 +103,7 @@ namespace SAPS
             // 
             this.labelLName.AutoSize = true;
             this.labelLName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLName.Location = new System.Drawing.Point(226, 56);
+            this.labelLName.Location = new System.Drawing.Point(226, 48);
             this.labelLName.Name = "labelLName";
             this.labelLName.Size = new System.Drawing.Size(67, 15);
             this.labelLName.TabIndex = 7;
@@ -111,7 +111,7 @@ namespace SAPS
             // 
             // textFirstName
             // 
-            this.textFirstName.Location = new System.Drawing.Point(12, 74);
+            this.textFirstName.Location = new System.Drawing.Point(12, 66);
             this.textFirstName.Name = "textFirstName";
             this.textFirstName.Size = new System.Drawing.Size(104, 20);
             this.textFirstName.TabIndex = 8;
@@ -120,7 +120,7 @@ namespace SAPS
             // 
             this.comboBoxGender.DisplayMember = "Male;Female";
             this.comboBoxGender.FormattingEnabled = true;
-            this.comboBoxGender.Location = new System.Drawing.Point(12, 115);
+            this.comboBoxGender.Location = new System.Drawing.Point(12, 107);
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(101, 21);
             this.comboBoxGender.TabIndex = 11;
@@ -129,7 +129,7 @@ namespace SAPS
             // 
             this.labelGender.AutoSize = true;
             this.labelGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGender.Location = new System.Drawing.Point(12, 97);
+            this.labelGender.Location = new System.Drawing.Point(12, 89);
             this.labelGender.Name = "labelGender";
             this.labelGender.Size = new System.Drawing.Size(48, 15);
             this.labelGender.TabIndex = 12;
@@ -139,7 +139,7 @@ namespace SAPS
             // 
             this.labelDOB.AutoSize = true;
             this.labelDOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDOB.Location = new System.Drawing.Point(119, 97);
+            this.labelDOB.Location = new System.Drawing.Point(119, 89);
             this.labelDOB.Name = "labelDOB";
             this.labelDOB.Size = new System.Drawing.Size(74, 15);
             this.labelDOB.TabIndex = 13;
@@ -149,24 +149,17 @@ namespace SAPS
             // 
             this.labelGPA.AutoSize = true;
             this.labelGPA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGPA.Location = new System.Drawing.Point(12, 259);
+            this.labelGPA.Location = new System.Drawing.Point(12, 251);
             this.labelGPA.Name = "labelGPA";
             this.labelGPA.Size = new System.Drawing.Size(31, 15);
             this.labelGPA.TabIndex = 16;
             this.labelGPA.Text = "GPA";
             // 
-            // textGPA
-            // 
-            this.textGPA.Location = new System.Drawing.Point(12, 277);
-            this.textGPA.Name = "textGPA";
-            this.textGPA.Size = new System.Drawing.Size(101, 20);
-            this.textGPA.TabIndex = 17;
-            // 
             // labelSubDate
             // 
             this.labelSubDate.AutoSize = true;
             this.labelSubDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSubDate.Location = new System.Drawing.Point(12, 20);
+            this.labelSubDate.Location = new System.Drawing.Point(12, 12);
             this.labelSubDate.Name = "labelSubDate";
             this.labelSubDate.Size = new System.Drawing.Size(101, 15);
             this.labelSubDate.TabIndex = 18;
@@ -176,7 +169,7 @@ namespace SAPS
             // 
             this.labelMinor.AutoSize = true;
             this.labelMinor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMinor.Location = new System.Drawing.Point(119, 300);
+            this.labelMinor.Location = new System.Drawing.Point(119, 292);
             this.labelMinor.Name = "labelMinor";
             this.labelMinor.Size = new System.Drawing.Size(45, 15);
             this.labelMinor.TabIndex = 20;
@@ -186,7 +179,7 @@ namespace SAPS
             // 
             this.labelMajor.AutoSize = true;
             this.labelMajor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMajor.Location = new System.Drawing.Point(12, 300);
+            this.labelMajor.Location = new System.Drawing.Point(12, 292);
             this.labelMajor.Name = "labelMajor";
             this.labelMajor.Size = new System.Drawing.Size(45, 15);
             this.labelMajor.TabIndex = 21;
@@ -196,7 +189,7 @@ namespace SAPS
             // 
             this.labelComments.AutoSize = true;
             this.labelComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelComments.Location = new System.Drawing.Point(134, 445);
+            this.labelComments.Location = new System.Drawing.Point(134, 437);
             this.labelComments.Name = "labelComments";
             this.labelComments.Size = new System.Drawing.Size(67, 15);
             this.labelComments.TabIndex = 22;
@@ -206,7 +199,7 @@ namespace SAPS
             // 
             this.labelGraduateVotes.AutoSize = true;
             this.labelGraduateVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGraduateVotes.Location = new System.Drawing.Point(226, 300);
+            this.labelGraduateVotes.Location = new System.Drawing.Point(226, 292);
             this.labelGraduateVotes.Name = "labelGraduateVotes";
             this.labelGraduateVotes.Size = new System.Drawing.Size(37, 15);
             this.labelGraduateVotes.TabIndex = 24;
@@ -214,14 +207,14 @@ namespace SAPS
             // 
             // textMiddleName
             // 
-            this.textMiddleName.Location = new System.Drawing.Point(122, 74);
+            this.textMiddleName.Location = new System.Drawing.Point(122, 66);
             this.textMiddleName.Name = "textMiddleName";
             this.textMiddleName.Size = new System.Drawing.Size(101, 20);
             this.textMiddleName.TabIndex = 25;
             // 
             // textLastName
             // 
-            this.textLastName.Location = new System.Drawing.Point(229, 74);
+            this.textLastName.Location = new System.Drawing.Point(229, 66);
             this.textLastName.Name = "textLastName";
             this.textLastName.Size = new System.Drawing.Size(101, 20);
             this.textLastName.TabIndex = 26;
@@ -229,7 +222,7 @@ namespace SAPS
             // textDescriptionComments
             // 
             this.textDescriptionComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textDescriptionComments.Location = new System.Drawing.Point(12, 463);
+            this.textDescriptionComments.Location = new System.Drawing.Point(12, 455);
             this.textDescriptionComments.Multiline = true;
             this.textDescriptionComments.Name = "textDescriptionComments";
             this.textDescriptionComments.Size = new System.Drawing.Size(318, 134);
@@ -238,24 +231,25 @@ namespace SAPS
             // listVotes
             // 
             this.listVotes.FormattingEnabled = true;
-            this.listVotes.Location = new System.Drawing.Point(229, 318);
+            this.listVotes.Location = new System.Drawing.Point(229, 310);
             this.listVotes.Name = "listVotes";
             this.listVotes.Size = new System.Drawing.Size(101, 95);
             this.listVotes.TabIndex = 36;
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(122, 603);
+            this.buttonRemove.Location = new System.Drawing.Point(122, 595);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(101, 23);
             this.buttonRemove.TabIndex = 39;
             this.buttonRemove.Text = "Remove";
             this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // listMajors
             // 
             this.listMajors.FormattingEnabled = true;
-            this.listMajors.Location = new System.Drawing.Point(12, 318);
+            this.listMajors.Location = new System.Drawing.Point(12, 310);
             this.listMajors.Name = "listMajors";
             this.listMajors.Size = new System.Drawing.Size(101, 95);
             this.listMajors.TabIndex = 41;
@@ -263,78 +257,84 @@ namespace SAPS
             // listMinors
             // 
             this.listMinors.FormattingEnabled = true;
-            this.listMinors.Location = new System.Drawing.Point(122, 318);
+            this.listMinors.Location = new System.Drawing.Point(122, 310);
             this.listMinors.Name = "listMinors";
             this.listMinors.Size = new System.Drawing.Size(101, 95);
             this.listMinors.TabIndex = 42;
             // 
             // buttonAddMajor
             // 
-            this.buttonAddMajor.Location = new System.Drawing.Point(12, 419);
+            this.buttonAddMajor.Location = new System.Drawing.Point(12, 411);
             this.buttonAddMajor.Name = "buttonAddMajor";
             this.buttonAddMajor.Size = new System.Drawing.Size(48, 23);
             this.buttonAddMajor.TabIndex = 43;
             this.buttonAddMajor.Text = "+";
             this.buttonAddMajor.UseVisualStyleBackColor = true;
+            this.buttonAddMajor.Click += new System.EventHandler(this.buttonAddMajor_Click);
             // 
             // buttonRemoveMajor
             // 
-            this.buttonRemoveMajor.Location = new System.Drawing.Point(66, 419);
+            this.buttonRemoveMajor.Location = new System.Drawing.Point(66, 411);
             this.buttonRemoveMajor.Name = "buttonRemoveMajor";
             this.buttonRemoveMajor.Size = new System.Drawing.Size(47, 23);
             this.buttonRemoveMajor.TabIndex = 44;
             this.buttonRemoveMajor.Text = "-";
             this.buttonRemoveMajor.UseVisualStyleBackColor = true;
+            this.buttonRemoveMajor.Click += new System.EventHandler(this.buttonRemoveMajor_Click);
             // 
             // buttonRemoveMinor
             // 
-            this.buttonRemoveMinor.Location = new System.Drawing.Point(176, 419);
+            this.buttonRemoveMinor.Location = new System.Drawing.Point(176, 411);
             this.buttonRemoveMinor.Name = "buttonRemoveMinor";
             this.buttonRemoveMinor.Size = new System.Drawing.Size(47, 23);
             this.buttonRemoveMinor.TabIndex = 46;
             this.buttonRemoveMinor.Text = "-";
             this.buttonRemoveMinor.UseVisualStyleBackColor = true;
+            this.buttonRemoveMinor.Click += new System.EventHandler(this.buttonRemoveMinor_Click);
             // 
             // buttonAddMinor
             // 
-            this.buttonAddMinor.Location = new System.Drawing.Point(122, 419);
+            this.buttonAddMinor.Location = new System.Drawing.Point(122, 411);
             this.buttonAddMinor.Name = "buttonAddMinor";
             this.buttonAddMinor.Size = new System.Drawing.Size(48, 23);
             this.buttonAddMinor.TabIndex = 45;
             this.buttonAddMinor.Text = "+";
             this.buttonAddMinor.UseVisualStyleBackColor = true;
+            this.buttonAddMinor.Click += new System.EventHandler(this.buttonAddMinor_Click);
             // 
             // comboVote
             // 
             this.comboVote.FormattingEnabled = true;
-            this.comboVote.Location = new System.Drawing.Point(231, 421);
+            this.comboVote.Location = new System.Drawing.Point(231, 413);
             this.comboVote.Name = "comboVote";
             this.comboVote.Size = new System.Drawing.Size(101, 21);
             this.comboVote.TabIndex = 47;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(229, 603);
+            this.buttonCancel.Location = new System.Drawing.Point(229, 595);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(101, 23);
             this.buttonCancel.TabIndex = 48;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(12, 603);
+            this.buttonSubmit.Location = new System.Drawing.Point(12, 595);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(101, 23);
             this.buttonSubmit.TabIndex = 49;
             this.buttonSubmit.Text = "Accept";
             this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
             // timeDOB
             // 
             this.timeDOB.CustomFormat = "MM : dd : yyyy";
             this.timeDOB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timeDOB.Location = new System.Drawing.Point(122, 115);
+            this.timeDOB.Location = new System.Drawing.Point(122, 107);
             this.timeDOB.Name = "timeDOB";
             this.timeDOB.Size = new System.Drawing.Size(101, 20);
             this.timeDOB.TabIndex = 50;
@@ -342,14 +342,14 @@ namespace SAPS
             // timeSubmission
             // 
             this.timeSubmission.Enabled = false;
-            this.timeSubmission.Location = new System.Drawing.Point(122, 20);
+            this.timeSubmission.Location = new System.Drawing.Point(122, 12);
             this.timeSubmission.Name = "timeSubmission";
             this.timeSubmission.Size = new System.Drawing.Size(208, 20);
             this.timeSubmission.TabIndex = 51;
             // 
             // textSocial
             // 
-            this.textSocial.Location = new System.Drawing.Point(229, 115);
+            this.textSocial.Location = new System.Drawing.Point(229, 107);
             this.textSocial.Name = "textSocial";
             this.textSocial.Size = new System.Drawing.Size(101, 20);
             this.textSocial.TabIndex = 52;
@@ -358,24 +358,24 @@ namespace SAPS
             // 
             this.labelSocial.AutoSize = true;
             this.labelSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSocial.Location = new System.Drawing.Point(226, 97);
+            this.labelSocial.Location = new System.Drawing.Point(226, 89);
             this.labelSocial.Name = "labelSocial";
             this.labelSocial.Size = new System.Drawing.Size(97, 15);
             this.labelSocial.TabIndex = 53;
             this.labelSocial.Text = "Social Security #";
             // 
-            // textBox1
+            // textAddress
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 157);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(318, 20);
-            this.textBox1.TabIndex = 54;
+            this.textAddress.Location = new System.Drawing.Point(12, 149);
+            this.textAddress.Name = "textAddress";
+            this.textAddress.Size = new System.Drawing.Size(318, 20);
+            this.textAddress.TabIndex = 54;
             // 
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
             this.labelAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAddress.Location = new System.Drawing.Point(12, 139);
+            this.labelAddress.Location = new System.Drawing.Point(12, 131);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(86, 15);
             this.labelAddress.TabIndex = 55;
@@ -385,7 +385,7 @@ namespace SAPS
             // 
             this.labelCity.AutoSize = true;
             this.labelCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCity.Location = new System.Drawing.Point(12, 180);
+            this.labelCity.Location = new System.Drawing.Point(12, 172);
             this.labelCity.Name = "labelCity";
             this.labelCity.Size = new System.Drawing.Size(26, 15);
             this.labelCity.TabIndex = 56;
@@ -393,21 +393,21 @@ namespace SAPS
             // 
             // textCity
             // 
-            this.textCity.Location = new System.Drawing.Point(12, 196);
+            this.textCity.Location = new System.Drawing.Point(12, 188);
             this.textCity.Name = "textCity";
             this.textCity.Size = new System.Drawing.Size(101, 20);
             this.textCity.TabIndex = 57;
             // 
             // textState
             // 
-            this.textState.Location = new System.Drawing.Point(122, 196);
+            this.textState.Location = new System.Drawing.Point(122, 188);
             this.textState.Name = "textState";
             this.textState.Size = new System.Drawing.Size(101, 20);
             this.textState.TabIndex = 58;
             // 
             // textZip
             // 
-            this.textZip.Location = new System.Drawing.Point(229, 196);
+            this.textZip.Location = new System.Drawing.Point(229, 188);
             this.textZip.Name = "textZip";
             this.textZip.Size = new System.Drawing.Size(101, 20);
             this.textZip.TabIndex = 59;
@@ -416,7 +416,7 @@ namespace SAPS
             // 
             this.labelState.AutoSize = true;
             this.labelState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelState.Location = new System.Drawing.Point(119, 180);
+            this.labelState.Location = new System.Drawing.Point(119, 172);
             this.labelState.Name = "labelState";
             this.labelState.Size = new System.Drawing.Size(35, 15);
             this.labelState.TabIndex = 60;
@@ -426,7 +426,7 @@ namespace SAPS
             // 
             this.labelZip.AutoSize = true;
             this.labelZip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelZip.Location = new System.Drawing.Point(226, 180);
+            this.labelZip.Location = new System.Drawing.Point(226, 172);
             this.labelZip.Name = "labelZip";
             this.labelZip.Size = new System.Drawing.Size(56, 15);
             this.labelZip.TabIndex = 61;
@@ -436,63 +436,75 @@ namespace SAPS
             // 
             this.labelPhone.AutoSize = true;
             this.labelPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPhone.Location = new System.Drawing.Point(12, 219);
+            this.labelPhone.Location = new System.Drawing.Point(12, 211);
             this.labelPhone.Name = "labelPhone";
             this.labelPhone.Size = new System.Drawing.Size(91, 15);
             this.labelPhone.TabIndex = 62;
             this.labelPhone.Text = "Phone Number";
             // 
-            // textBox2
+            // textPhone
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 237);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(318, 20);
-            this.textBox2.TabIndex = 63;
+            this.textPhone.Location = new System.Drawing.Point(12, 229);
+            this.textPhone.Name = "textPhone";
+            this.textPhone.Size = new System.Drawing.Size(318, 20);
+            this.textPhone.TabIndex = 63;
             // 
             // labelScore
             // 
             this.labelScore.AutoSize = true;
             this.labelScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelScore.Location = new System.Drawing.Point(119, 261);
+            this.labelScore.Location = new System.Drawing.Point(119, 253);
             this.labelScore.Name = "labelScore";
             this.labelScore.Size = new System.Drawing.Size(89, 15);
             this.labelScore.TabIndex = 64;
             this.labelScore.Text = "ACT/SAT Score";
             // 
-            // textScore
-            // 
-            this.textScore.Location = new System.Drawing.Point(122, 277);
-            this.textScore.Name = "textScore";
-            this.textScore.Size = new System.Drawing.Size(101, 20);
-            this.textScore.TabIndex = 65;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(226, 259);
+            this.label1.Location = new System.Drawing.Point(226, 251);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 15);
             this.label1.TabIndex = 67;
             this.label1.Text = "Class Rank (%)";
             // 
-            // maskedTextBox1
+            // textRank
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(229, 277);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(101, 20);
-            this.maskedTextBox1.TabIndex = 68;
+            this.textRank.BeepOnError = true;
+            this.textRank.Location = new System.Drawing.Point(229, 269);
+            this.textRank.Mask = "00%";
+            this.textRank.Name = "textRank";
+            this.textRank.Size = new System.Drawing.Size(101, 20);
+            this.textRank.TabIndex = 68;
+            // 
+            // textGPA
+            // 
+            this.textGPA.Location = new System.Drawing.Point(12, 269);
+            this.textGPA.Name = "textGPA";
+            this.textGPA.Size = new System.Drawing.Size(101, 20);
+            this.textGPA.TabIndex = 69;
+            this.textGPA.Validating += new System.ComponentModel.CancelEventHandler(this.textGPA_Validating);
+            // 
+            // textScore
+            // 
+            this.textScore.Location = new System.Drawing.Point(122, 269);
+            this.textScore.Name = "textScore";
+            this.textScore.Size = new System.Drawing.Size(101, 20);
+            this.textScore.TabIndex = 70;
+            this.textScore.Validating += new System.ComponentModel.CancelEventHandler(this.textScore_Validating);
             // 
             // ApplicationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 643);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(342, 626);
             this.Controls.Add(this.textScore);
+            this.Controls.Add(this.textGPA);
+            this.Controls.Add(this.textRank);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelScore);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textPhone);
             this.Controls.Add(this.labelPhone);
             this.Controls.Add(this.labelZip);
             this.Controls.Add(this.labelState);
@@ -501,7 +513,7 @@ namespace SAPS
             this.Controls.Add(this.textCity);
             this.Controls.Add(this.labelCity);
             this.Controls.Add(this.labelAddress);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textAddress);
             this.Controls.Add(this.labelSocial);
             this.Controls.Add(this.textSocial);
             this.Controls.Add(this.timeSubmission);
@@ -525,7 +537,6 @@ namespace SAPS
             this.Controls.Add(this.labelMajor);
             this.Controls.Add(this.labelMinor);
             this.Controls.Add(this.labelSubDate);
-            this.Controls.Add(this.textGPA);
             this.Controls.Add(this.labelGPA);
             this.Controls.Add(this.labelDOB);
             this.Controls.Add(this.labelGender);
@@ -534,8 +545,10 @@ namespace SAPS
             this.Controls.Add(this.labelLName);
             this.Controls.Add(this.labelFName);
             this.Controls.Add(this.labelMName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ApplicationEditor";
-            this.Text = "ApplicationEditor";
+            this.Text = "Application Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,7 +564,6 @@ namespace SAPS
         private System.Windows.Forms.Label labelGender;
         private System.Windows.Forms.Label labelDOB;
         private System.Windows.Forms.Label labelGPA;
-        private System.Windows.Forms.TextBox textGPA;
         private System.Windows.Forms.Label labelSubDate;
         private System.Windows.Forms.Label labelMinor;
         private System.Windows.Forms.Label labelMajor;
@@ -575,7 +587,7 @@ namespace SAPS
         private DateTimePicker timeSubmission;
         private TextBox textSocial;
         private Label labelSocial;
-        private TextBox textBox1;
+        private TextBox textAddress;
         private Label labelAddress;
         private Label labelCity;
         private TextBox textCity;
@@ -584,10 +596,11 @@ namespace SAPS
         private Label labelState;
         private Label labelZip;
         private Label labelPhone;
-        private TextBox textBox2;
+        private TextBox textPhone;
         private Label labelScore;
-        private TextBox textScore;
         private Label label1;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox textRank;
+        private MaskedTextBox textGPA;
+        private MaskedTextBox textScore;
     }
 }

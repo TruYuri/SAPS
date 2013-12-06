@@ -147,5 +147,11 @@ namespace SAPS
                 buttonModifyEvent.Enabled = false;
             }
         }
+
+        private void SAPS_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ApplicationSystem.Instance.CloseEditors();
+            EventSystem.Instance.CloseEditors();
+        }
     }
 }
