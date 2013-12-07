@@ -77,6 +77,8 @@ namespace SAPS
             this.textRank = new System.Windows.Forms.MaskedTextBox();
             this.textGPA = new System.Windows.Forms.MaskedTextBox();
             this.textScore = new System.Windows.Forms.MaskedTextBox();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.SuspendLayout();
             // 
             // labelMName
@@ -494,6 +496,14 @@ namespace SAPS
             this.textScore.TabIndex = 70;
             this.textScore.Validating += new System.ComponentModel.CancelEventHandler(this.textScore_Validating);
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
             // ApplicationEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -602,5 +612,7 @@ namespace SAPS
         private MaskedTextBox textRank;
         private MaskedTextBox textGPA;
         private MaskedTextBox textScore;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private PrintDialog printDialog1;
     }
 }

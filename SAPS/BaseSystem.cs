@@ -54,7 +54,6 @@ namespace SAPS
 
             // load database
             // grab new database from server
-            UpdateLocalDatabase();
             Populate();
 
             return true;
@@ -94,7 +93,7 @@ namespace SAPS
                 if (json == null) // temp
                     json = "";
                 _eventTracker.Populate(serializer, json);
-
+                
                 reader.Close();
             }
             catch
@@ -103,21 +102,6 @@ namespace SAPS
                 writer.Close();
                 Populate();
             }
-        }
-
-        public void UpdateLocalDatabase()
-        {
-            // do web stuff
-        }
-
-        public void UpdateRemoteDatabases(DatabaseEntry entry)
-        {
-            // do web stuff
-        }
-
-        public void UpdateRemoteDatabases(EventEntry entry)
-        {
-            // do web stuff
         }
     }
 }

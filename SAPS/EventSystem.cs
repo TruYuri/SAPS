@@ -15,7 +15,7 @@ namespace SAPS
         private BindingList<EventEntry> _events;
         private Dictionary<Thread, EventEntry> _eventEditors;
 
-        public delegate void EventDelegate(EventEntry entry, EventStatus status);
+        private delegate void EventDelegate(EventEntry entry, EventStatus status);
 
         public static EventSystem Instance
         {
@@ -54,6 +54,11 @@ namespace SAPS
             StartEventThread(entry, EventStatus.Modify);
         }
 
+        public void PrintEvent(EventEntry entry)
+        {
+            StartEventThread(entry, EventStatus.Print);
+        }
+
         private void StartEventThread(EventEntry entry, EventStatus eventMode)
         {
             if(!_eventEditors.ContainsValue(entry))
@@ -81,17 +86,15 @@ namespace SAPS
                     break;
                 case EventStatus.Remove:
                     EventSystem.Instance.Events.Remove(entry);
-                    BaseSystem.Instance.UpdateRemoteDatabases(entry);
                     break;
                 case EventStatus.Modify:
-                    BaseSystem.Instance.UpdateRemoteDatabases(entry);
                     break;
                 case EventStatus.Create:
                     EventSystem.Instance.Events.Add(entry);
-                    BaseSystem.Instance.UpdateRemoteDatabases(entry);
                     break;
             }
 
+            EventTracker.Instance.UpdateEventTracker();
             SAPS.Instance.UpdateEventList();
         }
 

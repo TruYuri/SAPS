@@ -98,9 +98,9 @@ namespace SAPS
             }
             
             DatabaseEntry entry1 = new DatabaseEntry();
-            entry1.firstName = "Austin";
-            entry1.middleName = "K.";
-            entry1.lastName = "Koehler";
+            entry1.firstName = "Undergraduate";
+            entry1.middleName = "";
+            entry1.lastName = "Higher";
             entry1.gender = Gender.Male;
             entry1.GPA = 3.41f;
             entry1.dateOfBirth = new DateTime(1992, 12, 12);
@@ -121,9 +121,9 @@ namespace SAPS
             _database.Add(entry1);
 
             DatabaseEntry entry2 = new DatabaseEntry();
-            entry2.firstName = "Kylie";
-            entry2.middleName = "Elizabeth";
-            entry2.lastName = "Ressmen";
+            entry2.firstName = "Graduate";
+            entry2.middleName = "";
+            entry2.lastName = "Lower";
             entry2.gender = Gender.Female;
             entry2.GPA = 4.0f;
             entry2.dateOfBirth = new DateTime(1973, 6, 14);
@@ -132,17 +132,53 @@ namespace SAPS
             entry2.majors.Add("Flowers");
             entry2.minors.Add("Buttercups");
             entry2.minors.Add("Ponies");
-            entry2.votes.Add("Jackass", Vote.Approve);
+            entry2.votes.Add("Austin", Vote.Approve);
             entry2.votes.Add("Mom", Vote.Reject);
             entry2.stage = Stage.Lower;
             entry2.comments = "Test set of comments 2.";
             _database.Add(entry2);
 
+            DatabaseEntry entry3 = new DatabaseEntry();
+            entry3.firstName = "Graduate";
+            entry3.lastName = "Higher";
+            entry3.stage = Stage.Higher;
+            entry3.studentType = StudentType.Graduate;
+            entry3.majors.Add("stuff");
+            _database.Add(entry3);
+
+            DatabaseEntry entry4 = new DatabaseEntry();
+            entry4.firstName = "Undergraduate";
+            entry4.lastName = "Lower";
+            entry4.stage = Stage.Lower;
+            entry4.studentType = StudentType.Undergraduate;
+            entry4.majors.Add("stuff");
+            _database.Add(entry4);
+
             BindingList<DatabaseEntry> list = new BindingList<DatabaseEntry>();
             // Filter by User.Instance.Permissions and Stage
-            //foreach {}
 
-            list = _database; // temp
+            UserType user = User.Instance.Permissions;
+            foreach(DatabaseEntry entry in _database)
+            {
+                if (user == UserType.All)
+                {
+                    list.Add(entry);
+                }
+                else if (entry.studentType == StudentType.Undergraduate)
+                {
+                    if ((entry.stage == Stage.Lower && user == UserType.UPA)
+                        || (entry.stage == Stage.Higher && user == UserType.UPC))
+                    {
+                        list.Add(entry);
+                    }
+                }
+                else if ((entry.stage == Stage.Lower && user == UserType.GPC && !entry.votes.ContainsKey(User.Instance.Name))
+                        || (entry.stage == Stage.Higher && user == UserType.GPCC))
+                {
+                    list.Add(entry);
+                }
+            }
+
             ApplicationSystem.Instance.Entries = list;
         }
 

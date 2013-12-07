@@ -84,7 +84,7 @@ namespace SAPS
 
             foreach (DataGridViewColumn column in this.applicationList.Columns)
             {
-                column.Width = this.applicationList.Width / 3;
+                column.Width = this.applicationList.Width / this.applicationList.Columns.Count;
             }
         }
 
@@ -103,10 +103,12 @@ namespace SAPS
             if(applicationList.SelectedRows.Count > 0 && applicationList.SelectedRows[0] != null)
             {
                 buttonModifyApplication.Enabled = true;
+                buttonPrintApplication.Enabled = true;
             }
             else
             {
                 buttonModifyApplication.Enabled = false;
+                buttonPrintApplication.Enabled = false;
             }
         }
 
@@ -117,7 +119,7 @@ namespace SAPS
 
             foreach (DataGridViewColumn column in this.eventList.Columns)
             {
-                column.Width = this.eventList.Width / 3;
+                column.Width = this.eventList.Width / this.eventList.Columns.Count;
             }
         }
 
@@ -141,10 +143,12 @@ namespace SAPS
             if(eventList.SelectedRows.Count > 0 && eventList.SelectedRows[0] != null)
             {
                 buttonModifyEvent.Enabled = true;
+                buttonPrintEvent.Enabled = true;
             }
             else
             {
                 buttonModifyEvent.Enabled = false;
+                buttonPrintEvent.Enabled = false;
             }
         }
 
@@ -152,6 +156,16 @@ namespace SAPS
         {
             ApplicationSystem.Instance.CloseEditors();
             EventSystem.Instance.CloseEditors();
+        }
+
+        private void buttonPrintApplication_Click(object sender, EventArgs e)
+        {
+            ApplicationSystem.Instance.PrintApplication(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
+        }
+
+        private void buttonPrintEvent_Click(object sender, EventArgs e)
+        {
+            EventSystem.Instance.PrintEvent(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
         }
     }
 }

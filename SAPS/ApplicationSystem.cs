@@ -16,7 +16,7 @@ namespace SAPS
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
         private const int MAX_VOTES = 7;
 
-        public delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
+        private delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
 
         public static ApplicationSystem Instance
         {
@@ -48,22 +48,27 @@ namespace SAPS
 
         public void ModifyApplication(DatabaseEntry entry)
         {
-            StartApplicationThread(entry);
+            StartApplicationThread(entry, ApplicationStatus.Modify);
         }
 
-        private void StartApplicationThread(DatabaseEntry entry)
+        public void PrintApplication(DatabaseEntry entry)
         {
-            if(!_applicationEditors.ContainsValue(entry))
+            StartApplicationThread(entry, ApplicationStatus.Print);
+        }
+
+        private void StartApplicationThread(DatabaseEntry entry, ApplicationStatus status)
+        {
+            if(!_applicationEditors.ContainsValue(entry) || status == ApplicationStatus.Print)
             {
-                Thread thread = new Thread(() => ApplicationThread(entry));
+                Thread thread = new Thread(() => ApplicationThread(entry, status));
                 _applicationEditors.Add(thread, entry);
                 thread.Start();
             }
         }
 
-        public void ApplicationThread(DatabaseEntry entry)
+        public void ApplicationThread(DatabaseEntry entry, ApplicationStatus status)
         {
-            FormStorage<ApplicationStatus> storage = new FormStorage<ApplicationStatus>(ApplicationStatus.Cancel);
+            FormStorage<ApplicationStatus> storage = new FormStorage<ApplicationStatus>(status);
             ApplicationEditor editor = new ApplicationEditor(entry, storage);
             Application.Run(new ApplicationEditor(entry, storage));
             _applicationEditors.Remove(Thread.CurrentThread);
@@ -74,27 +79,57 @@ namespace SAPS
         {
             switch(status)
             {
-                case ApplicationStatus.Cancel:
-                    break;
                 case ApplicationStatus.Remove:
                     _availableEntries.Remove(entry);
                     Database.Instance.Remove(entry);
                     break;
-                case ApplicationStatus.Modify:
-                    break;
                 case ApplicationStatus.Approve:
                     // remove from available
+                    _availableEntries.Remove(entry);
 
+                    if (entry.studentType == StudentType.Undergraduate)
+                    {
+                        if (entry.stage == Stage.Lower)
+                        {
+                            entry.stage = Stage.Higher;
+                        }
+                        else if(entry.stage == Stage.Higher)
+                        {
+                            entry.stage = Stage.Approved;
+                            // Database.Instance.Remove(entry);
+                        }
+                    }
+                    else
+                    {
+                        int approve = entry.votes.Values.Count(e => e == Vote.Approve);
+                        if (entry.stage == Stage.Lower && approve > MAX_VOTES / 2)
+                        {
+                            entry.stage = Stage.Higher;
+                        }
+                        else if (entry.stage == Stage.Higher)
+                        {
+                            entry.stage = Stage.Approved;
+                            // Database.Instance.Remove(entry);
+                        }
+                    }
                     break;
                 case ApplicationStatus.Reject:
                     // remove from available
                     _availableEntries.Remove(entry);
                     
                     int reject = entry.votes.Values.Count(e => e == Vote.Reject);
-                    if(entry.studentType == StudentType.Undergraduate || reject > MAX_VOTES / 2)
+                    if(entry.studentType == StudentType.Undergraduate)
                     {
                         entry.stage = Stage.Rejected;
-                        BaseSystem.Instance.UpdateRemoteDatabases(entry);
+                        // Database.Instance.Remove(entry);
+                    }
+                    else
+                    {
+                        if(reject > MAX_VOTES / 2 || entry.stage == Stage.Higher)
+                        {
+                            entry.stage = Stage.Rejected;
+                            // Database.Instance.Remove(entry);
+                        }
                     }
                     break;
             }

@@ -45,10 +45,12 @@
             this.feedNews = new System.Windows.Forms.WebBrowser();
             this.calenderHome = new System.Windows.Forms.MonthCalendar();
             this.tabApplications = new System.Windows.Forms.TabPage();
+            this.buttonPrintApplication = new System.Windows.Forms.Button();
             this.applicationList = new System.Windows.Forms.DataGridView();
             this.buttonModifyApplication = new System.Windows.Forms.Button();
             this.buttonSearchApplications = new System.Windows.Forms.Button();
             this.tabEvents = new System.Windows.Forms.TabPage();
+            this.buttonPrintEvent = new System.Windows.Forms.Button();
             this.buttonSearchEvents = new System.Windows.Forms.Button();
             this.buttonCreateEvent = new System.Windows.Forms.Button();
             this.buttonModifyEvent = new System.Windows.Forms.Button();
@@ -140,6 +142,7 @@
             this.textPassword.Name = "textPassword";
             this.textPassword.Size = new System.Drawing.Size(150, 20);
             this.textPassword.TabIndex = 1;
+            this.textPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -232,6 +235,7 @@
             // 
             // tabApplications
             // 
+            this.tabApplications.Controls.Add(this.buttonPrintApplication);
             this.tabApplications.Controls.Add(this.applicationList);
             this.tabApplications.Controls.Add(this.buttonModifyApplication);
             this.tabApplications.Controls.Add(this.buttonSearchApplications);
@@ -242,6 +246,16 @@
             this.tabApplications.TabIndex = 1;
             this.tabApplications.Text = "Applications";
             this.tabApplications.UseVisualStyleBackColor = true;
+            // 
+            // buttonPrintApplication
+            // 
+            this.buttonPrintApplication.Location = new System.Drawing.Point(750, 35);
+            this.buttonPrintApplication.Name = "buttonPrintApplication";
+            this.buttonPrintApplication.Size = new System.Drawing.Size(128, 23);
+            this.buttonPrintApplication.TabIndex = 4;
+            this.buttonPrintApplication.Text = "Print";
+            this.buttonPrintApplication.UseVisualStyleBackColor = true;
+            this.buttonPrintApplication.Click += new System.EventHandler(this.buttonPrintApplication_Click);
             // 
             // applicationList
             // 
@@ -284,6 +298,7 @@
             // 
             // tabEvents
             // 
+            this.tabEvents.Controls.Add(this.buttonPrintEvent);
             this.tabEvents.Controls.Add(this.buttonSearchEvents);
             this.tabEvents.Controls.Add(this.buttonCreateEvent);
             this.tabEvents.Controls.Add(this.buttonModifyEvent);
@@ -295,6 +310,16 @@
             this.tabEvents.TabIndex = 2;
             this.tabEvents.Text = "Events";
             this.tabEvents.UseVisualStyleBackColor = true;
+            // 
+            // buttonPrintEvent
+            // 
+            this.buttonPrintEvent.Location = new System.Drawing.Point(750, 64);
+            this.buttonPrintEvent.Name = "buttonPrintEvent";
+            this.buttonPrintEvent.Size = new System.Drawing.Size(128, 23);
+            this.buttonPrintEvent.TabIndex = 8;
+            this.buttonPrintEvent.Text = "Print";
+            this.buttonPrintEvent.UseVisualStyleBackColor = true;
+            this.buttonPrintEvent.Click += new System.EventHandler(this.buttonPrintEvent_Click);
             // 
             // buttonSearchEvents
             // 
@@ -445,6 +470,8 @@
         private System.Windows.Forms.Button buttonModifyEvent;
         private System.Windows.Forms.Button buttonSearchEvents;
         private System.Windows.Forms.Button buttonCreateEvent;
+        private System.Windows.Forms.Button buttonPrintApplication;
+        private System.Windows.Forms.Button buttonPrintEvent;
     }
 }
 

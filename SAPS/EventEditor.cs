@@ -46,6 +46,14 @@ namespace SAPS
                 timeEnd.Value = _entry.eventDeactivationTime;
                 textDescription.Text = _entry.description;
             }
+
+            if (_storage.Status == EventStatus.Print)
+            {
+                this.buttonAccept.Visible = false;
+                this.buttonCancel.Visible = false;
+                this.buttonRemove.Visible = false;
+                this.Shown += new EventHandler(Print);
+            }
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
@@ -86,6 +94,40 @@ namespace SAPS
                 _storage.Status = EventStatus.Remove;
                 this.Close();
             }
+        }
+
+        /* microsoft form printing */
+        private Bitmap memoryImage;
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        public static extern long BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, int dwRop);
+        private void Print(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+
+            Graphics mygraphics = this.CreateGraphics();
+            Size s = this.Size;
+            memoryImage = new Bitmap(s.Width, s.Height, mygraphics);
+            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+            IntPtr dc1 = mygraphics.GetHdc();
+            IntPtr dc2 = memoryGraphics.GetHdc();
+            BitBlt(dc2, 0, 0, this.ClientRectangle.Width, this.ClientRectangle.Height, dc1, 0, 0, 13369376);
+            mygraphics.ReleaseHdc(dc1);
+            memoryGraphics.ReleaseHdc(dc2);
+
+            printDialog1 = new PrintDialog();
+            printDialog1.Document = printDocument1;
+
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print();
+            }
+
+            this.Close();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(memoryImage, 0, 0);
         }
     }
 }
