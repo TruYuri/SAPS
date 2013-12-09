@@ -61,7 +61,7 @@ namespace SAPS
 
         private void StartEventThread(EventEntry entry, EventStatus eventMode)
         {
-            if(!_eventEditors.ContainsValue(entry))
+            if(!_eventEditors.ContainsValue(entry) || eventMode == EventStatus.Print)
             {
                 Thread thread = new Thread(() => EventThread(entry, eventMode));
                 _eventEditors.Add(thread, entry);

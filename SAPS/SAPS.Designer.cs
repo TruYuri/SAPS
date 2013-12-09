@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tabSystems = new System.Windows.Forms.TabControl();
             this.tabLogin = new System.Windows.Forms.TabPage();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -57,8 +60,24 @@
             this.eventList = new System.Windows.Forms.DataGridView();
             this.tabStatistics = new System.Windows.Forms.TabPage();
             this.tabStats = new System.Windows.Forms.TabControl();
-            this.tabDefault = new System.Windows.Forms.TabPage();
+            this.tabCollege = new System.Windows.Forms.TabPage();
+            this.buttonSaveCollege = new System.Windows.Forms.Button();
+            this.buttonPrintCollege = new System.Windows.Forms.Button();
+            this.labelCollegeType = new System.Windows.Forms.Label();
+            this.comboCollegeType = new System.Windows.Forms.ComboBox();
+            this.chartCollege = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabACT = new System.Windows.Forms.TabPage();
+            this.buttonPrintACT = new System.Windows.Forms.Button();
+            this.labelACTType = new System.Windows.Forms.Label();
+            this.comboACTType = new System.Windows.Forms.ComboBox();
+            this.chartACT = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabCustom = new System.Windows.Forms.TabPage();
+            this.buttonPrintCustom = new System.Windows.Forms.Button();
+            this.labelCustomType = new System.Windows.Forms.Label();
+            this.comboCustomType = new System.Windows.Forms.ComboBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.buttonSaveACT = new System.Windows.Forms.Button();
+            this.buttonSaveCustom = new System.Windows.Forms.Button();
             this.tabSystems.SuspendLayout();
             this.tabLogin.SuspendLayout();
             this.tabHome.SuspendLayout();
@@ -68,6 +87,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventList)).BeginInit();
             this.tabStatistics.SuspendLayout();
             this.tabStats.SuspendLayout();
+            this.tabCollege.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCollege)).BeginInit();
+            this.tabACT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartACT)).BeginInit();
+            this.tabCustom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabSystems
@@ -179,6 +204,7 @@
             this.buttonUpdate.TabIndex = 8;
             this.buttonUpdate.Text = "Update";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // textName
             // 
@@ -384,7 +410,8 @@
             // 
             this.tabStats.Alignment = System.Windows.Forms.TabAlignment.Right;
             this.tabStats.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tabStats.Controls.Add(this.tabDefault);
+            this.tabStats.Controls.Add(this.tabCollege);
+            this.tabStats.Controls.Add(this.tabACT);
             this.tabStats.Controls.Add(this.tabCustom);
             this.tabStats.Location = new System.Drawing.Point(-4, 0);
             this.tabStats.Multiline = true;
@@ -393,18 +420,130 @@
             this.tabStats.Size = new System.Drawing.Size(888, 432);
             this.tabStats.TabIndex = 0;
             // 
-            // tabDefault
+            // tabCollege
             // 
-            this.tabDefault.Location = new System.Drawing.Point(4, 4);
-            this.tabDefault.Name = "tabDefault";
-            this.tabDefault.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDefault.Size = new System.Drawing.Size(861, 424);
-            this.tabDefault.TabIndex = 0;
-            this.tabDefault.Text = "Default";
-            this.tabDefault.UseVisualStyleBackColor = true;
+            this.tabCollege.Controls.Add(this.buttonSaveCollege);
+            this.tabCollege.Controls.Add(this.buttonPrintCollege);
+            this.tabCollege.Controls.Add(this.labelCollegeType);
+            this.tabCollege.Controls.Add(this.comboCollegeType);
+            this.tabCollege.Controls.Add(this.chartCollege);
+            this.tabCollege.Location = new System.Drawing.Point(4, 4);
+            this.tabCollege.Name = "tabCollege";
+            this.tabCollege.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCollege.Size = new System.Drawing.Size(861, 424);
+            this.tabCollege.TabIndex = 0;
+            this.tabCollege.Text = "College";
+            this.tabCollege.UseVisualStyleBackColor = true;
+            // 
+            // buttonSaveCollege
+            // 
+            this.buttonSaveCollege.Location = new System.Drawing.Point(607, 398);
+            this.buttonSaveCollege.Name = "buttonSaveCollege";
+            this.buttonSaveCollege.Size = new System.Drawing.Size(121, 23);
+            this.buttonSaveCollege.TabIndex = 9;
+            this.buttonSaveCollege.Text = "Save";
+            this.buttonSaveCollege.UseVisualStyleBackColor = true;
+            this.buttonSaveCollege.Click += new System.EventHandler(this.buttonSaveCollege_Click);
+            // 
+            // buttonPrintCollege
+            // 
+            this.buttonPrintCollege.Location = new System.Drawing.Point(734, 398);
+            this.buttonPrintCollege.Name = "buttonPrintCollege";
+            this.buttonPrintCollege.Size = new System.Drawing.Size(121, 23);
+            this.buttonPrintCollege.TabIndex = 8;
+            this.buttonPrintCollege.Text = "Print";
+            this.buttonPrintCollege.UseVisualStyleBackColor = true;
+            this.buttonPrintCollege.Click += new System.EventHandler(this.buttonPrintCollege_Click);
+            // 
+            // labelCollegeType
+            // 
+            this.labelCollegeType.AutoSize = true;
+            this.labelCollegeType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCollegeType.Location = new System.Drawing.Point(3, 398);
+            this.labelCollegeType.Name = "labelCollegeType";
+            this.labelCollegeType.Size = new System.Drawing.Size(74, 16);
+            this.labelCollegeType.TabIndex = 3;
+            this.labelCollegeType.Text = "Chart Type";
+            // 
+            // comboCollegeType
+            // 
+            this.comboCollegeType.FormattingEnabled = true;
+            this.comboCollegeType.Location = new System.Drawing.Point(83, 398);
+            this.comboCollegeType.Name = "comboCollegeType";
+            this.comboCollegeType.Size = new System.Drawing.Size(121, 21);
+            this.comboCollegeType.TabIndex = 2;
+            this.comboCollegeType.SelectedIndexChanged += new System.EventHandler(this.comboCollegeChart_SelectedIndexChanged);
+            // 
+            // chartCollege
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chartCollege.ChartAreas.Add(chartArea4);
+            this.chartCollege.Location = new System.Drawing.Point(0, 0);
+            this.chartCollege.Name = "chartCollege";
+            this.chartCollege.Size = new System.Drawing.Size(863, 396);
+            this.chartCollege.TabIndex = 0;
+            this.chartCollege.Text = "College";
+            // 
+            // tabACT
+            // 
+            this.tabACT.Controls.Add(this.buttonSaveACT);
+            this.tabACT.Controls.Add(this.buttonPrintACT);
+            this.tabACT.Controls.Add(this.labelACTType);
+            this.tabACT.Controls.Add(this.comboACTType);
+            this.tabACT.Controls.Add(this.chartACT);
+            this.tabACT.Location = new System.Drawing.Point(4, 4);
+            this.tabACT.Name = "tabACT";
+            this.tabACT.Size = new System.Drawing.Size(861, 424);
+            this.tabACT.TabIndex = 2;
+            this.tabACT.Text = "ACT";
+            this.tabACT.UseVisualStyleBackColor = true;
+            // 
+            // buttonPrintACT
+            // 
+            this.buttonPrintACT.Location = new System.Drawing.Point(734, 398);
+            this.buttonPrintACT.Name = "buttonPrintACT";
+            this.buttonPrintACT.Size = new System.Drawing.Size(121, 23);
+            this.buttonPrintACT.TabIndex = 7;
+            this.buttonPrintACT.Text = "Print";
+            this.buttonPrintACT.UseVisualStyleBackColor = true;
+            this.buttonPrintACT.Click += new System.EventHandler(this.buttonPrintACT_Click);
+            // 
+            // labelACTType
+            // 
+            this.labelACTType.AutoSize = true;
+            this.labelACTType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelACTType.Location = new System.Drawing.Point(3, 398);
+            this.labelACTType.Name = "labelACTType";
+            this.labelACTType.Size = new System.Drawing.Size(74, 16);
+            this.labelACTType.TabIndex = 6;
+            this.labelACTType.Text = "Chart Type";
+            // 
+            // comboACTType
+            // 
+            this.comboACTType.FormattingEnabled = true;
+            this.comboACTType.Location = new System.Drawing.Point(83, 398);
+            this.comboACTType.Name = "comboACTType";
+            this.comboACTType.Size = new System.Drawing.Size(121, 21);
+            this.comboACTType.TabIndex = 5;
+            this.comboACTType.SelectedIndexChanged += new System.EventHandler(this.comboACTType_SelectedIndexChanged);
+            // 
+            // chartACT
+            // 
+            chartArea5.Name = "ChartArea1";
+            this.chartACT.ChartAreas.Add(chartArea5);
+            this.chartACT.Location = new System.Drawing.Point(0, 0);
+            this.chartACT.Name = "chartACT";
+            this.chartACT.Size = new System.Drawing.Size(863, 396);
+            this.chartACT.TabIndex = 4;
+            this.chartACT.Text = "ACT Scores";
             // 
             // tabCustom
             // 
+            this.tabCustom.Controls.Add(this.buttonSaveCustom);
+            this.tabCustom.Controls.Add(this.buttonPrintCustom);
+            this.tabCustom.Controls.Add(this.labelCustomType);
+            this.tabCustom.Controls.Add(this.comboCustomType);
+            this.tabCustom.Controls.Add(this.chart1);
             this.tabCustom.Location = new System.Drawing.Point(4, 4);
             this.tabCustom.Name = "tabCustom";
             this.tabCustom.Padding = new System.Windows.Forms.Padding(3);
@@ -412,6 +551,64 @@
             this.tabCustom.TabIndex = 1;
             this.tabCustom.Text = "Custom";
             this.tabCustom.UseVisualStyleBackColor = true;
+            // 
+            // buttonPrintCustom
+            // 
+            this.buttonPrintCustom.Location = new System.Drawing.Point(734, 398);
+            this.buttonPrintCustom.Name = "buttonPrintCustom";
+            this.buttonPrintCustom.Size = new System.Drawing.Size(121, 23);
+            this.buttonPrintCustom.TabIndex = 11;
+            this.buttonPrintCustom.Text = "Print";
+            this.buttonPrintCustom.UseVisualStyleBackColor = true;
+            this.buttonPrintCustom.Click += new System.EventHandler(this.buttonPrintCustom_Click);
+            // 
+            // labelCustomType
+            // 
+            this.labelCustomType.AutoSize = true;
+            this.labelCustomType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCustomType.Location = new System.Drawing.Point(3, 398);
+            this.labelCustomType.Name = "labelCustomType";
+            this.labelCustomType.Size = new System.Drawing.Size(74, 16);
+            this.labelCustomType.TabIndex = 10;
+            this.labelCustomType.Text = "Chart Type";
+            // 
+            // comboCustomType
+            // 
+            this.comboCustomType.FormattingEnabled = true;
+            this.comboCustomType.Location = new System.Drawing.Point(83, 398);
+            this.comboCustomType.Name = "comboCustomType";
+            this.comboCustomType.Size = new System.Drawing.Size(121, 21);
+            this.comboCustomType.TabIndex = 9;
+            // 
+            // chart1
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(863, 396);
+            this.chart1.TabIndex = 8;
+            this.chart1.Text = "ACT Scores";
+            // 
+            // buttonSaveACT
+            // 
+            this.buttonSaveACT.Location = new System.Drawing.Point(607, 398);
+            this.buttonSaveACT.Name = "buttonSaveACT";
+            this.buttonSaveACT.Size = new System.Drawing.Size(121, 23);
+            this.buttonSaveACT.TabIndex = 10;
+            this.buttonSaveACT.Text = "Save";
+            this.buttonSaveACT.UseVisualStyleBackColor = true;
+            this.buttonSaveACT.Click += new System.EventHandler(this.buttonSaveACT_Click);
+            // 
+            // buttonSaveCustom
+            // 
+            this.buttonSaveCustom.Location = new System.Drawing.Point(607, 398);
+            this.buttonSaveCustom.Name = "buttonSaveCustom";
+            this.buttonSaveCustom.Size = new System.Drawing.Size(121, 23);
+            this.buttonSaveCustom.TabIndex = 12;
+            this.buttonSaveCustom.Text = "Save";
+            this.buttonSaveCustom.UseVisualStyleBackColor = true;
+            this.buttonSaveCustom.Click += new System.EventHandler(this.buttonSaveCustom_Click);
             // 
             // SAPS
             // 
@@ -435,6 +632,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventList)).EndInit();
             this.tabStatistics.ResumeLayout(false);
             this.tabStats.ResumeLayout(false);
+            this.tabCollege.ResumeLayout(false);
+            this.tabCollege.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCollege)).EndInit();
+            this.tabACT.ResumeLayout(false);
+            this.tabACT.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartACT)).EndInit();
+            this.tabCustom.ResumeLayout(false);
+            this.tabCustom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,7 +652,7 @@
         private System.Windows.Forms.TabPage tabEvents;
         private System.Windows.Forms.TabPage tabStatistics;
         private System.Windows.Forms.TabControl tabStats;
-        private System.Windows.Forms.TabPage tabDefault;
+        private System.Windows.Forms.TabPage tabCollege;
         private System.Windows.Forms.TabPage tabCustom;
         private System.Windows.Forms.Button buttonModifyApplication;
         private System.Windows.Forms.Button buttonSearchApplications;
@@ -472,6 +678,22 @@
         private System.Windows.Forms.Button buttonCreateEvent;
         private System.Windows.Forms.Button buttonPrintApplication;
         private System.Windows.Forms.Button buttonPrintEvent;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCollege;
+        private System.Windows.Forms.Label labelCollegeType;
+        private System.Windows.Forms.ComboBox comboCollegeType;
+        private System.Windows.Forms.TabPage tabACT;
+        private System.Windows.Forms.Label labelACTType;
+        private System.Windows.Forms.ComboBox comboACTType;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartACT;
+        private System.Windows.Forms.Button buttonPrintACT;
+        private System.Windows.Forms.Button buttonPrintCollege;
+        private System.Windows.Forms.Button buttonPrintCustom;
+        private System.Windows.Forms.Label labelCustomType;
+        private System.Windows.Forms.ComboBox comboCustomType;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button buttonSaveCollege;
+        private System.Windows.Forms.Button buttonSaveACT;
+        private System.Windows.Forms.Button buttonSaveCustom;
     }
 }
 

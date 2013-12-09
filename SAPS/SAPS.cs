@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SAPS
 {
     public partial class SAPS : Form
     {
+        #region Core
         private static SAPS _instance;
         private BaseSystem _baseSystem;
 
@@ -36,6 +38,14 @@ namespace SAPS
             this.tabSystems.Controls.Remove(tabStatistics);
         }
 
+        private void SAPS_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ApplicationSystem.Instance.CloseEditors();
+            EventSystem.Instance.CloseEditors();
+        }
+        #endregion
+
+        #region Log In/Home
         private void btnLogin_Click(object sender, EventArgs e)
         {
             bool log = _baseSystem.Login(this.textEmail.Text, this.textPassword.Text);
@@ -53,11 +63,17 @@ namespace SAPS
 
                 foreach(DataGridViewColumn column in this.applicationList.Columns)
                 {
-                    column.Width = this.applicationList.Width / 3;
+                    column.Width = this.applicationList.Width / applicationList.Columns.Count;
                 }
+
+                this.comboCollegeType.DataSource = Enum.GetValues(typeof(SeriesChartType));
+                // this.comboCollegeType.SelectedIndex = this.comboCollegeType.FindString(SeriesChartType.Bar.ToString());
+                this.comboACTType.DataSource = Enum.GetValues(typeof(SeriesChartType));
+                // this.comboACTType.SelectedIndex = this.comboACTType.FindString(SeriesChartType.Column.ToString());
 
                 this.UpdateApplicationList();
                 this.UpdateEventList();
+                this.UpdateCharts();
             }
             else
             {
@@ -77,6 +93,13 @@ namespace SAPS
             _baseSystem.Logout();
         }
 
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Applications
         public void UpdateApplicationList()
         {
             this.applicationList.DataSource = typeof(BindingList<DatabaseEntry>);
@@ -112,6 +135,13 @@ namespace SAPS
             }
         }
 
+        private void buttonPrintApplication_Click(object sender, EventArgs e)
+        {
+            ApplicationSystem.Instance.PrintApplication(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
+        }
+        #endregion
+
+        #region Events
         public void UpdateEventList()
         {
             this.eventList.DataSource = typeof(BindingList<EventEntry>);
@@ -152,20 +182,58 @@ namespace SAPS
             }
         }
 
-        private void SAPS_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ApplicationSystem.Instance.CloseEditors();
-            EventSystem.Instance.CloseEditors();
-        }
-
-        private void buttonPrintApplication_Click(object sender, EventArgs e)
-        {
-            ApplicationSystem.Instance.PrintApplication(this.applicationList.SelectedRows[0].DataBoundItem as DatabaseEntry);
-        }
-
         private void buttonPrintEvent_Click(object sender, EventArgs e)
         {
             EventSystem.Instance.PrintEvent(this.eventList.SelectedRows[0].DataBoundItem as EventEntry);
         }
+        #endregion
+
+        #region Statistics
+        public void UpdateCharts()
+        {
+            StatisticsSystem.Instance.GenerateDefaultCharts(this.chartCollege, this.chartACT);
+        }
+
+        private void comboCollegeChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // change chart type
+            StatisticsSystem.Instance.ChangeChartType(this.chartCollege, this.comboCollegeType.SelectedItem.ToString());
+        }
+
+        private void comboACTType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            StatisticsSystem.Instance.ChangeChartType(this.chartACT, this.comboACTType.SelectedItem.ToString());
+        }
+
+        private void buttonPrintACT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonPrintCollege_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonPrintCustom_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSaveCollege_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSaveACT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSaveCustom_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

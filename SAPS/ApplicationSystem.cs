@@ -14,7 +14,6 @@ namespace SAPS
         private static ApplicationSystem _instance;
         private BindingList<DatabaseEntry> _availableEntries;
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
-        private const int MAX_VOTES = 7;
 
         private delegate void ApplicationDelegate(DatabaseEntry entry, ApplicationStatus status);
 
@@ -102,7 +101,7 @@ namespace SAPS
                     else
                     {
                         int approve = entry.votes.Values.Count(e => e == Vote.Approve);
-                        if (entry.stage == Stage.Lower && approve > MAX_VOTES / 2)
+                        if (entry.stage == Stage.Lower && approve > CollegeData.CommitteeMembers / 2)
                         {
                             entry.stage = Stage.Higher;
                         }
@@ -125,7 +124,7 @@ namespace SAPS
                     }
                     else
                     {
-                        if(reject > MAX_VOTES / 2 || entry.stage == Stage.Higher)
+                        if (reject > CollegeData.CommitteeMembers / 2 || entry.stage == Stage.Higher)
                         {
                             entry.stage = Stage.Rejected;
                             // Database.Instance.Remove(entry);
@@ -135,6 +134,7 @@ namespace SAPS
             }
 
             SAPS.Instance.UpdateApplicationList();
+            SAPS.Instance.UpdateCharts();
         }
 
         public void CloseEditors()

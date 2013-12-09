@@ -116,7 +116,7 @@ namespace SAPS
             entry1.state = "derpity";
             entry1.zip = "68701";
             entry1.phone = "balls";
-            entry1.actSAT = 36;
+            entry1.actSAT = 34;
             entry1.classRank = 99;
             _database.Add(entry1);
 
@@ -126,10 +126,11 @@ namespace SAPS
             entry2.lastName = "Lower";
             entry2.gender = Gender.Female;
             entry2.GPA = 4.0f;
+            entry2.actSAT = 17;
             entry2.dateOfBirth = new DateTime(1973, 6, 14);
             entry2.submissionDate = new DateTime(2012, 1, 1);
             entry2.studentType = StudentType.Graduate;
-            entry2.majors.Add("Flowers");
+            entry2.majors.Add("Chemistry");
             entry2.minors.Add("Buttercups");
             entry2.minors.Add("Ponies");
             entry2.votes.Add("Austin", Vote.Approve);
@@ -142,16 +143,18 @@ namespace SAPS
             entry3.firstName = "Graduate";
             entry3.lastName = "Higher";
             entry3.stage = Stage.Higher;
+            entry3.actSAT = 25;
             entry3.studentType = StudentType.Graduate;
-            entry3.majors.Add("stuff");
+            entry3.majors.Add("Geology");
             _database.Add(entry3);
 
             DatabaseEntry entry4 = new DatabaseEntry();
             entry4.firstName = "Undergraduate";
             entry4.lastName = "Lower";
             entry4.stage = Stage.Lower;
+            entry4.actSAT = 17;
             entry4.studentType = StudentType.Undergraduate;
-            entry4.majors.Add("stuff");
+            entry4.majors.Add("Journalism");
             _database.Add(entry4);
 
             BindingList<DatabaseEntry> list = new BindingList<DatabaseEntry>();
@@ -180,6 +183,7 @@ namespace SAPS
             }
 
             ApplicationSystem.Instance.Entries = list;
+            StatisticsSystem.Instance.Source = _database;
         }
 
         public void Remove(DatabaseEntry entry)

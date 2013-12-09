@@ -47,6 +47,11 @@ namespace SAPS
         {
             get
             {
+                if (stage == EventStage.NotYetStarted)
+                {
+                    return "Not Yet Started";
+                }
+
                 return stage.ToString();
             }
         }
@@ -106,8 +111,8 @@ namespace SAPS
             event1.eventName = "Birthday";
             event1.submissionTime = new DateTime(1992, 12, 12);
             event1.description = "21st Birthday";
-            event1.eventActivationTime = new DateTime(2013, 12, 7, 2, 8, 0);
-            event1.eventDeactivationTime = new DateTime(2013, 12, 7, 2, 9, 0);
+            event1.eventActivationTime = new DateTime(2013, 12, 7, 13, 30, 0);
+            event1.eventDeactivationTime = new DateTime(2013, 12, 7, 13, 31, 0);
             _events.Add(event1);
 
             UpdateEventTracker();

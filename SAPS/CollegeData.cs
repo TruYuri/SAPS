@@ -1,11 +1,27 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
-public class Majors
+namespace SAPS
 {
-	public Majors()
-	{
-        public Dictionary<string, string> majors =
+    public class CollegeData
+    {
+        public static int CommitteeMembers = 7;
+
+        public static List<string> Colleges = new List<string>()
         {
+            "Arts and Sciences",
+            "Business Administration",
+            "Communications, Fine Arts, and Media",
+            "Education",
+            "Engineering",
+            "Information Science and Technology",
+            "Public Affairs and Community Service"
+        };
+
+        public static Dictionary<string, string> Majors = new Dictionary<string,string>()
+        {
+            {"Undeclared", "None"},
             {"Psychology", "Arts and Sciences"},
             {"Religion", "Arts and Sciences"},
             {"Sociology", "Arts and Sciences"},
@@ -66,7 +82,37 @@ public class Majors
             {"Aviation", "Public Affairs and Community Service"},
             {"Criminology and Criminal Justice", "Public Affairs and Community Service"},
             {"Emergency Management", "Public Affairs and Community Service"},
-            {"General Studies", "Public Affairs and Community Service"};
-        }
-	}
+            {"General Studies", "Public Affairs and Community Service"}
+        };
+
+        public static Dictionary<int[], int> SATtoACT = new Dictionary<int[], int>()
+        {
+            {Enumerable.Range(510, 550).ToArray(),   12},
+            {Enumerable.Range(560, 610).ToArray(),   12},
+            {Enumerable.Range(620, 660).ToArray(),   13},
+            {Enumerable.Range(670, 710).ToArray(),   14},
+            {Enumerable.Range(720, 760).ToArray(),   15},
+            {Enumerable.Range(770, 810).ToArray(),   16},
+            {Enumerable.Range(820, 850).ToArray(),   17},
+            {Enumerable.Range(860, 890).ToArray(),   18},
+            {Enumerable.Range(900, 930).ToArray(),   19},
+            {Enumerable.Range(940, 970).ToArray(),   20},
+            {Enumerable.Range(980, 1010).ToArray(),  21},
+            {Enumerable.Range(1020, 1040).ToArray(), 22},
+            {Enumerable.Range(1050, 1080).ToArray(), 23},
+            {Enumerable.Range(1090, 1120).ToArray(), 24},
+            {Enumerable.Range(1130, 1160).ToArray(), 25},
+            {Enumerable.Range(1170, 1200).ToArray(), 26},
+            {Enumerable.Range(1210, 1240).ToArray(), 27},
+            {Enumerable.Range(1250, 1280).ToArray(), 28},
+            {Enumerable.Range(1290, 1320).ToArray(), 29},
+            {Enumerable.Range(1330, 1350).ToArray(), 30},
+            {Enumerable.Range(1360, 1390).ToArray(), 31},
+            {Enumerable.Range(1400, 1430).ToArray(), 32},
+            {Enumerable.Range(1440, 1480).ToArray(), 33},
+            {Enumerable.Range(1490, 1530).ToArray(), 34},
+            {Enumerable.Range(1540, 1590).ToArray(), 35},
+            {Enumerable.Range(1600, 1600).ToArray(), 36}
+        };
+    }
 }
