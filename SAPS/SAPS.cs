@@ -148,8 +148,9 @@ namespace SAPS
 
         public void UpdateApplicationList()
         {
+            BindingList<DatabaseEntry> source = (BindingList<DatabaseEntry>)(this.applicationList.DataSource);
             this.applicationList.DataSource = typeof(BindingList<DatabaseEntry>);
-            this.applicationList.DataSource = ApplicationSystem.Instance.Entries;
+            this.applicationList.DataSource = source;
 
             foreach (DataGridViewColumn column in this.applicationList.Columns)
             {
