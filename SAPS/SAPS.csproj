@@ -64,6 +64,12 @@
       <DependentUpon>EventEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="EventTracker.cs" />
+    <Compile Include="Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatisticsSystem.cs" />
     <Compile Include="EventSystem.cs" />
     <Compile Include="SAPS.cs">
@@ -74,6 +80,12 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudySelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudySelector.Designer.cs">
+      <DependentUpon>StudySelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="ApplicationEditor.resx">
       <DependentUpon>ApplicationEditor.cs</DependentUpon>
@@ -93,6 +105,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudySelector.resx">
+      <DependentUpon>StudySelector.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

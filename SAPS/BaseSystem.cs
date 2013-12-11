@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SAPS
 {
@@ -40,32 +41,43 @@ namespace SAPS
             _database = new Database();
         }
 
-        public bool Login(string email, string password)
+        public bool Login(string email, string password, Label nameLabel, Label nameError, Label passwordError)
         {
-            // check online database for user:
-            // send email
-            // send password
+            nameError.Visible = false;
+            passwordError.Visible = false;
 
-            // retrieve name
-            // retrieve user type
+            if (CollegeData.Accounts.Keys.Contains(email))
+            {
+                if (CollegeData.Accounts[email].Password == password)
+                {
+                    _applicationSystem.User = _user = CollegeData.Accounts[email];
+                    nameLabel.Text = _user.Name;
+                    Populate();
+                    return true;
+                }
+                else
+                {
+                    passwordError.Visible = true;
+                    passwordError.Text = "Invalid email/password combination!";
+                }
+            }
+            else
+            {
+                nameError.Visible = true;
+                nameError.Text = "Invalid user email!";
+            }
 
-            // if successful
-            _user = new User(email, email, UserType.All);
-
-            // load database
-            // grab new database from server
-            Populate();
-
-            return true;
+            return false;
         }
 
         public void Logout()
         {
             Serialize();
-            _user.Destroy();
+            _database.Clear();
+            _user = null;
         }
 
-        private void Serialize()
+        public void Serialize()
         {
             StreamWriter writer = new StreamWriter(Environment.CurrentDirectory + @"\DATABASE.DB");
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -77,7 +89,7 @@ namespace SAPS
             writer.Close();
         }
 
-        private void Populate()
+        public void Populate()
         {
             try
             {
@@ -88,7 +100,7 @@ namespace SAPS
                 json = reader.ReadLine();
                 if (json == null) // temp
                     json = "";
-                _database.Populate(serializer, json);
+                _database.Populate(serializer, json, _user);
                 json = reader.ReadLine();
                 if (json == null) // temp
                     json = "";

@@ -12,6 +12,7 @@ namespace SAPS
     public class ApplicationSystem
     {
         private static ApplicationSystem _instance;
+        private User _user;
         private BindingList<DatabaseEntry> _availableEntries;
         private Dictionary<Thread, DatabaseEntry> _applicationEditors;
 
@@ -34,6 +35,14 @@ namespace SAPS
             set
             {
                 _availableEntries = value;
+            }
+        }
+
+        public User User
+        {
+            set
+            {
+                _user = value;
             }
         }
 
@@ -68,10 +77,14 @@ namespace SAPS
         public void ApplicationThread(DatabaseEntry entry, ApplicationStatus status)
         {
             FormStorage<ApplicationStatus> storage = new FormStorage<ApplicationStatus>(status);
-            ApplicationEditor editor = new ApplicationEditor(entry, storage);
             Application.Run(new ApplicationEditor(entry, storage));
-            _applicationEditors.Remove(Thread.CurrentThread);
-            SAPS.Instance.Invoke(new ApplicationDelegate(UpdateApplications), new object[] { editor.Entry, storage.Status });
+
+            if(_applicationEditors.ContainsKey(Thread.CurrentThread))
+            {
+                _applicationEditors.Remove(Thread.CurrentThread);
+            }
+
+            SAPS.Instance.Invoke(new ApplicationDelegate(UpdateApplications), new object[] { entry, storage.Value });
         }
 
         private void UpdateApplications(DatabaseEntry entry, ApplicationStatus status)
@@ -84,9 +97,10 @@ namespace SAPS
                     break;
                 case ApplicationStatus.Approve:
                     // remove from available
+                    entry.votes.Add(_user.Name, Vote.Approve);
                     _availableEntries.Remove(entry);
 
-                    if (entry.studentType == StudentType.Undergraduate)
+                    if (entry.StudentType == StudentType.Undergraduate)
                     {
                         if (entry.stage == Stage.Lower)
                         {
@@ -114,10 +128,11 @@ namespace SAPS
                     break;
                 case ApplicationStatus.Reject:
                     // remove from available
+                    entry.votes.Add(_user.Name, Vote.Reject);
                     _availableEntries.Remove(entry);
                     
                     int reject = entry.votes.Values.Count(e => e == Vote.Reject);
-                    if(entry.studentType == StudentType.Undergraduate)
+                    if(entry.StudentType == StudentType.Undergraduate)
                     {
                         entry.stage = Stage.Rejected;
                         // Database.Instance.Remove(entry);
@@ -133,6 +148,7 @@ namespace SAPS
                     break;
             }
 
+            BaseSystem.Instance.Serialize();
             SAPS.Instance.UpdateApplicationList();
             SAPS.Instance.UpdateCharts();
         }
@@ -143,6 +159,63 @@ namespace SAPS
             {
                 pair.Key.Abort();
             }
+        }
+
+        public BindingList<DatabaseEntry> Search()
+        {
+            FormStorage<bool> storage = new FormStorage<bool>(false);
+            Dictionary<string, string> searchTerms = new Dictionary<string,string>();
+            Search search = new Search(searchTerms, typeof(DatabaseEntry), storage);
+
+            search.ShowDialog();
+
+            if (storage.Value && searchTerms.Count != 0)
+            {
+                BindingList<DatabaseEntry> searchList = new BindingList<DatabaseEntry>();
+                foreach (DatabaseEntry entry in _availableEntries)
+                {
+                    searchList.Add(entry);
+                }
+
+                foreach (KeyValuePair<string, string> pair in searchTerms)
+                {
+                    for(int i = 0; i < searchList.Count; i++)
+                    {
+                        if (pair.Key == "Majors" || pair.Key == "Minors")
+                        {
+                            bool contains = false;
+
+                            BindingList<string> keyList = (BindingList<string>)typeof(DatabaseEntry).GetProperty(pair.Key).GetValue(searchList[i]);
+
+                            foreach (string major in keyList)
+                            {
+                                if (major.Contains(pair.Value))
+                                {
+                                    contains = true;
+                                }
+                            }
+                            if(!contains)
+                            {
+                                i--;
+                                searchList.Remove(searchList[i + 1]);
+                            }
+                        }
+                        else
+                        {
+                            object property = typeof(DatabaseEntry).GetProperty(pair.Key).GetValue(searchList[i]);
+                            if (property != null && !property.ToString().Contains(pair.Value))
+                            {
+                                i--;
+                                searchList.Remove(searchList[i + 1]);
+                            }
+                        }
+                    }
+                }
+
+                return searchList;
+            }
+
+            return _availableEntries;
         }
     }
 }

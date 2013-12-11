@@ -27,7 +27,7 @@ namespace SAPS
         public EventEditor(EventEntry entry, FormStorage<EventStatus> storage)
         {
             _entry = entry;
-            _eventMode = storage.Status;
+            _eventMode = storage.Value;
             _storage = storage;
 
             InitializeComponent();
@@ -41,13 +41,13 @@ namespace SAPS
                 this.Text += " - Modify Event";
 
                 buttonRemove.Enabled = true;
-                textEventName.Text = _entry.eventName;
-                timeStart.Value = _entry.eventActivationTime;
-                timeEnd.Value = _entry.eventDeactivationTime;
-                textDescription.Text = _entry.description;
+                textEventName.Text = _entry.EventName;
+                timeStart.Value = _entry.EventActivationTime;
+                timeEnd.Value = _entry.EventDeactivationTime;
+                textDescription.Text = _entry.Description;
             }
 
-            if (_storage.Status == EventStatus.Print)
+            if (_storage.Value == EventStatus.Print)
             {
                 this.buttonAccept.Visible = false;
                 this.buttonCancel.Visible = false;
@@ -65,23 +65,23 @@ namespace SAPS
             }
             else if(_eventMode == EventStatus.Create)
             {
-                _storage.Status = EventStatus.Create;
+                _storage.Value = EventStatus.Create;
             }
             else
             {
-                _storage.Status = EventStatus.Modify;
+                _storage.Value = EventStatus.Modify;
             }
 
-            _entry.eventName = textEventName.Text;
-            _entry.eventActivationTime = timeStart.Value;
-            _entry.eventDeactivationTime = timeEnd.Value;
-            _entry.description = textDescription.Text;
+            _entry.EventName = textEventName.Text;
+            _entry.EventActivationTime = timeStart.Value;
+            _entry.EventDeactivationTime = timeEnd.Value;
+            _entry.Description = textDescription.Text;
             this.Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            _storage.Status = EventStatus.Cancel;
+            _storage.Value = EventStatus.Cancel;
             this.Close();
         }
 
@@ -91,7 +91,7 @@ namespace SAPS
 
             if(result == DialogResult.OK)
             {
-                _storage.Status = EventStatus.Remove;
+                _storage.Value = EventStatus.Remove;
                 this.Close();
             }
         }
@@ -114,12 +114,12 @@ namespace SAPS
             mygraphics.ReleaseHdc(dc1);
             memoryGraphics.ReleaseHdc(dc2);
 
-            printDialog1 = new PrintDialog();
-            printDialog1.Document = printDocument1;
+            printEventDialog = new PrintDialog();
+            printEventDialog.Document = printEvent;
 
-            if (printDialog1.ShowDialog() == DialogResult.OK)
+            if (printEventDialog.ShowDialog() == DialogResult.OK)
             {
-                printDocument1.Print();
+                printEvent.Print();
             }
 
             this.Close();

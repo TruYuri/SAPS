@@ -72,10 +72,14 @@ namespace SAPS
         public void EventThread(EventEntry entry, EventStatus eventMode)
         {
             FormStorage<EventStatus> storage = new FormStorage<EventStatus>(eventMode);
-            EventEditor editor = new EventEditor(entry, storage);
-            Application.Run(editor);
-            _eventEditors.Remove(Thread.CurrentThread);
-            SAPS.Instance.Invoke(new EventDelegate(UpdateEvents), new object[] { editor.Entry, storage.Status });
+            Application.Run(new EventEditor(entry, storage));
+
+            if(_eventEditors.ContainsKey(Thread.CurrentThread))
+            {
+                _eventEditors.Remove(Thread.CurrentThread);
+            }
+
+            SAPS.Instance.Invoke(new EventDelegate(UpdateEvents), new object[] { entry, storage.Value });
         }
 
         private void UpdateEvents(EventEntry entry, EventStatus status)
@@ -94,6 +98,7 @@ namespace SAPS
                     break;
             }
 
+            BaseSystem.Instance.Serialize();
             EventTracker.Instance.UpdateEventTracker();
             SAPS.Instance.UpdateEventList();
         }
@@ -104,6 +109,41 @@ namespace SAPS
             {
                 pair.Key.Abort();
             }
+        }
+
+        public BindingList<EventEntry> Search()
+        {
+            FormStorage<bool> storage = new FormStorage<bool>(false);
+            Dictionary<string, string> searchTerms = new Dictionary<string, string>();
+            Search search = new Search(searchTerms, typeof(EventEntry), storage);
+
+            search.ShowDialog();
+
+            if (storage.Value && searchTerms.Count != 0)
+            {
+                BindingList<EventEntry> searchList = new BindingList<EventEntry>();
+                foreach(EventEntry entry in _events)
+                {
+                    searchList.Add(entry);
+                }
+
+                foreach (KeyValuePair<string, string> pair in searchTerms)
+                {
+                    for (int i = 0; i < searchList.Count; i++)
+                    {
+                        object property = typeof(EventEntry).GetProperty(pair.Key).GetValue(searchList[i]);
+                        if (property != null && !property.ToString().Contains(pair.Value))
+                        {
+                            i--;
+                            searchList.Remove(searchList[i + 1]);
+                        }
+                    }
+                }
+
+                return searchList;
+            }
+
+            return _events;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -37,35 +38,35 @@ namespace SAPS
             this.comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
             this.comboVote.DataSource = Enum.GetValues(typeof(Vote));
             this.comboVote.SelectedIndex = this.comboVote.FindString(Vote.Undecided.ToString());
-            this.timeSubmission.Value = _entry.submissionDate;
-            this.textFirstName.Text = _entry.firstName;
-            this.textMiddleName.Text = _entry.middleName;
-            this.textLastName.Text = _entry.lastName;
-            this.comboBoxGender.SelectedIndex = this.comboBoxGender.FindString(_entry.gender.ToString());
-            this.timeDOB.Value = _entry.dateOfBirth;
-            this.textSocial.Text = _entry.socialSecurity;
-            this.textAddress.Text = _entry.streetAddress;
-            this.textCity.Text = _entry.city;
-            this.textState.Text = _entry.state;
-            this.textZip.Text = _entry.zip;
-            this.textPhone.Text = _entry.phone;
+            this.timeSubmission.Value = _entry.SubmissionDate;
+            this.textFirstName.Text = _entry.FirstName;
+            this.textMiddleName.Text = _entry.MiddleName;
+            this.textLastName.Text = _entry.LastName;
+            this.comboBoxGender.SelectedIndex = this.comboBoxGender.FindString(_entry.Gender.ToString());
+            this.timeDOB.Value = _entry.DateOfBirth;
+            this.textSocial.Text = _entry.SocialSecurity;
+            this.textAddress.Text = _entry.StreetAddress;
+            this.textCity.Text = _entry.City;
+            this.textState.Text = _entry.State;
+            this.textZip.Text = _entry.Zip;
+            this.textPhone.Text = _entry.Phone;
             this.textGPA.Text = _entry.GPA.ToString();
-            this.textScore.Text = _entry.actSAT.ToString();
-            this.textRank.Text = _entry.classRank.ToString();
-            foreach (string major in _entry.majors)
+            this.textScore.Text = _entry.ACTSAT.ToString();
+            this.textRank.Text = _entry.ClassRank.ToString();
+            foreach (string major in _entry.Majors)
             {
                 _tempMajors.Add(major);
             }
             this.listMajors.DataSource = _tempMajors;
-            foreach (string minor in _entry.minors)
+            foreach (string minor in _entry.Minors)
             {
                 _tempMinors.Add(minor);
             }
             this.listMinors.DataSource = _tempMinors;
             this.listVotes.DataSource = new BindingSource(_entry.votes, null);
-            this.textDescriptionComments.Text = _entry.comments;
+            this.textDescriptionComments.Text = _entry.Comments;
 
-            if (_storage.Status == ApplicationStatus.Print)
+            if (_storage.Value == ApplicationStatus.Print)
             {
                 buttonAddMajor.Visible = false;
                 buttonRemoveMajor.Visible = false;
@@ -105,7 +106,14 @@ namespace SAPS
 
         private void buttonAddMajor_Click(object sender, EventArgs e)
         {
-            // popup
+            FormStorage<string> storage = new FormStorage<string>(string.Empty);
+            StudySelector selector = new StudySelector(storage);
+            selector.ShowDialog();
+
+            if (storage.Value != string.Empty)
+            {
+                _tempMajors.Add(storage.Value);
+            }
         }
 
         private void buttonRemoveMajor_Click(object sender, EventArgs e)
@@ -139,7 +147,14 @@ namespace SAPS
 
         private void buttonAddMinor_Click(object sender, EventArgs e)
         {
-            // popup
+            FormStorage<string> storage = new FormStorage<string>(string.Empty);
+            StudySelector selector = new StudySelector(storage);
+            selector.ShowDialog();
+
+            if (storage.Value != string.Empty)
+            {
+                _tempMinors.Add(storage.Value);
+            }
         }
 
         private void buttonRemoveMinor_Click(object sender, EventArgs e)
@@ -152,7 +167,7 @@ namespace SAPS
             Vote vote;
             Enum.TryParse<Vote>(comboVote.SelectedValue.ToString(), out vote);
             DialogResult result = DialogResult.OK;
-            _storage.Status = ApplicationStatus.Modify;
+            _storage.Value = ApplicationStatus.Modify;
 
             if (listMajors.Items.Count == 0)
             {
@@ -173,34 +188,32 @@ namespace SAPS
             {
                 if(vote == Vote.Approve)
                 {
-                    _storage.Status = ApplicationStatus.Approve;
-                    _entry.votes.Add(User.Instance.Name, vote);
+                    _storage.Value = ApplicationStatus.Approve;
                 }
                 if (vote == Vote.Reject)
                 {
-                    _storage.Status = ApplicationStatus.Reject;
-                    _entry.votes.Add(User.Instance.Name, vote);
+                    _storage.Value = ApplicationStatus.Reject;
                 }
 
                 Gender gender;
                 Enum.TryParse<Gender>(comboBoxGender.SelectedValue.ToString(), out gender);
-                _entry.gender = gender;
-                _entry.firstName = this.textFirstName.Text;
-                _entry.middleName = this.textMiddleName.Text;
-                _entry.lastName = this.textLastName.Text;
-                _entry.dateOfBirth = this.timeDOB.Value;
-                _entry.socialSecurity = this.textSocial.Text;
-                _entry.streetAddress = this.textAddress.Text;
-                _entry.city = this.textCity.Text;
-                _entry.state = this.textState.Text;
-                _entry.zip = this.textZip.Text;
-                _entry.phone = this.textPhone.Text;
+                _entry.Gender = gender;
+                _entry.FirstName = this.textFirstName.Text;
+                _entry.MiddleName = this.textMiddleName.Text;
+                _entry.LastName = this.textLastName.Text;
+                _entry.DateOfBirth = this.timeDOB.Value;
+                _entry.SocialSecurity = this.textSocial.Text;
+                _entry.StreetAddress = this.textAddress.Text;
+                _entry.City = this.textCity.Text;
+                _entry.State = this.textState.Text;
+                _entry.Zip = this.textZip.Text;
+                _entry.Phone = this.textPhone.Text;
                 _entry.GPA = float.Parse(this.textGPA.Text);
-                _entry.actSAT = int.Parse(this.textScore.Text);
-                _entry.classRank = int.Parse(this.textRank.Text.Remove(2));
-                _entry.majors = _tempMajors;
-                _entry.minors = _tempMinors;
-                _entry.comments = this.textDescriptionComments.Text;
+                _entry.ACTSAT = int.Parse(this.textScore.Text);
+                _entry.ClassRank = int.Parse(this.textRank.Text.Remove(2));
+                _entry.Majors = _tempMajors;
+                _entry.Minors = _tempMinors;
+                _entry.Comments = this.textDescriptionComments.Text;
 
                 this.Close();
             } 
@@ -212,14 +225,14 @@ namespace SAPS
 
             if(result == DialogResult.OK)
             {
-                _storage.Status = ApplicationStatus.Remove;
+                _storage.Value = ApplicationStatus.Remove;
                 this.Close();
             }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            _storage.Status = ApplicationStatus.Cancel;
+            _storage.Value = ApplicationStatus.Cancel;
             this.Close();
         }
 
@@ -241,12 +254,12 @@ namespace SAPS
             mygraphics.ReleaseHdc(dc1);
             memoryGraphics.ReleaseHdc(dc2);
 
-            printDialog1 = new PrintDialog();
-            printDialog1.Document = printDocument1;
+            printApplicationDialog = new PrintDialog();
+            printApplicationDialog.Document = printApplication;
 
-            if (printDialog1.ShowDialog() == DialogResult.OK)
+            if (printApplicationDialog.ShowDialog() == DialogResult.OK)
             {
-                printDocument1.Print();
+                printApplication.Print();
             }
 
             this.Close();

@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tabSystems = new System.Windows.Forms.TabControl();
             this.tabLogin = new System.Windows.Forms.TabPage();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -41,18 +39,20 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.tabHome = new System.Windows.Forms.TabPage();
             this.buttonUpdate = new System.Windows.Forms.Button();
-            this.textName = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.textSAPS = new System.Windows.Forms.Label();
             this.textWelcome = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.feedNews = new System.Windows.Forms.WebBrowser();
             this.calenderHome = new System.Windows.Forms.MonthCalendar();
             this.tabApplications = new System.Windows.Forms.TabPage();
+            this.buttonResetApplications = new System.Windows.Forms.Button();
             this.buttonPrintApplication = new System.Windows.Forms.Button();
             this.applicationList = new System.Windows.Forms.DataGridView();
             this.buttonModifyApplication = new System.Windows.Forms.Button();
             this.buttonSearchApplications = new System.Windows.Forms.Button();
             this.tabEvents = new System.Windows.Forms.TabPage();
+            this.buttonResetEvents = new System.Windows.Forms.Button();
             this.buttonPrintEvent = new System.Windows.Forms.Button();
             this.buttonSearchEvents = new System.Windows.Forms.Button();
             this.buttonCreateEvent = new System.Windows.Forms.Button();
@@ -61,23 +61,40 @@
             this.tabStatistics = new System.Windows.Forms.TabPage();
             this.tabStats = new System.Windows.Forms.TabControl();
             this.tabCollege = new System.Windows.Forms.TabPage();
+            this.labelCollegeColor = new System.Windows.Forms.Label();
+            this.comboCollegeColor = new System.Windows.Forms.ComboBox();
             this.buttonSaveCollege = new System.Windows.Forms.Button();
             this.buttonPrintCollege = new System.Windows.Forms.Button();
             this.labelCollegeType = new System.Windows.Forms.Label();
             this.comboCollegeType = new System.Windows.Forms.ComboBox();
             this.chartCollege = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabACT = new System.Windows.Forms.TabPage();
+            this.buttonSaveACT = new System.Windows.Forms.Button();
+            this.labelACTColor = new System.Windows.Forms.Label();
+            this.comboACTColor = new System.Windows.Forms.ComboBox();
             this.buttonPrintACT = new System.Windows.Forms.Button();
             this.labelACTType = new System.Windows.Forms.Label();
             this.comboACTType = new System.Windows.Forms.ComboBox();
             this.chartACT = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabCustom = new System.Windows.Forms.TabPage();
+            this.chartCustom = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.labelYAxis = new System.Windows.Forms.Label();
+            this.comboYAxis = new System.Windows.Forms.ComboBox();
+            this.labelXAxis = new System.Windows.Forms.Label();
+            this.comboXAxis = new System.Windows.Forms.ComboBox();
+            this.buttonSaveCustom = new System.Windows.Forms.Button();
+            this.labelCustomColor = new System.Windows.Forms.Label();
+            this.comboCustomColor = new System.Windows.Forms.ComboBox();
             this.buttonPrintCustom = new System.Windows.Forms.Button();
             this.labelCustomType = new System.Windows.Forms.Label();
             this.comboCustomType = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.buttonSaveACT = new System.Windows.Forms.Button();
-            this.buttonSaveCustom = new System.Windows.Forms.Button();
+            this.saveStatisticDialog = new System.Windows.Forms.SaveFileDialog();
+            this.printStatisticDialog = new System.Windows.Forms.PrintDialog();
+            this.printStatistic = new System.Drawing.Printing.PrintDocument();
+            this.progressBarFake = new System.Windows.Forms.ProgressBar();
+            this.labelNameError = new System.Windows.Forms.Label();
+            this.labelPasswordError = new System.Windows.Forms.Label();
             this.tabSystems.SuspendLayout();
             this.tabLogin.SuspendLayout();
             this.tabHome.SuspendLayout();
@@ -92,6 +109,7 @@
             this.tabACT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartACT)).BeginInit();
             this.tabCustom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCustom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,6 +129,8 @@
             // 
             // tabLogin
             // 
+            this.tabLogin.Controls.Add(this.labelPasswordError);
+            this.tabLogin.Controls.Add(this.labelNameError);
             this.tabLogin.Controls.Add(this.labelTitle);
             this.tabLogin.Controls.Add(this.labelPassword);
             this.tabLogin.Controls.Add(this.labelEmail);
@@ -160,6 +180,7 @@
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(150, 20);
             this.textEmail.TabIndex = 2;
+            this.textEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textPassword
             // 
@@ -167,6 +188,7 @@
             this.textPassword.Name = "textPassword";
             this.textPassword.Size = new System.Drawing.Size(150, 20);
             this.textPassword.TabIndex = 1;
+            this.textPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
@@ -181,8 +203,9 @@
             // 
             // tabHome
             // 
+            this.tabHome.Controls.Add(this.progressBarFake);
             this.tabHome.Controls.Add(this.buttonUpdate);
-            this.tabHome.Controls.Add(this.textName);
+            this.tabHome.Controls.Add(this.labelName);
             this.tabHome.Controls.Add(this.textSAPS);
             this.tabHome.Controls.Add(this.textWelcome);
             this.tabHome.Controls.Add(this.buttonLogout);
@@ -206,14 +229,14 @@
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // textName
+            // labelName
             // 
-            this.textName.AutoSize = true;
-            this.textName.Location = new System.Drawing.Point(726, 67);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(56, 13);
-            this.textName.TabIndex = 7;
-            this.textName.Text = "user name";
+            this.labelName.Location = new System.Drawing.Point(648, 67);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(227, 13);
+            this.labelName.TabIndex = 7;
+            this.labelName.Text = "user name";
+            this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textSAPS
             // 
@@ -228,12 +251,12 @@
             // 
             // textWelcome
             // 
-            this.textWelcome.AutoSize = true;
-            this.textWelcome.Location = new System.Drawing.Point(727, 54);
+            this.textWelcome.Location = new System.Drawing.Point(648, 54);
             this.textWelcome.Name = "textWelcome";
-            this.textWelcome.Size = new System.Drawing.Size(55, 13);
+            this.textWelcome.Size = new System.Drawing.Size(227, 13);
             this.textWelcome.TabIndex = 3;
             this.textWelcome.Text = "Welcome,";
+            this.textWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonLogout
             // 
@@ -247,6 +270,7 @@
             // 
             // feedNews
             // 
+            this.feedNews.AllowNavigation = false;
             this.feedNews.Location = new System.Drawing.Point(-4, 0);
             this.feedNews.MinimumSize = new System.Drawing.Size(20, 20);
             this.feedNews.Name = "feedNews";
@@ -261,6 +285,7 @@
             // 
             // tabApplications
             // 
+            this.tabApplications.Controls.Add(this.buttonResetApplications);
             this.tabApplications.Controls.Add(this.buttonPrintApplication);
             this.tabApplications.Controls.Add(this.applicationList);
             this.tabApplications.Controls.Add(this.buttonModifyApplication);
@@ -272,6 +297,16 @@
             this.tabApplications.TabIndex = 1;
             this.tabApplications.Text = "Applications";
             this.tabApplications.UseVisualStyleBackColor = true;
+            // 
+            // buttonResetApplications
+            // 
+            this.buttonResetApplications.Location = new System.Drawing.Point(750, 402);
+            this.buttonResetApplications.Name = "buttonResetApplications";
+            this.buttonResetApplications.Size = new System.Drawing.Size(128, 23);
+            this.buttonResetApplications.TabIndex = 5;
+            this.buttonResetApplications.Text = "Reset";
+            this.buttonResetApplications.UseVisualStyleBackColor = true;
+            this.buttonResetApplications.Click += new System.EventHandler(this.buttonResetApplications_Click);
             // 
             // buttonPrintApplication
             // 
@@ -315,15 +350,17 @@
             // 
             // buttonSearchApplications
             // 
-            this.buttonSearchApplications.Location = new System.Drawing.Point(750, 399);
+            this.buttonSearchApplications.Location = new System.Drawing.Point(750, 373);
             this.buttonSearchApplications.Name = "buttonSearchApplications";
             this.buttonSearchApplications.Size = new System.Drawing.Size(128, 23);
             this.buttonSearchApplications.TabIndex = 1;
             this.buttonSearchApplications.Text = "Search";
             this.buttonSearchApplications.UseVisualStyleBackColor = true;
+            this.buttonSearchApplications.Click += new System.EventHandler(this.buttonSearchApplications_Click);
             // 
             // tabEvents
             // 
+            this.tabEvents.Controls.Add(this.buttonResetEvents);
             this.tabEvents.Controls.Add(this.buttonPrintEvent);
             this.tabEvents.Controls.Add(this.buttonSearchEvents);
             this.tabEvents.Controls.Add(this.buttonCreateEvent);
@@ -337,6 +374,16 @@
             this.tabEvents.Text = "Events";
             this.tabEvents.UseVisualStyleBackColor = true;
             // 
+            // buttonResetEvents
+            // 
+            this.buttonResetEvents.Location = new System.Drawing.Point(750, 402);
+            this.buttonResetEvents.Name = "buttonResetEvents";
+            this.buttonResetEvents.Size = new System.Drawing.Size(128, 23);
+            this.buttonResetEvents.TabIndex = 9;
+            this.buttonResetEvents.Text = "Reset";
+            this.buttonResetEvents.UseVisualStyleBackColor = true;
+            this.buttonResetEvents.Click += new System.EventHandler(this.buttonResetEvents_Click);
+            // 
             // buttonPrintEvent
             // 
             this.buttonPrintEvent.Location = new System.Drawing.Point(750, 64);
@@ -349,12 +396,13 @@
             // 
             // buttonSearchEvents
             // 
-            this.buttonSearchEvents.Location = new System.Drawing.Point(750, 399);
+            this.buttonSearchEvents.Location = new System.Drawing.Point(750, 373);
             this.buttonSearchEvents.Name = "buttonSearchEvents";
             this.buttonSearchEvents.Size = new System.Drawing.Size(128, 23);
             this.buttonSearchEvents.TabIndex = 7;
             this.buttonSearchEvents.Text = "Search";
             this.buttonSearchEvents.UseVisualStyleBackColor = true;
+            this.buttonSearchEvents.Click += new System.EventHandler(this.buttonSearchEvents_Click);
             // 
             // buttonCreateEvent
             // 
@@ -422,6 +470,8 @@
             // 
             // tabCollege
             // 
+            this.tabCollege.Controls.Add(this.labelCollegeColor);
+            this.tabCollege.Controls.Add(this.comboCollegeColor);
             this.tabCollege.Controls.Add(this.buttonSaveCollege);
             this.tabCollege.Controls.Add(this.buttonPrintCollege);
             this.tabCollege.Controls.Add(this.labelCollegeType);
@@ -435,11 +485,30 @@
             this.tabCollege.Text = "College";
             this.tabCollege.UseVisualStyleBackColor = true;
             // 
+            // labelCollegeColor
+            // 
+            this.labelCollegeColor.AutoSize = true;
+            this.labelCollegeColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCollegeColor.Location = new System.Drawing.Point(179, 399);
+            this.labelCollegeColor.Name = "labelCollegeColor";
+            this.labelCollegeColor.Size = new System.Drawing.Size(40, 16);
+            this.labelCollegeColor.TabIndex = 11;
+            this.labelCollegeColor.Text = "Color";
+            // 
+            // comboCollegeColor
+            // 
+            this.comboCollegeColor.FormattingEnabled = true;
+            this.comboCollegeColor.Location = new System.Drawing.Point(225, 397);
+            this.comboCollegeColor.Name = "comboCollegeColor";
+            this.comboCollegeColor.Size = new System.Drawing.Size(121, 21);
+            this.comboCollegeColor.TabIndex = 10;
+            this.comboCollegeColor.SelectedIndexChanged += new System.EventHandler(this.comboCollegeColor_SelectedIndexChanged);
+            // 
             // buttonSaveCollege
             // 
-            this.buttonSaveCollege.Location = new System.Drawing.Point(607, 398);
+            this.buttonSaveCollege.Location = new System.Drawing.Point(714, 397);
             this.buttonSaveCollege.Name = "buttonSaveCollege";
-            this.buttonSaveCollege.Size = new System.Drawing.Size(121, 23);
+            this.buttonSaveCollege.Size = new System.Drawing.Size(69, 23);
             this.buttonSaveCollege.TabIndex = 9;
             this.buttonSaveCollege.Text = "Save";
             this.buttonSaveCollege.UseVisualStyleBackColor = true;
@@ -447,9 +516,9 @@
             // 
             // buttonPrintCollege
             // 
-            this.buttonPrintCollege.Location = new System.Drawing.Point(734, 398);
+            this.buttonPrintCollege.Location = new System.Drawing.Point(789, 397);
             this.buttonPrintCollege.Name = "buttonPrintCollege";
-            this.buttonPrintCollege.Size = new System.Drawing.Size(121, 23);
+            this.buttonPrintCollege.Size = new System.Drawing.Size(69, 23);
             this.buttonPrintCollege.TabIndex = 8;
             this.buttonPrintCollege.Text = "Print";
             this.buttonPrintCollege.UseVisualStyleBackColor = true;
@@ -459,16 +528,16 @@
             // 
             this.labelCollegeType.AutoSize = true;
             this.labelCollegeType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCollegeType.Location = new System.Drawing.Point(3, 398);
+            this.labelCollegeType.Location = new System.Drawing.Point(6, 399);
             this.labelCollegeType.Name = "labelCollegeType";
-            this.labelCollegeType.Size = new System.Drawing.Size(74, 16);
+            this.labelCollegeType.Size = new System.Drawing.Size(40, 16);
             this.labelCollegeType.TabIndex = 3;
-            this.labelCollegeType.Text = "Chart Type";
+            this.labelCollegeType.Text = "Type";
             // 
             // comboCollegeType
             // 
             this.comboCollegeType.FormattingEnabled = true;
-            this.comboCollegeType.Location = new System.Drawing.Point(83, 398);
+            this.comboCollegeType.Location = new System.Drawing.Point(52, 397);
             this.comboCollegeType.Name = "comboCollegeType";
             this.comboCollegeType.Size = new System.Drawing.Size(121, 21);
             this.comboCollegeType.TabIndex = 2;
@@ -476,8 +545,6 @@
             // 
             // chartCollege
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartCollege.ChartAreas.Add(chartArea4);
             this.chartCollege.Location = new System.Drawing.Point(0, 0);
             this.chartCollege.Name = "chartCollege";
             this.chartCollege.Size = new System.Drawing.Size(863, 396);
@@ -487,6 +554,8 @@
             // tabACT
             // 
             this.tabACT.Controls.Add(this.buttonSaveACT);
+            this.tabACT.Controls.Add(this.labelACTColor);
+            this.tabACT.Controls.Add(this.comboACTColor);
             this.tabACT.Controls.Add(this.buttonPrintACT);
             this.tabACT.Controls.Add(this.labelACTType);
             this.tabACT.Controls.Add(this.comboACTType);
@@ -498,11 +567,40 @@
             this.tabACT.Text = "ACT";
             this.tabACT.UseVisualStyleBackColor = true;
             // 
+            // buttonSaveACT
+            // 
+            this.buttonSaveACT.Location = new System.Drawing.Point(714, 397);
+            this.buttonSaveACT.Name = "buttonSaveACT";
+            this.buttonSaveACT.Size = new System.Drawing.Size(69, 23);
+            this.buttonSaveACT.TabIndex = 14;
+            this.buttonSaveACT.Text = "Save";
+            this.buttonSaveACT.UseVisualStyleBackColor = true;
+            this.buttonSaveACT.Click += new System.EventHandler(this.buttonSaveACT_Click);
+            // 
+            // labelACTColor
+            // 
+            this.labelACTColor.AutoSize = true;
+            this.labelACTColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelACTColor.Location = new System.Drawing.Point(179, 399);
+            this.labelACTColor.Name = "labelACTColor";
+            this.labelACTColor.Size = new System.Drawing.Size(40, 16);
+            this.labelACTColor.TabIndex = 13;
+            this.labelACTColor.Text = "Color";
+            // 
+            // comboACTColor
+            // 
+            this.comboACTColor.FormattingEnabled = true;
+            this.comboACTColor.Location = new System.Drawing.Point(225, 397);
+            this.comboACTColor.Name = "comboACTColor";
+            this.comboACTColor.Size = new System.Drawing.Size(121, 21);
+            this.comboACTColor.TabIndex = 12;
+            this.comboACTColor.SelectedIndexChanged += new System.EventHandler(this.comboACTColor_SelectedIndexChanged);
+            // 
             // buttonPrintACT
             // 
-            this.buttonPrintACT.Location = new System.Drawing.Point(734, 398);
+            this.buttonPrintACT.Location = new System.Drawing.Point(789, 397);
             this.buttonPrintACT.Name = "buttonPrintACT";
-            this.buttonPrintACT.Size = new System.Drawing.Size(121, 23);
+            this.buttonPrintACT.Size = new System.Drawing.Size(69, 23);
             this.buttonPrintACT.TabIndex = 7;
             this.buttonPrintACT.Text = "Print";
             this.buttonPrintACT.UseVisualStyleBackColor = true;
@@ -512,16 +610,16 @@
             // 
             this.labelACTType.AutoSize = true;
             this.labelACTType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelACTType.Location = new System.Drawing.Point(3, 398);
+            this.labelACTType.Location = new System.Drawing.Point(6, 399);
             this.labelACTType.Name = "labelACTType";
-            this.labelACTType.Size = new System.Drawing.Size(74, 16);
+            this.labelACTType.Size = new System.Drawing.Size(40, 16);
             this.labelACTType.TabIndex = 6;
-            this.labelACTType.Text = "Chart Type";
+            this.labelACTType.Text = "Type";
             // 
             // comboACTType
             // 
             this.comboACTType.FormattingEnabled = true;
-            this.comboACTType.Location = new System.Drawing.Point(83, 398);
+            this.comboACTType.Location = new System.Drawing.Point(52, 397);
             this.comboACTType.Name = "comboACTType";
             this.comboACTType.Size = new System.Drawing.Size(121, 21);
             this.comboACTType.TabIndex = 5;
@@ -529,8 +627,6 @@
             // 
             // chartACT
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartACT.ChartAreas.Add(chartArea5);
             this.chartACT.Location = new System.Drawing.Point(0, 0);
             this.chartACT.Name = "chartACT";
             this.chartACT.Size = new System.Drawing.Size(863, 396);
@@ -539,7 +635,14 @@
             // 
             // tabCustom
             // 
+            this.tabCustom.Controls.Add(this.chartCustom);
+            this.tabCustom.Controls.Add(this.labelYAxis);
+            this.tabCustom.Controls.Add(this.comboYAxis);
+            this.tabCustom.Controls.Add(this.labelXAxis);
+            this.tabCustom.Controls.Add(this.comboXAxis);
             this.tabCustom.Controls.Add(this.buttonSaveCustom);
+            this.tabCustom.Controls.Add(this.labelCustomColor);
+            this.tabCustom.Controls.Add(this.comboCustomColor);
             this.tabCustom.Controls.Add(this.buttonPrintCustom);
             this.tabCustom.Controls.Add(this.labelCustomType);
             this.tabCustom.Controls.Add(this.comboCustomType);
@@ -552,12 +655,87 @@
             this.tabCustom.Text = "Custom";
             this.tabCustom.UseVisualStyleBackColor = true;
             // 
+            // chartCustom
+            // 
+            this.chartCustom.Location = new System.Drawing.Point(0, 0);
+            this.chartCustom.Name = "chartCustom";
+            this.chartCustom.Size = new System.Drawing.Size(863, 396);
+            this.chartCustom.TabIndex = 23;
+            this.chartCustom.Text = "College";
+            // 
+            // labelYAxis
+            // 
+            this.labelYAxis.AutoSize = true;
+            this.labelYAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelYAxis.Location = new System.Drawing.Point(530, 399);
+            this.labelYAxis.Name = "labelYAxis";
+            this.labelYAxis.Size = new System.Drawing.Size(46, 16);
+            this.labelYAxis.TabIndex = 22;
+            this.labelYAxis.Text = "Y-Axis";
+            // 
+            // comboYAxis
+            // 
+            this.comboYAxis.FormattingEnabled = true;
+            this.comboYAxis.Location = new System.Drawing.Point(581, 398);
+            this.comboYAxis.Name = "comboYAxis";
+            this.comboYAxis.Size = new System.Drawing.Size(121, 21);
+            this.comboYAxis.TabIndex = 21;
+            this.comboYAxis.SelectedIndexChanged += new System.EventHandler(this.comboYAxis_SelectedIndexChanged);
+            // 
+            // labelXAxis
+            // 
+            this.labelXAxis.AutoSize = true;
+            this.labelXAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXAxis.Location = new System.Drawing.Point(352, 399);
+            this.labelXAxis.Name = "labelXAxis";
+            this.labelXAxis.Size = new System.Drawing.Size(45, 16);
+            this.labelXAxis.TabIndex = 20;
+            this.labelXAxis.Text = "X-Axis";
+            // 
+            // comboXAxis
+            // 
+            this.comboXAxis.FormattingEnabled = true;
+            this.comboXAxis.Location = new System.Drawing.Point(403, 397);
+            this.comboXAxis.Name = "comboXAxis";
+            this.comboXAxis.Size = new System.Drawing.Size(121, 21);
+            this.comboXAxis.TabIndex = 19;
+            this.comboXAxis.SelectedIndexChanged += new System.EventHandler(this.comboXAxis_SelectedIndexChanged);
+            // 
+            // buttonSaveCustom
+            // 
+            this.buttonSaveCustom.Location = new System.Drawing.Point(714, 397);
+            this.buttonSaveCustom.Name = "buttonSaveCustom";
+            this.buttonSaveCustom.Size = new System.Drawing.Size(69, 23);
+            this.buttonSaveCustom.TabIndex = 18;
+            this.buttonSaveCustom.Text = "Save";
+            this.buttonSaveCustom.UseVisualStyleBackColor = true;
+            this.buttonSaveCustom.Click += new System.EventHandler(this.buttonSaveCustom_Click);
+            // 
+            // labelCustomColor
+            // 
+            this.labelCustomColor.AutoSize = true;
+            this.labelCustomColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCustomColor.Location = new System.Drawing.Point(179, 399);
+            this.labelCustomColor.Name = "labelCustomColor";
+            this.labelCustomColor.Size = new System.Drawing.Size(40, 16);
+            this.labelCustomColor.TabIndex = 17;
+            this.labelCustomColor.Text = "Color";
+            // 
+            // comboCustomColor
+            // 
+            this.comboCustomColor.FormattingEnabled = true;
+            this.comboCustomColor.Location = new System.Drawing.Point(225, 397);
+            this.comboCustomColor.Name = "comboCustomColor";
+            this.comboCustomColor.Size = new System.Drawing.Size(121, 21);
+            this.comboCustomColor.TabIndex = 16;
+            this.comboCustomColor.SelectedIndexChanged += new System.EventHandler(this.comboCustomColor_SelectedIndexChanged);
+            // 
             // buttonPrintCustom
             // 
-            this.buttonPrintCustom.Location = new System.Drawing.Point(734, 398);
+            this.buttonPrintCustom.Location = new System.Drawing.Point(789, 397);
             this.buttonPrintCustom.Name = "buttonPrintCustom";
-            this.buttonPrintCustom.Size = new System.Drawing.Size(121, 23);
-            this.buttonPrintCustom.TabIndex = 11;
+            this.buttonPrintCustom.Size = new System.Drawing.Size(69, 23);
+            this.buttonPrintCustom.TabIndex = 15;
             this.buttonPrintCustom.Text = "Print";
             this.buttonPrintCustom.UseVisualStyleBackColor = true;
             this.buttonPrintCustom.Click += new System.EventHandler(this.buttonPrintCustom_Click);
@@ -566,49 +744,73 @@
             // 
             this.labelCustomType.AutoSize = true;
             this.labelCustomType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCustomType.Location = new System.Drawing.Point(3, 398);
+            this.labelCustomType.Location = new System.Drawing.Point(6, 399);
             this.labelCustomType.Name = "labelCustomType";
-            this.labelCustomType.Size = new System.Drawing.Size(74, 16);
+            this.labelCustomType.Size = new System.Drawing.Size(40, 16);
             this.labelCustomType.TabIndex = 10;
-            this.labelCustomType.Text = "Chart Type";
+            this.labelCustomType.Text = "Type";
             // 
             // comboCustomType
             // 
             this.comboCustomType.FormattingEnabled = true;
-            this.comboCustomType.Location = new System.Drawing.Point(83, 398);
+            this.comboCustomType.Location = new System.Drawing.Point(52, 397);
             this.comboCustomType.Name = "comboCustomType";
             this.comboCustomType.Size = new System.Drawing.Size(121, 21);
             this.comboCustomType.TabIndex = 9;
+            this.comboCustomType.SelectedIndexChanged += new System.EventHandler(this.comboCustomType_SelectedIndexChanged);
             // 
             // chart1
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(863, 396);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "ACT Scores";
             // 
-            // buttonSaveACT
+            // printStatisticDialog
             // 
-            this.buttonSaveACT.Location = new System.Drawing.Point(607, 398);
-            this.buttonSaveACT.Name = "buttonSaveACT";
-            this.buttonSaveACT.Size = new System.Drawing.Size(121, 23);
-            this.buttonSaveACT.TabIndex = 10;
-            this.buttonSaveACT.Text = "Save";
-            this.buttonSaveACT.UseVisualStyleBackColor = true;
-            this.buttonSaveACT.Click += new System.EventHandler(this.buttonSaveACT_Click);
+            this.printStatisticDialog.UseEXDialog = true;
             // 
-            // buttonSaveCustom
+            // printStatistic
             // 
-            this.buttonSaveCustom.Location = new System.Drawing.Point(607, 398);
-            this.buttonSaveCustom.Name = "buttonSaveCustom";
-            this.buttonSaveCustom.Size = new System.Drawing.Size(121, 23);
-            this.buttonSaveCustom.TabIndex = 12;
-            this.buttonSaveCustom.Text = "Save";
-            this.buttonSaveCustom.UseVisualStyleBackColor = true;
-            this.buttonSaveCustom.Click += new System.EventHandler(this.buttonSaveCustom_Click);
+            this.printStatistic.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printStatistic_PrintPage);
+            // 
+            // progressBarFake
+            // 
+            this.progressBarFake.Location = new System.Drawing.Point(683, 371);
+            this.progressBarFake.Name = "progressBarFake";
+            this.progressBarFake.Size = new System.Drawing.Size(156, 23);
+            this.progressBarFake.Step = 1;
+            this.progressBarFake.TabIndex = 9;
+            this.progressBarFake.Visible = false;
+            // 
+            // labelNameError
+            // 
+            this.labelNameError.AutoSize = true;
+            this.labelNameError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameError.ForeColor = System.Drawing.Color.Red;
+            this.labelNameError.Location = new System.Drawing.Point(532, 187);
+            this.labelNameError.Name = "labelNameError";
+            this.labelNameError.Size = new System.Drawing.Size(33, 13);
+            this.labelNameError.TabIndex = 6;
+            this.labelNameError.Text = "error";
+            this.labelNameError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelNameError.Visible = false;
+            // 
+            // labelPasswordError
+            // 
+            this.labelPasswordError.AutoSize = true;
+            this.labelPasswordError.BackColor = System.Drawing.Color.Transparent;
+            this.labelPasswordError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPasswordError.ForeColor = System.Drawing.Color.Red;
+            this.labelPasswordError.Location = new System.Drawing.Point(532, 242);
+            this.labelPasswordError.Name = "labelPasswordError";
+            this.labelPasswordError.Size = new System.Drawing.Size(33, 13);
+            this.labelPasswordError.TabIndex = 7;
+            this.labelPasswordError.Text = "error";
+            this.labelPasswordError.Visible = false;
             // 
             // SAPS
             // 
@@ -640,6 +842,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartACT)).EndInit();
             this.tabCustom.ResumeLayout(false);
             this.tabCustom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCustom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
@@ -665,7 +868,7 @@
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.TabPage tabHome;
         private System.Windows.Forms.Button buttonUpdate;
-        private System.Windows.Forms.Label textName;
+        private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label textSAPS;
         private System.Windows.Forms.Label textWelcome;
         private System.Windows.Forms.Button buttonLogout;
@@ -687,13 +890,32 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartACT;
         private System.Windows.Forms.Button buttonPrintACT;
         private System.Windows.Forms.Button buttonPrintCollege;
-        private System.Windows.Forms.Button buttonPrintCustom;
         private System.Windows.Forms.Label labelCustomType;
         private System.Windows.Forms.ComboBox comboCustomType;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button buttonSaveCollege;
+        private System.Windows.Forms.Label labelCollegeColor;
+        private System.Windows.Forms.ComboBox comboCollegeColor;
         private System.Windows.Forms.Button buttonSaveACT;
+        private System.Windows.Forms.Label labelACTColor;
+        private System.Windows.Forms.ComboBox comboACTColor;
         private System.Windows.Forms.Button buttonSaveCustom;
+        private System.Windows.Forms.Label labelCustomColor;
+        private System.Windows.Forms.ComboBox comboCustomColor;
+        private System.Windows.Forms.Button buttonPrintCustom;
+        private System.Windows.Forms.Label labelXAxis;
+        private System.Windows.Forms.ComboBox comboXAxis;
+        private System.Windows.Forms.Label labelYAxis;
+        private System.Windows.Forms.ComboBox comboYAxis;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCustom;
+        private System.Windows.Forms.SaveFileDialog saveStatisticDialog;
+        private System.Windows.Forms.PrintDialog printStatisticDialog;
+        private System.Drawing.Printing.PrintDocument printStatistic;
+        private System.Windows.Forms.Button buttonResetApplications;
+        private System.Windows.Forms.Button buttonResetEvents;
+        private System.Windows.Forms.ProgressBar progressBarFake;
+        private System.Windows.Forms.Label labelPasswordError;
+        private System.Windows.Forms.Label labelNameError;
     }
 }
 

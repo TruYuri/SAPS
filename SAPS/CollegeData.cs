@@ -6,8 +6,6 @@ namespace SAPS
 {
     public class CollegeData
     {
-        public static int CommitteeMembers = 7;
-
         public static List<string> Colleges = new List<string>()
         {
             "Arts and Sciences",
@@ -16,12 +14,13 @@ namespace SAPS
             "Education",
             "Engineering",
             "Information Science and Technology",
-            "Public Affairs and Community Service"
+            "Public Affairs and Community Service",
+            "General Education"
         };
 
         public static Dictionary<string, string> Majors = new Dictionary<string,string>()
         {
-            {"Undeclared", "None"},
+            {"Undeclared", "General Education"},
             {"Psychology", "Arts and Sciences"},
             {"Religion", "Arts and Sciences"},
             {"Sociology", "Arts and Sciences"},
@@ -84,6 +83,24 @@ namespace SAPS
             {"Emergency Management", "Public Affairs and Community Service"},
             {"General Studies", "Public Affairs and Community Service"}
         };
+
+        public static Dictionary<string, User> Accounts = new Dictionary<string, User>() // email, user info
+        {
+            {"admin@saps.edu", new User("Administrator", "admin@saps.edu", "admin", UserType.All)},
+            {"guest@saps.edu", new User("Guest", "guest@saps.edu", "guest", UserType.None)},
+            {"upa@saps.edu", new User("Undergraduate Advisor", "upa@saps.edu", "upa", UserType.UPA)},
+            {"upc@saps.edu", new User("Undergraduate Program Chair", "upc@saps.edu", "upc", UserType.UPC)},
+            {"gpc1@saps.edu", new User("Committee Member 1", "gpc1@saps.edu", "gpc1", UserType.GPC)},
+            {"gpc2@saps.edu", new User("Committee Member 2", "gpc2@saps.edu", "gpc2", UserType.GPC)},
+            {"gpc3@saps.edu", new User("Committee Member 3", "gpc3@saps.edu", "gpc3", UserType.GPC)},
+            {"gpc4@saps.edu", new User("Committee Member 4", "gpc4@saps.edu", "gpc4", UserType.GPC)},
+            {"gpc5@saps.edu", new User("Committee Member 5", "gpc5@saps.edu", "gpc5", UserType.GPC)},
+            {"gpc6@saps.edu", new User("Committee Member 6", "gpc6@saps.edu", "gpc6", UserType.GPC)},
+            {"gpc7@saps.edu", new User("Committee Member 7", "gpc7@saps.edu", "gpc7", UserType.GPC)},
+            {"gpcc@saps.edu", new User("Graduate Program Committee Chair", "gpcc@saps.edu", "gpcc", UserType.GPCC)},
+        };
+
+        public static int CommitteeMembers = Accounts.Values.Count(e => e.Permissions == UserType.GPC);
 
         public static Dictionary<int[], int> SATtoACT = new Dictionary<int[], int>()
         {

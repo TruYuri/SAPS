@@ -9,10 +9,10 @@ public enum EventStage { NotYetStarted, Ongoing, Ended }
 
 public class FormStorage<T>
 {
-    public T Status;
+    public T Value;
 
     public FormStorage(T val)
     {
-        Status = val;
+        Value = val;
     }
 }

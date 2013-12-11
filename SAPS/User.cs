@@ -6,21 +6,12 @@ using System.Threading.Tasks;
 
 namespace SAPS
 {
-    class User
+    public class User
     {
-        private static User _instance;
-
         private string _name;
         private string _email;
+        private string _password;
         private UserType _permissions;
-
-        public static User Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
 
         public string Name
         {
@@ -38,6 +29,14 @@ namespace SAPS
             }
         }
 
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+        }
+
         public UserType Permissions
         {
             get
@@ -46,18 +45,12 @@ namespace SAPS
             }
         }
 
-        public User(string n, string e, UserType ut)
+        public User(string n, string e, string p, UserType ut)
         {
-            _instance = this;
-
             _name = n;
             _email = e;
+            _password = p;
             _permissions = ut;
-        }
-
-        public void Destroy()
-        {
-            _instance = null;
         }
     }
 }
