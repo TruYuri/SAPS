@@ -13,42 +13,48 @@ namespace SAPS
     public partial class Search : Form
     {
         private Dictionary<string, string> _searchTerms = new Dictionary<string, string>();
+        private BindingList<string> _searchList;
         private FormStorage<bool> _storage;
 
         public Search(Dictionary<string, string> searchTerms, System.Type type, FormStorage<bool> storage)
         {
             _searchTerms = searchTerms;
             _storage = storage;
+            _searchList = new BindingList<string>();
 
             InitializeComponent();
 
             List<string> list = type.GetProperties().Select(p => p.Name).ToList();
-            if(type.Equals(typeof(EventEntry)))
-            {
-                list.Remove("EventStart");
-                list.Remove("EventEnd");
-                list.Remove("Status");
-                list.Remove("Date");
-            }
+
             this.comboCriteria.DataSource = type.GetProperties().Select(p => p.Name).ToList();
-            BindingSource source = new BindingSource(_searchTerms, null);
-            source.RemoveAt(0);
-            this.listSearchTerms.DataSource = source;
+            this.listSearchTerms.DataSource = _searchList;
+            this.buttonRemove.Enabled = false;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (!_searchTerms.ContainsKey(comboCriteria.SelectedText))
+            if (!_searchTerms.Keys.ToList().Contains(textCriteria.Text))
             {
-                _searchTerms.Add(comboCriteria.SelectedItem.ToString(), textCriteria.Text);
-                this.listSearchTerms.DataSource = new BindingSource(_searchTerms, null);
+                _searchTerms.Add(textCriteria.Text, comboCriteria.SelectedItem.ToString());
+                _searchList.Add("[" + textCriteria.Text + ", " + comboCriteria.SelectedItem.ToString() + "]");
+
+                if (_searchList.Count == 1)
+                {
+                    listSearchTerms.SelectedIndex = 0;
+                    buttonRemove.Enabled = true;
+                }
             }
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            _searchTerms.Remove(listSearchTerms.SelectedItem.ToString());
-            this.listSearchTerms.DataSource = new BindingSource(_searchTerms, null);
+            string key = listSearchTerms.SelectedItem.ToString();
+            key = key.Remove(0, 1);
+            int comma = key.IndexOf(",");
+            key = key.Remove(comma, key.Length - comma);
+            _searchTerms.Remove(key);
+            
+            _searchList.Remove(listSearchTerms.SelectedItem.ToString());
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)

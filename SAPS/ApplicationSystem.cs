@@ -181,15 +181,15 @@ namespace SAPS
                 {
                     for(int i = 0; i < searchList.Count; i++)
                     {
-                        if (pair.Key == "Majors" || pair.Key == "Minors")
+                        if (pair.Value == "Majors" || pair.Value == "Minors")
                         {
                             bool contains = false;
 
-                            BindingList<string> keyList = (BindingList<string>)typeof(DatabaseEntry).GetProperty(pair.Key).GetValue(searchList[i]);
+                            BindingList<string> keyList = (BindingList<string>)typeof(DatabaseEntry).GetProperty(pair.Value).GetValue(searchList[i]);
 
                             foreach (string major in keyList)
                             {
-                                if (major.Contains(pair.Value))
+                                if (major.Contains(pair.Key))
                                 {
                                     contains = true;
                                 }
@@ -202,8 +202,8 @@ namespace SAPS
                         }
                         else
                         {
-                            object property = typeof(DatabaseEntry).GetProperty(pair.Key).GetValue(searchList[i]);
-                            if (property != null && !property.ToString().Contains(pair.Value))
+                            object property = typeof(DatabaseEntry).GetProperty(pair.Value).GetValue(searchList[i]);
+                            if (property != null && !property.ToString().Contains(pair.Key))
                             {
                                 i--;
                                 searchList.Remove(searchList[i + 1]);

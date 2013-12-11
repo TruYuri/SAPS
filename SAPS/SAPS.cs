@@ -70,9 +70,23 @@ namespace SAPS
                 this.comboCollegeType.DataSource = StatisticsSystem.ChartTypes;
                 this.comboACTType.DataSource = new List<string>(StatisticsSystem.ChartTypes);
                 this.comboCustomType.DataSource = new List<string>(StatisticsSystem.ChartTypes);
-                this.comboCollegeColor.DataSource = Enum.GetValues(typeof(KnownColor));
-                this.comboACTColor.DataSource = Enum.GetValues(typeof(KnownColor));
-                this.comboCustomColor.DataSource = Enum.GetValues(typeof(KnownColor));
+                List<string> chartColors = new List<string>()
+                {
+                    "Black",
+                    "Blue",
+                    "Green",
+                    "Indigo",
+                    "Maroon",
+                    "Orange",
+                    "Orchid",
+                    "Purple",
+                    "Red",
+                    "Yellow",
+                    "ActiveBorder"
+                };
+                this.comboCollegeColor.DataSource = chartColors;
+                this.comboACTColor.DataSource = new List<string>(chartColors);
+                this.comboCustomColor.DataSource = new List<string>(chartColors);
                 List<string> statisticsSelectionList = typeof(DatabaseEntry).GetProperties().Select(p => p.Name).ToList();
                 statisticsSelectionList.Remove("Name");
                 statisticsSelectionList.Remove("Major");

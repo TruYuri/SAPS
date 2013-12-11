@@ -131,8 +131,8 @@ namespace SAPS
                 {
                     for (int i = 0; i < searchList.Count; i++)
                     {
-                        object property = typeof(EventEntry).GetProperty(pair.Key).GetValue(searchList[i]);
-                        if (property != null && !property.ToString().Contains(pair.Value))
+                        object property = typeof(EventEntry).GetProperty(pair.Value).GetValue(searchList[i]);
+                        if (property != null && !property.ToString().Contains(pair.Key))
                         {
                             i--;
                             searchList.Remove(searchList[i + 1]);
