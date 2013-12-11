@@ -166,7 +166,15 @@ namespace SAPS
         // it maps any two data sets against eachother. the data sets can be lists or single values. it all works perfectly.
         public void UpdateCustomChart(Chart chart, string xProperty, string yProperty)
         {
-            SeriesChartType type = chart.Series["Series"].ChartType;
+            SeriesChartType type;
+            if (chart.Series.Count != 0)
+            {
+                type = chart.Series["Series"].ChartType;
+            }
+            else
+            {
+                type = SeriesChartType.Bar;
+            }
             chart.Series.Clear();
             chart.ChartAreas.Clear();
             chart.Series.Add(new Series("Series"));
