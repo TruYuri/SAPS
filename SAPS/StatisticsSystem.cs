@@ -138,7 +138,11 @@ namespace SAPS
         public void ChangeChartType(Chart chart, string type)
         {
             SeriesChartType chartType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), type, true);
-            chart.Series[0].ChartType = chartType;
+
+            if (chart.Series.Count > 0)
+            {
+                chart.Series[0].ChartType = chartType;
+            }
 
             chart.Legends.Clear();
 

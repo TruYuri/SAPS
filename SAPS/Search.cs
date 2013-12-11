@@ -23,11 +23,12 @@ namespace SAPS
             InitializeComponent();
 
             List<string> list = type.GetProperties().Select(p => p.Name).ToList();
-            if(type == typeof(EventEntry))
+            if(type.Equals(typeof(EventEntry)))
             {
                 list.Remove("EventStart");
                 list.Remove("EventEnd");
                 list.Remove("Status");
+                list.Remove("Date");
             }
             this.comboCriteria.DataSource = type.GetProperties().Select(p => p.Name).ToList();
             BindingSource source = new BindingSource(_searchTerms, null);
