@@ -263,12 +263,18 @@ namespace SAPS
 
         private void comboCollegeChart_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.ChangeChartType(this.chartCollege, this.comboCollegeType.SelectedItem.ToString());
+            if (this.comboCollegeType.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.ChangeChartType(this.chartCollege, this.comboCollegeType.SelectedItem.ToString());
+            }
         }
 
         private void comboCollegeColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.ChangeChartColor(this.chartCollege, this.comboCollegeColor.SelectedItem.ToString());
+            if (this.comboCollegeColor.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.ChangeChartColor(this.chartCollege, this.comboCollegeColor.SelectedItem.ToString());
+            }
         }
 
         private void buttonSaveCollege_Click(object sender, EventArgs e)
@@ -283,12 +289,18 @@ namespace SAPS
 
         private void comboACTType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.ChangeChartType(this.chartACT, this.comboACTType.SelectedItem.ToString());
+            if (this.comboACTType.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.ChangeChartType(this.chartACT, this.comboACTType.SelectedItem.ToString());
+            }
         }
 
         private void comboACTColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.ChangeChartColor(this.chartACT, this.comboACTColor.SelectedItem.ToString());
+            if (this.comboACTColor.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.ChangeChartColor(this.chartACT, this.comboACTColor.SelectedItem.ToString());
+            }
         }
 
         private void buttonSaveACT_Click(object sender, EventArgs e)
@@ -303,22 +315,34 @@ namespace SAPS
 
         private void comboCustomType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.ChangeChartType(this.chartCustom, this.comboCustomType.SelectedItem.ToString());
+            if (this.comboCustomType.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.ChangeChartType(this.chartCustom, this.comboCustomType.SelectedItem.ToString());
+            }
         }
 
         private void comboCustomColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.ChangeChartColor(this.chartCustom, this.comboCustomColor.SelectedItem.ToString());
+            if (this.comboCustomColor.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.ChangeChartColor(this.chartCustom, this.comboCustomColor.SelectedItem.ToString());
+            }
         }
 
         private void comboXAxis_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.UpdateCustomChart(this.chartCustom, this.comboXAxis.SelectedItem.ToString(), this.comboYAxis.SelectedItem.ToString());
+            if (this.comboXAxis.SelectedItem != null && this.comboYAxis.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.UpdateCustomChart(this.chartCustom, this.comboXAxis.SelectedItem.ToString(), this.comboYAxis.SelectedItem.ToString());
+            }
         }
 
         private void comboYAxis_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StatisticsSystem.Instance.UpdateCustomChart(this.chartCustom, this.comboXAxis.SelectedItem.ToString(), this.comboYAxis.SelectedItem.ToString());
+            if (this.comboXAxis.SelectedItem != null && this.comboYAxis.SelectedItem != null)
+            {
+                StatisticsSystem.Instance.UpdateCustomChart(this.chartCustom, this.comboXAxis.SelectedItem.ToString(), this.comboYAxis.SelectedItem.ToString());
+            }
         }
 
         private void buttonSaveCustom_Click(object sender, EventArgs e)
