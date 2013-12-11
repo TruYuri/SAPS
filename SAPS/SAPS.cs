@@ -63,6 +63,7 @@ namespace SAPS
                 this.buttonResetApplications.Enabled = false;
                 this.buttonResetEvents.Enabled = false;
 
+                this.feedNews.Navigate("http://www.unomaha.edu/my/");
                 this.applicationList.DataSource = ApplicationSystem.Instance.Entries;
                 this.eventList.DataSource = EventSystem.Instance.Events;
 

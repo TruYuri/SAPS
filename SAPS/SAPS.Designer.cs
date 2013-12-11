@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tabSystems = new System.Windows.Forms.TabControl();
             this.tabLogin = new System.Windows.Forms.TabPage();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -241,10 +241,11 @@
             // textSAPS
             // 
             this.textSAPS.AutoSize = true;
+            this.textSAPS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textSAPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textSAPS.Location = new System.Drawing.Point(645, 18);
             this.textSAPS.Name = "textSAPS";
-            this.textSAPS.Size = new System.Drawing.Size(228, 26);
+            this.textSAPS.Size = new System.Drawing.Size(230, 28);
             this.textSAPS.TabIndex = 6;
             this.textSAPS.Text = "SAPS\r\nStudent Application Processing System";
             this.textSAPS.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -761,8 +762,8 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(863, 396);
