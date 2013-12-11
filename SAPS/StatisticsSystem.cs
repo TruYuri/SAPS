@@ -141,7 +141,7 @@ namespace SAPS
 
             if (chart.Series.Count > 0)
             {
-                chart.Series[0].ChartType = chartType;
+                chart.Series["Series"].ChartType = chartType;
             }
 
             chart.Legends.Clear();
@@ -156,7 +156,10 @@ namespace SAPS
 
         public void ChangeChartColor(Chart chart, string color)
         {
-            chart.Series["Series"].Color = Color.FromName(color);
+            if (chart.Series.Count > 0)
+            {
+                chart.Series["Series"].Color = Color.FromName(color);
+            }
         }
 
         // this function is the crown jewel achievement of this program.
