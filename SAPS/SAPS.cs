@@ -67,8 +67,8 @@ namespace SAPS
                 this.eventList.DataSource = EventSystem.Instance.Events;
 
                 this.comboCollegeType.DataSource = StatisticsSystem.ChartTypes;
-                this.comboACTType.DataSource = StatisticsSystem.ChartTypes;
-                this.comboCustomType.DataSource = StatisticsSystem.ChartTypes;
+                this.comboACTType.DataSource = new List<string>(StatisticsSystem.ChartTypes);
+                this.comboCustomType.DataSource = new List<string>(StatisticsSystem.ChartTypes);
                 this.comboCollegeColor.DataSource = Enum.GetValues(typeof(KnownColor));
                 this.comboACTColor.DataSource = Enum.GetValues(typeof(KnownColor));
                 this.comboCustomColor.DataSource = Enum.GetValues(typeof(KnownColor));
